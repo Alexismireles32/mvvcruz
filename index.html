@@ -764,14 +764,6 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            /* Optimizaciones para mejor captura de imagen */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
 
         .quote-header {
@@ -784,11 +776,6 @@
         .quote-logo {
             height: 60px;
             margin-bottom: 15px;
-            /* Optimización de imagen para captura HD */
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            transform: translateZ(0);
-            backface-visibility: hidden;
         }
 
         .quote-header h2 {
@@ -1174,8 +1161,6 @@
 
             .quote-logo {
                 height: 80px;
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
             }
 
             .customer-form {
@@ -1279,7 +1264,7 @@
             <div class="catalog-section">
                 <h3>📚 Catálogo de Productos</h3>
                 <p>Descargue nuestro catálogo completo de productos para conocer toda nuestra oferta.</p>
-                <a href="Catalogo-Mvvnatural.pdf" class="btn-catalog" download>
+                <a href="public/catalogo-mvvNaturalss-24_240923_175642.pdf" class="btn-catalog" download>
                     📄 Descargar Catálogo PDF
                 </a>
             </div>
@@ -1421,7 +1406,7 @@
         <div id="step4" class="step">
             <div class="quote-wrapper">
                 <div class="quote-actions-top">
-                    <button id="downloadQuoteBtn" class="btn-download" onclick="downloadQuoteImage(event)" aria-label="Guardar imagen">
+                    <button class="btn-download" onclick="downloadQuoteImage()" aria-label="Guardar imagen">
                         💾 Guardar Imagen
                     </button>
                     <button class="btn-whatsapp" onclick="sendWhatsApp()" aria-label="Enviar por WhatsApp">
@@ -1913,66 +1898,32 @@
             goToStep(4);
         }
 
-        // Descargar imagen de alta calidad
-        function downloadQuoteImage(evt, silent = false) {
-            if (!silent) {
-                vibrate(20);
-            }
-
-            const btn = evt?.currentTarget || document.getElementById('downloadQuoteBtn');
-
-            if (!silent && btn) {
-                btn.innerHTML = '<span class="loading"></span> Generando...';
-                btn.disabled = true;
-            }
+        // Descargar imagen
+        function downloadQuoteImage() {
+            vibrate(20);
+            const btn = event.target;
+            btn.innerHTML = '<span class="loading"></span> Generando...';
+            btn.disabled = true;
 
             const quotePrintArea = document.getElementById('quotePrintArea');
 
-            if (!quotePrintArea) {
-                if (!silent && btn) {
-                    btn.innerHTML = '❌ Error. Reintentar';
-                    setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
-                }
-                return Promise.reject(new Error('No se encontró el área de cotización'));
-            }
-
-            const canvasPromise = html2canvas(quotePrintArea, {
+            html2canvas(quotePrintArea, {
                 scale: 2,
                 useCORS: true,
-                allowTaint: true,
                 logging: false,
                 backgroundColor: '#ffffff'
-            });
-
-            return canvasPromise.then(canvas => {
+            }).then(canvas => {
                 const imgData = canvas.toDataURL('image/jpeg', 0.9);
                 const link = document.createElement('a');
                 link.download = 'Cotizacion_MVNatural.jpg';
                 link.href = imgData;
                 link.click();
-
-                if (!silent && btn) {
-                    btn.innerHTML = '✅ Imagen Guardada';
-                    setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
-                }
-
-                return canvas;
-            }).catch(error => {
-                console.error('Error al generar imagen:', error);
-                if (!silent && btn) {
-                    btn.innerHTML = '❌ Error. Reintentar';
-                    setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
-                }
-                throw error;
+                
+                btn.innerHTML = '✅ Imagen Guardada';
+                setTimeout(() => {
+                    btn.innerHTML = '💾 Guardar Imagen';
+                    btn.disabled = false;
+                }, 2000);
             });
         }
 
@@ -1994,17 +1945,14 @@
 
             const message = `Hola Cruz Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total de ${formatPrice(totalAmount)}. Por favor revisa mi cotización adjunta y confírmame si está disponible. Gracias.`;
             
-            // Descargar primero y luego abrir WhatsApp
-            downloadQuoteImage(null, true)
-                .then(() => {
-                    setTimeout(() => {
-                        const whatsappUrl = `https://wa.me/+526621200412?text=${encodeURIComponent(message)}`;
-                        window.open(whatsappUrl, '_blank');
-                    }, 300);
-                })
-                .catch(() => {
-                    alert('⚠️ No se pudo generar la imagen de la cotización. Por favor intenta guardarla manualmente antes de enviar por WhatsApp.');
-                });
+            // Descargar primero
+            downloadQuoteImage();
+            
+            // Abrir WhatsApp
+            setTimeout(() => {
+                const whatsappUrl = `https://wa.me/+526621200412?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }, 500);
         }
 
         // Búsqueda con debounce
