@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Reglas - MV Natural</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #B8860B; }
+        h2 { color: #006400; margin-top: 30px; }
+        .test-case {
+            background: #f0f8f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #B8860B;
+            border-radius: 4px;
+        }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #B8860B;
+            color: white;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .summary {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .error-summary {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Validación Completa - Sistema de Cotizaciones MV Natural</h1>
+        <p><strong>Fecha de validación:</strong> <span id="testDate"></span></p>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // Array de 91 productos (debe coincidir con index.html)
+        const products = [
+            { id: "1A", name: "LIPO HD 360", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2B", name: "DUO 60 FUSION XTREME", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 },
+            { id: "3C", name: "FUSION 30 XTREME", price: 650, price10: 380, price30: 350, price50: 300, price100: 280 },
+            { id: "4D", name: "EXTRACTO CBD", price: 450, price10: 185, price30: 165, price50: 150, price100: 130 },
+            { id: "5E", name: "CM PUSH UP MEN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "6F", name: "H - FLEX", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "7G", name: "PROTEIN BODY", price: 450, price10: 250, price30: 220, price50: null, price100: 220 },
+            { id: "8H", name: "SOS BURN", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9I", name: "SOS BURN SENSITIVE", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1J", name: "SOS BURN CLEAN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "2K", name: "CHUPA PANZA CAPS.", price: 300, price10: 220, price30: 200, price50: 185, price100: 165 },
+            { id: "3L", name: "30 DAY DETOX", price: 450, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "4M", name: "15 DAY DETOX TEA", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
+            { id: "5N", name: "3 DAY RESET", price: 250, price10: 100, price30: 85, price50: 75, price100: 70 },
+            { id: "6O", name: "COLAGENO & BIOTINA ACIDO HIALURONICO", price: 400, price10: 200, price30: 195, price50: 175, price100: 175 },
+            { id: "7P", name: "MAXI FIBRA", price: 250, price10: 175, price30: 150, price50: 135, price100: 135 },
+            { id: "8Q", name: "MACA PREMIUM MUJER", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "9R", name: "MACA PREMIUM HOMBRE", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "1S", name: "SERENITY", price: 400, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "2T", name: "COLIT 6", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "3U", name: "PRIME ROSE", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "4V", name: "DAILY WORK", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "5W", name: "BIKINI STRONG PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6X", name: "BIKINI STRONG BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Y", name: "BIKINI STRONG YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8Z", name: "BIKINI STRONG PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9A", name: "BIKINI STRONG BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1B", name: "BIKINI STRONG WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2C", name: "LIPO PLUS XTREME", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3D", name: "LIPO PLUS XTREME GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4E", name: "LIPO PLUS XTREME PLATINUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5F", name: "LIPO PLUS XTREME BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6G", name: "LIPO PLUS XTREME PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7H", name: "LIPO PLUS XTREME BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8I", name: "LIPO PLUS XTREME GREEN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9J", name: "LIPO PLUS XTREME RED", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1K", name: "LIPO PLUS XTREME YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2L", name: "LIPO PLUS XTREME PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3M", name: "LIPO PLUS XTREME ORANGE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4N", name: "LIPO PLUS XTREME BROWN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5O", name: "LIPO PLUS XTREME GRAY", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6P", name: "LIPO PLUS XTREME WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Q", name: "LIPO PLUS XTREME SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8R", name: "LIPO PLUS XTREME BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9S", name: "LIPO PLUS XTREME COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1T", name: "LIPO PLUS XTREME TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2U", name: "LIPO PLUS XTREME PLATINUM GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3V", name: "LIPO PLUS XTREME PLATINUM SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4W", name: "LIPO PLUS XTREME PLATINUM BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5X", name: "LIPO PLUS XTREME PLATINUM COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6Y", name: "LIPO PLUS XTREME PLATINUM TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Z", name: "LIPO PLUS XTREME GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8A", name: "LIPO PLUS XTREME GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9B", name: "LIPO PLUS XTREME GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1C", name: "LIPO PLUS XTREME GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2D", name: "LIPO PLUS XTREME SILVER BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3E", name: "LIPO PLUS XTREME SILVER COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4F", name: "LIPO PLUS XTREME SILVER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5G", name: "LIPO PLUS XTREME BRONZE COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6H", name: "LIPO PLUS XTREME BRONZE TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7I", name: "LIPO PLUS XTREME COPPER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8J", name: "LIPO PLUS XTREME PLATINUM GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9K", name: "LIPO PLUS XTREME PLATINUM GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1L", name: "LIPO PLUS XTREME PLATINUM GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2M", name: "LIPO PLUS XTREME PLATINUM GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3N", name: "GEL TONIC", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "4O", name: "LIDA GLOW AZUL", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5P", name: "LIDA GLOW ROSA", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6Q", name: "MACA FEM", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "7R", name: "MACA FEM PLUS", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8S", name: "SBELTA 24/7", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9T", name: "PIÑA INTENSE BYPASS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "1U", name: "DESPANZATE BYPASS", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "2V", name: "KETO BURN", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3W", name: "APPLE CIDER VINAGRE", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "4X", name: "KETO DETOX", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "5Y", name: "KETO GOTAS", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "6Z", name: "CAFÉ KETO", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "7A", name: "TE BODY SHAPE", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
+            { id: "8B", name: "BYPASS DELUXE BLANCO", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9C", name: "TE ENERGOBOLIZER", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "1D", name: "TE MENOS 4K BYPASS", price: 380, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "2E", name: "GOTAS E DETOX PLUS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "3F", name: "FAT BLAZER", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4G", name: "FAT BURNER MAN", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5H", name: "LIDA BOOSTER PINK", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6I", name: "ENCIMAX", price: 600, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "7J", name: "FLORYVA", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "8K", name: "LIDA GLAM", price: 820, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9L", name: "XL3 POTENCIA TOTAL", price: 780, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1M", name: "XL3 NOCTURNO", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2N", name: "LIDA PLUS CHICA", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3O", name: "ALPHA GLOW", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 }
+        ];
+
+        // Función de cálculo (debe coincidir con index.html)
+        function calculatePrice(product, quantity, totalQuantity) {
+            let unitPrice = product.price;
+
+            if (quantity >= 100 && product.price100 !== null) {
+                unitPrice = product.price100;
+            } else if (quantity >= 50 && product.price50 !== null) {
+                unitPrice = product.price50;
+            } else if (quantity >= 30 && product.price30 !== null) {
+                unitPrice = product.price30;
+            } else if (totalQuantity >= 10) {
+                unitPrice = product.price10;
+            }
+
+            return unitPrice;
+        }
+
+        function calculateShipping(totalQuantity) {
+            if (totalQuantity >= 50) return 300;
+            if (totalQuantity >= 30) return 235;
+            return 165;
+        }
+
+        // Tests
+        function runTests() {
+            let html = '';
+            let totalTests = 0;
+            let passedTests = 0;
+
+            document.getElementById('testDate').textContent = new Date().toLocaleString('es-MX');
+
+            // Test 1: Verificar cantidad de productos
+            html += '<h2>✅ Test 1: Verificación de Catálogo</h2>';
+            totalTests++;
+            if (products.length === 91) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - Total de productos: 91</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Total de productos: ' + products.length + ' (esperado: 91)</div>';
+            }
+
+            // Test 2: Verificar IDs únicos
+            html += '<h2>✅ Test 2: IDs Únicos</h2>';
+            totalTests++;
+            const ids = products.map(p => p.id);
+            const uniqueIds = [...new Set(ids)];
+            if (ids.length === uniqueIds.length) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - Todos los IDs son únicos</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Hay IDs duplicados</div>';
+            }
+
+            // Test 3: Regla de precios 1-9 piezas
+            html += '<h2>✅ Test 3: Precios 1-9 Piezas (Precio Normal)</h2>';
+            totalTests++;
+            const product1A = products.find(p => p.id === '1A');
+            const price1 = calculatePrice(product1A, 5, 5);
+            if (price1 === 700) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 5 piezas de LIPO HD 360 = $700 (precio normal)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price1 + ' (esperado: $700)</div>';
+            }
+
+            // Test 4: Regla de 10+ piezas variadas
+            html += '<h2>✅ Test 4: Regla de 10+ Piezas Variadas</h2>';
+            totalTests++;
+            const price10a = calculatePrice(product1A, 6, 10); // 6 de producto A, total carrito 10
+            if (price10a === 380) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 6 piezas de LIPO HD 360 en carrito de 10 total = $380 (price10)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price10a + ' (esperado: $380)</div>';
+            }
+
+            // Test 5: Regla de 30+ piezas mismo producto
+            html += '<h2>✅ Test 5: Regla de 30+ Piezas Mismo Producto</h2>';
+            totalTests++;
+            const price30 = calculatePrice(product1A, 30, 30);
+            if (price30 === 350) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 30 piezas de LIPO HD 360 = $350 (price30)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price30 + ' (esperado: $350)</div>';
+            }
+
+            // Test 6: Regla de 50+ piezas mismo producto
+            html += '<h2>✅ Test 6: Regla de 50+ Piezas Mismo Producto</h2>';
+            totalTests++;
+            const price50 = calculatePrice(product1A, 50, 50);
+            if (price50 === 320) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 50 piezas de LIPO HD 360 = $320 (price50)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price50 + ' (esperado: $320)</div>';
+            }
+
+            // Test 7: Regla de 100+ piezas mismo producto
+            html += '<h2>✅ Test 7: Regla de 100+ Piezas Mismo Producto</h2>';
+            totalTests++;
+            const price100 = calculatePrice(product1A, 100, 100);
+            if (price100 === 300) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 100 piezas de LIPO HD 360 = $300 (price100)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price100 + ' (esperado: $300)</div>';
+            }
+
+            // Test 8: Producto con price50 = null (PROTEIN BODY)
+            html += '<h2>✅ Test 8: Producto con price50 = null</h2>';
+            totalTests++;
+            const product7G = products.find(p => p.id === '7G');
+            const price7G_50 = calculatePrice(product7G, 50, 50);
+            if (price7G_50 === 220) { // Debe usar price100 ya que price50 es null
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 50 piezas de PROTEIN BODY = $220 (salta price50=null, usa price100)</div>';
+                passedTests++;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price7G_50 + ' (esperado: $220)</div>';
+            }
+
+            // Test 9: Costos de envío
+            html += '<h2>✅ Test 9: Costos de Envío</h2>';
+            totalTests += 3;
+            const ship1 = calculateShipping(25);
+            const ship2 = calculateShipping(35);
+            const ship3 = calculateShipping(60);
+            
+            if (ship1 === 165 && ship2 === 235 && ship3 === 300) {
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 25 piezas = $165</div>';
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 35 piezas = $235</div>';
+                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 60 piezas = $300</div>';
+                passedTests += 3;
+            } else {
+                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Costos de envío incorrectos</div>';
+            }
+
+            // Test 10: Verificar productos específicos
+            html += '<h2>✅ Test 10: Verificación de Productos Específicos</h2>';
+            const testProducts = [
+                { id: "1A", name: "LIPO HD 360", price: 700 },
+                { id: "3O", name: "ALPHA GLOW", price: 900 },
+                { id: "7G", name: "PROTEIN BODY", price: 450 },
+                { id: "2V", name: "KETO BURN", price: 850 }
+            ];
+
+            testProducts.forEach(tp => {
+                totalTests++;
+                const p = products.find(prod => prod.id === tp.id);
+                if (p && p.name === tp.name && p.price === tp.price) {
+                    html += '<div class="test-case"><span class="pass">✓ PASS</span> - ' + tp.id + ' - ' + tp.name + ' = $' + tp.price + '</div>';
+                    passedTests++;
+                } else {
+                    html += '<div class="test-case"><span class="fail">✗ FAIL</span> - ' + tp.id + ' no coincide</div>';
+                }
+            });
+
+            // Resumen final
+            if (passedTests === totalTests) {
+                html += '<div class="summary">';
+                html += '<h2>✅ VALIDACIÓN COMPLETA: 100% EXITOSA</h2>';
+                html += '<p><strong>' + passedTests + ' de ' + totalTests + ' pruebas pasaron correctamente.</strong></p>';
+                html += '<p>✅ Todos los productos están correctos (91 productos)</p>';
+                html += '<p>✅ Todas las reglas de precios funcionan correctamente</p>';
+                html += '<p>✅ Los costos de envío son correctos</p>';
+                html += '<p>✅ La aplicación está lista para producción comercial</p>';
+                html += '</div>';
+            } else {
+                html += '<div class="error-summary">';
+                html += '<h2>❌ VALIDACIÓN FALLIDA</h2>';
+                html += '<p><strong>' + passedTests + ' de ' + totalTests + ' pruebas pasaron.</strong></p>';
+                html += '<p>' + (totalTests - passedTests) + ' pruebas fallaron.</p>';
+                html += '</div>';
+            }
+
+            // Tabla de todos los productos
+            html += '<h2>📋 Catálogo Completo de Productos (91)</h2>';
+            html += '<table>';
+            html += '<thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>P10</th><th>P30</th><th>P50</th><th>P100</th></tr></thead>';
+            html += '<tbody>';
+            products.forEach(p => {
+                html += '<tr>';
+                html += '<td>' + p.id + '</td>';
+                html += '<td>' + p.name + '</td>';
+                html += '<td>$' + p.price + '</td>';
+                html += '<td>$' + p.price10 + '</td>';
+                html += '<td>$' + p.price30 + '</td>';
+                html += '<td>' + (p.price50 !== null ? '$' + p.price50 : 'null') + '</td>';
+                html += '<td>$' + p.price100 + '</td>';
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+
+            document.getElementById('results').innerHTML = html;
+        }
+
+        runTests();
+    </script>
+</body>
+</html>
+

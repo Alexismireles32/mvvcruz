@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#B8860B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MVV Natural">
+    
+    <!-- SEO -->
+    <meta name="description" content="Sistema de cotizaciones profesional para productos MVV Natural. Crea cotizaciones al instante con precios de mayoreo.">
+    <meta name="keywords" content="MVV Natural, cotizaciones, productos naturales, mayoreo">
+    
+    <!-- Social Media -->
+    <meta property="og:title" content="MVV Natural - Cotizaciones">
+    <meta property="og:description" content="Sistema de cotizaciones profesional">
+    <meta property="og:type" content="website">
+    
+    <title>MVV Natural - Cotizaciones</title>
+    
+    <!-- Manifest para PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preconnect para CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    
+    <!-- CDN de html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --gold: #B8860B;
+            --light-gold: #D4AF37;
+            --dark-gold: #996515;
+            --cream: #FFF8DC;
+            --light-cream: #FFFAED;
+            --border-color: #E5D3A3;
+            --text-dark: #5C4A1F;
+            --text-brown: #8B6914;
+            
+            /* Safe areas para notch */
+            --sat: env(safe-area-inset-top);
+            --sar: env(safe-area-inset-right);
+            --sab: env(safe-area-inset-bottom);
+            --sal: env(safe-area-inset-left);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
+            overflow-x: hidden;
+        }
+
+        /* Header optimizado para móvil */
+        .header {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            padding: max(20px, var(--sat)) 0 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 max(20px, var(--sal)) 0 max(20px, var(--sar));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-title {
+            color: white;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Container con safe areas */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px max(15px, var(--sar)) max(80px, calc(80px + var(--sab))) max(15px, var(--sal));
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Info Box móvil optimizado */
+        .info-box {
+            background: var(--light-cream);
+            border-left: 4px solid var(--gold);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .info-box h3 {
+            color: var(--text-brown);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .info-box p {
+            color: var(--text-brown);
+            margin-bottom: 8px;
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================
+           BOTÓN FLOTANTE DEL CARRITO - Minimalista
+           ============================================ */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2C2C2C;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            letter-spacing: 0.3px;
+        }
+
+        .floating-cart-btn:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .floating-cart-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-cart-btn.hidden {
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .floating-cart-btn .cart-icon {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            opacity: 0.9;
+        }
+
+        .floating-cart-btn .cart-badge {
+            background: white;
+            color: #2C2C2C;
+            border-radius: 50%;
+            min-width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: -4px;
+            padding: 0 6px;
+        }
+
+        .floating-cart-btn .cart-total {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .floating-cart-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ============================================
+           CARRITO PÁGINA COMPLETA
+           ============================================ */
+        .cart-full-page {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .cart-header-logo {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .cart-header-logo .cart-logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .cart-actions button {
+            flex: 1;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            touch-action: manipulation;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gold);
+            border: 2px solid var(--gold) !important;
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+            background: var(--cream);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-next:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
+        }
+
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Search optimizado para móvil */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px; /* Previene zoom en iOS */
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+        }
+
+        .section-title {
+            color: var(--gold);
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Layout responsive */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Products Grid - Mobile First (2 columnas en móvil) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        /* Product Card táctil optimizado */
+        .product-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:active {
+            transform: scale(0.98);
+        }
+
+        .product-name {
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            min-height: 36px;
+        }
+
+        .product-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* Controles de cantidad optimizados para touch */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .qty-btn {
+            min-width: 40px;
+            min-height: 40px;
+            flex: 0 0 40px;
+            border: 2px solid var(--gold);
+            background: white;
+            color: var(--gold);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-weight: 600;
+            touch-action: manipulation;
+        }
+
+        .qty-btn:active {
+            background: var(--gold);
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .qty-input {
+            width: 50px;
+            flex: 1;
+            max-width: 60px;
+            text-align: center;
+            padding: 8px 4px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: white;
+        }
+
+        /* Botón agregar optimizado */
+        .btn-add {
+            width: 100%;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            border: none;
+            padding: 12px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            min-height: 44px;
+            touch-action: manipulation;
+        }
+
+        .btn-add:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Cart Section - Mobile First */
+        .cart-section {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 80px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .cart-title {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-logo {
+            height: 25px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 30px 15px;
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cart-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-remove {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 40px;
+            width: 100%;
+            touch-action: manipulation;
+        }
+
+        .cart-item-remove:active {
+            background: #c82333;
+            transform: scale(0.98);
+        }
+
+        .cart-summary {
+            border-top: 2px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .cart-total {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        /* Botones principales táctiles */
+        .btn-next {
+            width: 100%;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            min-height: 56px;
+            touch-action: manipulation;
+        }
+
+        .btn-next:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Customer Form */
+        .customer-form {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px; /* Previene zoom en iOS */
+            font-family: inherit;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23B8860B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            min-height: 56px;
+            touch-action: manipulation;
+        }
+
+        .btn-back {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-back:active {
+            background: #5a6268;
+            transform: scale(0.98);
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-generate:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Quote Section */
+        .quote-wrapper {
+            margin: 0 auto;
+        }
+
+        .quote-actions-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            min-height: 56px;
+            touch-action: manipulation;
+        }
+
+        .btn-whatsapp:active {
+            background: #20BA5A;
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            min-height: 56px;
+            touch-action: manipulation;
+        }
+
+        .btn-download:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+        }
+
+        #quotePrintArea {
+            background: white;
+            padding: 25px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .quote-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .quote-logo {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .quote-header h2 {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .quote-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .quote-customer {
+            background: var(--light-cream);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .quote-customer h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .quote-customer p {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .quote-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+
+        .quote-table th {
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .quote-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quote-summary {
+            background: var(--light-cream);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .quote-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .quote-total-row {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .quote-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        /* Shipping Info */
+        .shipping-info {
+            background: var(--light-cream);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .shipping-info h3 {
+            color: var(--text-brown);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .shipping-info p {
+            color: var(--text-brown);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        /* Catalog Section */
+        .catalog-section {
+            background: var(--light-cream);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .catalog-section h3 {
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .catalog-section p {
+            color: var(--text-brown);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .btn-catalog {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            min-height: 48px;
+            touch-action: manipulation;
+        }
+
+        .btn-catalog:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: white;
+            text-align: center;
+            padding: 20px max(20px, var(--sal)) max(20px, calc(20px + var(--sab))) max(20px, var(--sar));
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Ajustes móviles específicos */
+        @media (max-width: 480px) {
+            .form-group select {
+                background-position: right 10px center;
+                padding-right: 35px;
+            }
+
+            .product-card {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 0.85rem;
+                min-height: 32px;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .qty-btn {
+                min-width: 36px;
+                min-height: 36px;
+                flex: 0 0 36px;
+                font-size: 1.2rem;
+            }
+
+            .qty-input {
+                width: 45px;
+                max-width: 50px;
+                font-size: 0.95rem;
+            }
+
+            .btn-add {
+                font-size: 0.85rem;
+                padding: 10px 6px;
+            }
+
+            .floating-cart-btn {
+                bottom: 16px;
+                right: 16px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+                border-radius: 20px;
+            }
+
+            .floating-cart-btn .cart-icon {
+                font-size: 1.1rem;
+            }
+
+            .floating-cart-btn .cart-badge {
+                min-width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+
+            .floating-cart-btn .cart-total {
+                font-size: 0.9rem;
+            }
+
+            .cart-full-page {
+                padding: 16px;
+            }
+
+            .cart-actions {
+                flex-direction: column;
+            }
+
+            .cart-actions button {
+                width: 100%;
+            }
+        }
+
+        /* Tablet y Desktop */
+        @media (min-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .logo {
+                height: 60px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .content-wrapper {
+                flex-direction: row;
+            }
+
+            .products-area {
+                flex: 1;
+            }
+
+            .cart-section {
+                width: 350px;
+                flex-shrink: 0;
+            }
+
+            .cart-full-page {
+                max-width: 900px;
+                padding: 40px;
+            }
+
+            .cart-header-logo .cart-logo {
+                width: 150px;
+            }
+
+            .cart-actions {
+                flex-direction: row;
+            }
+
+            .cart-actions button {
+                padding: 18px 32px;
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                gap: 20px;
+            }
+
+            .product-card {
+                padding: 20px;
+            }
+
+            .product-name {
+                font-size: 1.1rem;
+                min-height: auto;
+            }
+
+            .product-price {
+                font-size: 1.3rem;
+            }
+
+            .product-controls {
+                gap: 12px;
+            }
+
+            .quantity-controls {
+                gap: 12px;
+            }
+
+            .qty-btn {
+                min-width: 48px;
+                min-height: 48px;
+                flex: 0 0 48px;
+                font-size: 1.5rem;
+            }
+
+            .qty-input {
+                width: 80px;
+                max-width: 80px;
+                padding: 12px;
+                font-size: 1.2rem;
+            }
+
+            .btn-add {
+                padding: 15px;
+                font-size: 1rem;
+                min-height: 48px;
+            }
+
+            .quote-actions-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-actions {
+                grid-template-columns: auto 1fr;
+            }
+
+            .quote-table {
+                font-size: 0.95rem;
+            }
+
+            .quote-table th {
+                font-size: 0.9rem;
+                padding: 14px 12px;
+            }
+
+            .quote-table td {
+                padding: 14px 12px;
+            }
+
+            #quotePrintArea {
+                padding: 40px;
+            }
+
+            .quote-logo {
+                height: 80px;
+            }
+
+            .customer-form {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Desktop grande */
+        @media (min-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            /* Opcional: agregar soporte para modo oscuro */
+        }
+
+        /* Orientación landscape en móvil */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: 10px 0;
+            }
+            
+            .logo {
+                height: 40px;
+            }
+            
+            .cart-items {
+                max-height: 150px;
+            }
+        }
+
+        /* Accesibilidad */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Mejoras de rendimiento */
+        .product-card,
+        .cart-section,
+        .btn,
+        .btn-add,
+        .qty-btn {
+            will-change: transform;
+        }
+
+        /* Animación de carga */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading-skeleton {
+            animation: pulse 1.5s ease-in-out infinite;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="logo" loading="eager">
+            <div class="header-title">Sistema de Cotizaciones</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- STEP 1: Product Selection -->
+        <div id="step1" class="step active">
+            <div class="info-box">
+                <h3>📋 Información de precios:</h3>
+                <p>Los precios varían según la cantidad de productos (1, 10, 30, 50, 100). Mientras más productos agregue, el precio se actualizará automáticamente para reflejar los descuentos por volumen.</p>
+                <p><strong>Para mayoreo de 10 piezas, pueden ser productos variados. Para mayoreo de 30 piezas o más, deben ser del mismo producto.</strong></p>
+            </div>
+
+            <h2 class="section-title">Productos MVV Natural por Rita Valencia</h2>
+            <div class="search-container">
+                <input type="search" id="searchInput" class="search-box" placeholder="🔍 Buscar productos..." autocomplete="off" inputmode="search">
+            </div>
+            <div id="productsGrid" class="products-grid" style="padding-bottom: 100px;"></div>
+
+            <div class="shipping-info">
+                <h3>🚚 Información importante sobre envíos:</h3>
+                <p>Si su pedido incluye productos de mayor tamaño como PROTEIN BODY, MAXI FIBRA, GEL TONIC 250 ML o LIDA SHAKE MALTEADA, el precio del envío puede aumentar.</p>
+                <p>Para zonas extendidas o de difícil acceso, se cobrará un costo adicional de envío. Por favor consulte con Rita Valencia para más detalles.</p>
+            </div>
+
+            <div class="catalog-section">
+                <h3>📚 Catálogo de Productos</h3>
+                <p>Descargue nuestro catálogo completo de productos para conocer toda nuestra oferta.</p>
+                <a href="public/catalogo-mvvNaturalss-24_240923_175642.pdf" class="btn-catalog" download>
+                    📄 Descargar Catálogo PDF
+                </a>
+            </div>
+
+            <!-- Botón flotante para ver carrito -->
+            <button id="floatingCartBtn" class="floating-cart-btn hidden" onclick="goToCart()" aria-label="Ver carrito">
+                <div class="cart-icon">
+                    🛒 <span class="cart-badge" id="floatingCartBadge">0</span>
+                </div>
+                <div class="floating-cart-info">
+                    <div class="cart-total" id="floatingCartTotal">$0</div>
+                </div>
+            </button>
+        </div>
+
+        <!-- STEP 2: Cart Review -->
+        <div id="step2" class="step">
+            <h2 class="section-title">🛒 Tu Carrito</h2>
+            
+            <div class="cart-full-page">
+                <div class="cart-header-logo">
+                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="Logo" class="cart-logo" loading="lazy">
+                </div>
+                
+                <div id="cartItems" class="cart-items"></div>
+                
+                <div id="cartSummary" class="cart-summary" style="display: none;">
+                    <div class="cart-summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Envío (Estafeta):</span>
+                        <span id="shipping">$0</span>
+                    </div>
+                    <div class="cart-summary-row cart-total">
+                        <span>Total:</span>
+                        <span id="total">$0</span>
+                    </div>
+                </div>
+
+                <div class="cart-actions">
+                    <button class="btn-secondary" onclick="goToStep(1)" aria-label="Agregar más productos">
+                        ← Agregar más productos
+                    </button>
+                    <button class="btn-next" onclick="goToStep(3)" aria-label="Continuar a información del cliente">
+                        Continuar →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: Customer Information -->
+        <div id="step3" class="step">
+            <h2 class="section-title">📋 Información del Cliente</h2>
+            <div class="customer-form">
+                <div class="form-group">
+                    <label for="customerName">Nombre Completo *</label>
+                    <input type="text" id="customerName" placeholder="Nombre completo" required autocomplete="name" inputmode="text">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Teléfono *</label>
+                    <input type="tel" id="customerPhone" placeholder="10 dígitos" required autocomplete="tel" inputmode="tel">
+                </div>
+                
+                <h3 style="color: var(--gold); margin: 25px 0 15px 0; font-size: 1.1rem;">📍 Dirección de Envío</h3>
+                
+                <div class="form-group">
+                    <label for="customerStreet">Calle y Número *</label>
+                    <input type="text" id="customerStreet" placeholder="Ej: Av. Reforma 123" required autocomplete="street-address" inputmode="text">
+                </div>
+                <div class="form-group">
+                    <label for="customerColonia">Colonia *</label>
+                    <input type="text" id="customerColonia" placeholder="Ej: Centro" required inputmode="text">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px;">
+                    <div class="form-group">
+                        <label for="customerCP">Código Postal *</label>
+                        <input type="text" id="customerCP" placeholder="00000" required autocomplete="postal-code" inputmode="numeric" maxlength="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerCity">Ciudad *</label>
+                        <input type="text" id="customerCity" placeholder="Ej: Guadalajara" required autocomplete="address-level2" inputmode="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customerState">Estado *</label>
+                    <select id="customerState" required>
+                        <option value="">Seleccione un estado</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="customerReferences">Referencias (opcional)</label>
+                    <textarea id="customerReferences" placeholder="Entre calles, puntos de referencia, etc." rows="2"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-back" onclick="goToStep(1)" aria-label="Volver a productos">← Volver</button>
+                    <button class="btn btn-generate" onclick="generateQuote()" aria-label="Generar cotización">Generar Cotización</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: Quote Preview -->
+        <div id="step4" class="step">
+            <div class="quote-wrapper">
+                <div class="quote-actions-top">
+                    <button class="btn-download" onclick="downloadQuoteImage()" aria-label="Guardar imagen">
+                        💾 Guardar Imagen
+                    </button>
+                    <button class="btn-whatsapp" onclick="sendWhatsApp()" aria-label="Enviar por WhatsApp">
+                        📱 Enviar WhatsApp
+                    </button>
+                </div>
+
+                <div id="quotePrintArea">
+                    <div class="quote-header">
+                        <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="quote-logo" loading="eager">
+                        <h2>COTIZACIÓN</h2>
+                        <div id="quoteDate" class="quote-date"></div>
+                    </div>
+
+                    <div id="quoteCustomer" class="quote-customer"></div>
+
+                    <table class="quote-table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cant.</th>
+                                <th>P. Unit.</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quoteItems"></tbody>
+                    </table>
+
+                    <div class="quote-summary">
+                        <div class="quote-summary-row">
+                            <span>Subtotal:</span>
+                            <span id="quoteSubtotal">$0</span>
+                        </div>
+                        <div class="quote-summary-row">
+                            <span>Envío (Estafeta):</span>
+                            <span id="quoteShipping">$0</span>
+                        </div>
+                        <div class="quote-summary-row quote-total-row">
+                            <span>Total:</span>
+                            <span id="quoteTotal">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="quote-note">
+                        <strong>Nota:</strong> Esta cotización está sujeta a aprobación por Rita Valencia. El precio final puede variar según disponibilidad de productos. Para confirmar su pedido, por favor envíe esta cotización a Rita Valencia vía WhatsApp al número +526312982043.
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 25px;">
+                    <button class="btn btn-back" onclick="goToStep(1)" aria-label="Nueva cotización">← Nueva Cotización</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 MVV Natural - Todos los derechos reservados
+    </div>
+
+    <script>
+        // Array de 91 productos
+        const products = [
+            { id: "1A", name: "LIPO HD 360", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2B", name: "DUO 60 FUSION XTREME", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 },
+            { id: "3C", name: "FUSION 30 XTREME", price: 650, price10: 380, price30: 350, price50: 300, price100: 280 },
+            { id: "4D", name: "EXTRACTO CBD", price: 450, price10: 185, price30: 165, price50: 150, price100: 130 },
+            { id: "5E", name: "CM PUSH UP MEN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "6F", name: "H - FLEX", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "7G", name: "PROTEIN BODY", price: 450, price10: 250, price30: 220, price50: null, price100: 220 },
+            { id: "8H", name: "SOS BURN", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9I", name: "SOS BURN SENSITIVE", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1J", name: "SOS BURN CLEAN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "2K", name: "CHUPA PANZA CAPS.", price: 300, price10: 220, price30: 200, price50: 185, price100: 165 },
+            { id: "3L", name: "30 DAY DETOX", price: 450, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "4M", name: "15 DAY DETOX TEA", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
+            { id: "5N", name: "3 DAY RESET", price: 250, price10: 100, price30: 85, price50: 75, price100: 70 },
+            { id: "6O", name: "COLAGENO & BIOTINA ACIDO HIALURONICO", price: 400, price10: 200, price30: 195, price50: 175, price100: 175 },
+            { id: "7P", name: "MAXI FIBRA", price: 250, price10: 175, price30: 150, price50: 135, price100: 135 },
+            { id: "8Q", name: "MACA PREMIUM MUJER", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "9R", name: "MACA PREMIUM HOMBRE", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "1S", name: "SERENITY", price: 400, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "2T", name: "COLIT 6", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "3U", name: "PRIME ROSE", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "4V", name: "DAILY WORK", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "5W", name: "BIKINI STRONG PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6X", name: "BIKINI STRONG BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Y", name: "BIKINI STRONG YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8Z", name: "BIKINI STRONG PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9A", name: "BIKINI STRONG BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1B", name: "BIKINI STRONG WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2C", name: "LIPO PLUS XTREME", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3D", name: "LIPO PLUS XTREME GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4E", name: "LIPO PLUS XTREME PLATINUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5F", name: "LIPO PLUS XTREME BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6G", name: "LIPO PLUS XTREME PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7H", name: "LIPO PLUS XTREME BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8I", name: "LIPO PLUS XTREME GREEN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9J", name: "LIPO PLUS XTREME RED", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1K", name: "LIPO PLUS XTREME YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2L", name: "LIPO PLUS XTREME PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3M", name: "LIPO PLUS XTREME ORANGE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4N", name: "LIPO PLUS XTREME BROWN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5O", name: "LIPO PLUS XTREME GRAY", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6P", name: "LIPO PLUS XTREME WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Q", name: "LIPO PLUS XTREME SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8R", name: "LIPO PLUS XTREME BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9S", name: "LIPO PLUS XTREME COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1T", name: "LIPO PLUS XTREME TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2U", name: "LIPO PLUS XTREME PLATINUM GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3V", name: "LIPO PLUS XTREME PLATINUM SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4W", name: "LIPO PLUS XTREME PLATINUM BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5X", name: "LIPO PLUS XTREME PLATINUM COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6Y", name: "LIPO PLUS XTREME PLATINUM TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7Z", name: "LIPO PLUS XTREME GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8A", name: "LIPO PLUS XTREME GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9B", name: "LIPO PLUS XTREME GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1C", name: "LIPO PLUS XTREME GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2D", name: "LIPO PLUS XTREME SILVER BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3E", name: "LIPO PLUS XTREME SILVER COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4F", name: "LIPO PLUS XTREME SILVER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5G", name: "LIPO PLUS XTREME BRONZE COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6H", name: "LIPO PLUS XTREME BRONZE TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "7I", name: "LIPO PLUS XTREME COPPER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8J", name: "LIPO PLUS XTREME PLATINUM GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9K", name: "LIPO PLUS XTREME PLATINUM GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1L", name: "LIPO PLUS XTREME PLATINUM GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2M", name: "LIPO PLUS XTREME PLATINUM GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3N", name: "GEL TONIC", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "4O", name: "LIDA GLOW AZUL", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5P", name: "LIDA GLOW ROSA", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6Q", name: "MACA FEM", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "7R", name: "MACA FEM PLUS", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "8S", name: "SBELTA 24/7", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9T", name: "PIÑA INTENSE BYPASS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "1U", name: "DESPANZATE BYPASS", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "2V", name: "KETO BURN", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3W", name: "APPLE CIDER VINAGRE", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "4X", name: "KETO DETOX", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "5Y", name: "KETO GOTAS", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "6Z", name: "CAFÉ KETO", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
+            { id: "7A", name: "TE BODY SHAPE", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
+            { id: "8B", name: "BYPASS DELUXE BLANCO", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9C", name: "TE ENERGOBOLIZER", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "1D", name: "TE MENOS 4K BYPASS", price: 380, price10: 175, price30: 150, price50: 135, price100: 120 },
+            { id: "2E", name: "GOTAS E DETOX PLUS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
+            { id: "3F", name: "FAT BLAZER", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "4G", name: "FAT BURNER MAN", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "5H", name: "LIDA BOOSTER PINK", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "6I", name: "ENCIMAX", price: 600, price10: 250, price30: 220, price50: 195, price100: 175 },
+            { id: "7J", name: "FLORYVA", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
+            { id: "8K", name: "LIDA GLAM", price: 820, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "9L", name: "XL3 POTENCIA TOTAL", price: 780, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "1M", name: "XL3 NOCTURNO", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "2N", name: "LIDA PLUS CHICA", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
+            { id: "3O", name: "ALPHA GLOW", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 }
+        ];
+
+        let cart = [];
+        let currentStep = 1;
+
+        // Haptic feedback (vibración)
+        function vibrate(duration = 10) {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(duration);
+            }
+        }
+
+        // Formatear precio
+        function formatPrice(price) {
+            return '$' + price.toFixed(0);
+        }
+
+        // Calcular precio según cantidad
+        function calculatePrice(product, quantity, totalQuantity) {
+            let unitPrice = product.price;
+
+            if (quantity >= 100 && product.price100 !== null) {
+                unitPrice = product.price100;
+            } else if (quantity >= 50 && product.price50 !== null) {
+                unitPrice = product.price50;
+            } else if (quantity >= 30 && product.price30 !== null) {
+                unitPrice = product.price30;
+            } else if (totalQuantity >= 10) {
+                unitPrice = product.price10;
+            }
+
+            return unitPrice;
+        }
+
+        // Calcular costo de envío
+        function calculateShipping(totalQuantity) {
+            if (totalQuantity >= 50) return 300;
+            if (totalQuantity >= 30) return 235;
+            return 165;
+        }
+
+        // Renderizar productos
+        function renderProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.id.toLowerCase().includes(searchTerm) || 
+                p.name.toLowerCase().includes(searchTerm)
+            );
+
+            const grid = document.getElementById('productsGrid');
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            grid.innerHTML = filtered.map(product => {
+                const cartItem = cart.find(item => item.id === product.id);
+                const quantity = cartItem ? cartItem.quantity : 0;
+                const currentPrice = calculatePrice(product, quantity, totalQuantity);
+
+                return `
+                    <div class="product-card">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-controls">
+                            <div class="product-price">${formatPrice(currentPrice)}</div>
+                            ${quantity > 0 ? `
+                                <div class="quantity-controls">
+                                    <button class="qty-btn" onclick="changeQuantity('${product.id}', -1)" aria-label="Disminuir cantidad">−</button>
+                                    <input type="number" class="qty-input" value="${quantity}" 
+                                           onchange="setQuantity('${product.id}', this.value)" min="0" inputmode="numeric">
+                                    <button class="qty-btn" onclick="changeQuantity('${product.id}', 1)" aria-label="Aumentar cantidad">+</button>
+                                </div>
+                            ` : `
+                                <button class="btn-add" onclick="changeQuantity('${product.id}', 1)" aria-label="Agregar ${product.name}">Agregar al carrito</button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Cambiar cantidad
+        function changeQuantity(productId, delta) {
+            vibrate(10);
+            const product = products.find(p => p.id === productId);
+            const cartItem = cart.find(item => item.id === productId);
+            
+            if (cartItem) {
+                cartItem.quantity += delta;
+                if (cartItem.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+            } else if (delta > 0) {
+                cart.push({ id: productId, quantity: 1 });
+            }
+
+            updateUI();
+        }
+
+        // Establecer cantidad
+        function setQuantity(productId, value) {
+            const quantity = parseInt(value) || 0;
+            
+            if (quantity <= 0) {
+                cart = cart.filter(item => item.id !== productId);
+            } else {
+                const cartItem = cart.find(item => item.id === productId);
+                if (cartItem) {
+                    cartItem.quantity = quantity;
+                } else {
+                    cart.push({ id: productId, quantity });
+                }
+            }
+
+            updateUI();
+        }
+
+        // Actualizar UI
+        function updateUI() {
+            renderProducts();
+            renderCart();
+        }
+
+        // Renderizar carrito
+        function renderCart() {
+            const cartItemsEl = document.getElementById('cartItems');
+            const cartSummaryEl = document.getElementById('cartSummary');
+
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<div class="cart-empty">🛒 El carrito está vacío.<br>Agregue productos para continuar.</div>';
+                cartSummaryEl.style.display = 'none';
+                updateFloatingCartButton(0, 0);
+                return;
+            }
+
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let subtotal = 0;
+
+            cartItemsEl.innerHTML = cart.map(item => {
+                const product = products.find(p => p.id === item.id);
+                const unitPrice = calculatePrice(product, item.quantity, totalQuantity);
+                const itemTotal = unitPrice * item.quantity;
+                subtotal += itemTotal;
+
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-name">${product.name}</div>
+                        <div class="cart-item-details">
+                            <span>${item.quantity} × ${formatPrice(unitPrice)}</span>
+                            <span><strong>${formatPrice(itemTotal)}</strong></span>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar ${product.name}">🗑️ Eliminar</button>
+                    </div>
+                `;
+            }).join('');
+
+            const shipping = calculateShipping(totalQuantity);
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = formatPrice(subtotal);
+            document.getElementById('shipping').textContent = formatPrice(shipping);
+            document.getElementById('total').textContent = formatPrice(total);
+
+            cartSummaryEl.style.display = 'block';
+
+            // Actualizar botón flotante
+            updateFloatingCartButton(totalQuantity, total);
+        }
+
+        // Actualizar botón flotante del carrito
+        function updateFloatingCartButton(itemCount, total) {
+            const floatingBtn = document.getElementById('floatingCartBtn');
+            const badge = document.getElementById('floatingCartBadge');
+            const totalEl = document.getElementById('floatingCartTotal');
+
+            // Solo mostrar en step1 y si hay items
+            if (itemCount > 0 && currentStep === 1) {
+                badge.textContent = itemCount;
+                totalEl.textContent = formatPrice(total);
+                floatingBtn.classList.remove('hidden');
+            } else {
+                floatingBtn.classList.add('hidden');
+            }
+        }
+
+        // Eliminar del carrito
+        function removeFromCart(productId) {
+            vibrate(20);
+            cart = cart.filter(item => item.id !== productId);
+            updateUI();
+        }
+
+        // Cambiar de paso
+        function goToStep(step) {
+            vibrate(10);
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (step === 3) {
+                loadSavedCustomerInfo();
+            }
+
+            // Actualizar visibilidad del botón flotante
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalQuantity > 0) {
+                const subtotal = cart.reduce((sum, item) => {
+                    const product = products.find(p => p.id === item.id);
+                    return sum + (calculatePrice(product, item.quantity, totalQuantity) * item.quantity);
+                }, 0);
+                const shipping = calculateShipping(totalQuantity);
+                const total = subtotal + shipping;
+                updateFloatingCartButton(totalQuantity, total);
+            }
+        }
+
+        // Ir al carrito (función especial para el botón flotante)
+        function goToCart() {
+            if (cart.length === 0) {
+                alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
+                return;
+            }
+            goToStep(2);
+        }
+
+        // Cargar info guardada
+        function loadSavedCustomerInfo() {
+            const saved = {
+                name: localStorage.getItem('customerName'),
+                phone: localStorage.getItem('customerPhone'),
+                street: localStorage.getItem('customerStreet'),
+                colonia: localStorage.getItem('customerColonia'),
+                cp: localStorage.getItem('customerCP'),
+                city: localStorage.getItem('customerCity'),
+                state: localStorage.getItem('customerState'),
+                references: localStorage.getItem('customerReferences')
+            };
+
+            if (saved.name) document.getElementById('customerName').value = saved.name;
+            if (saved.phone) document.getElementById('customerPhone').value = saved.phone;
+            if (saved.street) document.getElementById('customerStreet').value = saved.street;
+            if (saved.colonia) document.getElementById('customerColonia').value = saved.colonia;
+            if (saved.cp) document.getElementById('customerCP').value = saved.cp;
+            if (saved.city) document.getElementById('customerCity').value = saved.city;
+            if (saved.state) document.getElementById('customerState').value = saved.state;
+            if (saved.references) document.getElementById('customerReferences').value = saved.references;
+        }
+
+        // Generar cotización
+        function generateQuote() {
+            vibrate(10);
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const street = document.getElementById('customerStreet').value.trim();
+            const colonia = document.getElementById('customerColonia').value.trim();
+            const cp = document.getElementById('customerCP').value.trim();
+            const city = document.getElementById('customerCity').value.trim();
+            const state = document.getElementById('customerState').value;
+            const references = document.getElementById('customerReferences').value.trim();
+
+            if (!name || !phone || !street || !colonia || !cp || !city || !state) {
+                alert('⚠️ Por favor complete todos los campos obligatorios.');
+                return;
+            }
+
+            // Validar código postal (5 dígitos)
+            if (!/^\d{5}$/.test(cp)) {
+                alert('⚠️ El código postal debe tener 5 dígitos.');
+                return;
+            }
+
+            // Guardar datos
+            localStorage.setItem('customerName', name);
+            localStorage.setItem('customerPhone', phone);
+            localStorage.setItem('customerStreet', street);
+            localStorage.setItem('customerColonia', colonia);
+            localStorage.setItem('customerCP', cp);
+            localStorage.setItem('customerCity', city);
+            localStorage.setItem('customerState', state);
+            localStorage.setItem('customerReferences', references);
+
+            // Generar fecha
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('es-MX', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('quoteDate').textContent = `Fecha: ${dateStr}`;
+
+            // Datos del cliente
+            let customerInfo = `
+                <h3>👤 Datos del Cliente</h3>
+                <p><strong>Nombre:</strong> ${name}</p>
+                <p><strong>Teléfono:</strong> ${phone}</p>
+                <p style="margin-top: 15px;"><strong>📍 Dirección de Envío:</strong></p>
+                <p style="margin-left: 10px;">${street}</p>
+                <p style="margin-left: 10px;">Col. ${colonia}</p>
+                <p style="margin-left: 10px;">C.P. ${cp}, ${city}, ${state}</p>
+            `;
+            if (references) {
+                customerInfo += `<p style="margin-left: 10px;"><em>Ref: ${references}</em></p>`;
+            }
+            document.getElementById('quoteCustomer').innerHTML = customerInfo;
+
+            // Tabla de productos
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let quoteSubtotal = 0;
+
+            const quoteItemsHTML = cart.map(item => {
+                const product = products.find(p => p.id === item.id);
+                const unitPrice = calculatePrice(product, item.quantity, totalQuantity);
+                const itemTotal = unitPrice * item.quantity;
+                quoteSubtotal += itemTotal;
+
+                return `
+                    <tr>
+                        <td>${product.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${formatPrice(unitPrice)}</td>
+                        <td><strong>${formatPrice(itemTotal)}</strong></td>
+                    </tr>
+                `;
+            }).join('');
+
+            document.getElementById('quoteItems').innerHTML = quoteItemsHTML;
+
+            const shipping = calculateShipping(totalQuantity);
+            const total = quoteSubtotal + shipping;
+
+            document.getElementById('quoteSubtotal').textContent = formatPrice(quoteSubtotal);
+            document.getElementById('quoteShipping').textContent = formatPrice(shipping);
+            document.getElementById('quoteTotal').textContent = formatPrice(total);
+
+            goToStep(4);
+        }
+
+        // Descargar imagen
+        function downloadQuoteImage() {
+            vibrate(20);
+            const btn = event.target;
+            btn.innerHTML = '<span class="loading"></span> Generando...';
+            btn.disabled = true;
+
+            const quotePrintArea = document.getElementById('quotePrintArea');
+
+            html2canvas(quotePrintArea, {
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                const link = document.createElement('a');
+                link.download = 'Cotizacion_MVNatural.jpg';
+                link.href = imgData;
+                link.click();
+                
+                btn.innerHTML = '✅ Imagen Guardada';
+                setTimeout(() => {
+                    btn.innerHTML = '💾 Guardar Imagen';
+                    btn.disabled = false;
+                }, 2000);
+            });
+        }
+
+        // Enviar WhatsApp
+        function sendWhatsApp() {
+            vibrate(20);
+            const name = localStorage.getItem('customerName') || 'Cliente';
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const totalQuantityFinal = cart.reduce((sum, item) => sum + item.quantity, 0);
+            let quoteSubtotal = 0;
+            cart.forEach(item => {
+                const product = products.find(p => p.id === item.id);
+                const unitPrice = calculatePrice(product, item.quantity, totalQuantityFinal);
+                quoteSubtotal += unitPrice * item.quantity;
+            });
+            const shipping = calculateShipping(totalQuantityFinal);
+            const totalAmount = quoteSubtotal + shipping;
+
+            const message = `Hola Rita Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total de ${formatPrice(totalAmount)}. Por favor revisa mi cotización adjunta y confírmame si está disponible. Gracias.`;
+            
+            // Descargar primero
+            downloadQuoteImage();
+            
+            // Abrir WhatsApp
+            setTimeout(() => {
+                const whatsappUrl = `https://wa.me/+526312982043?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }, 500);
+        }
+
+        // Búsqueda con debounce
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(renderProducts, 300);
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            renderCart();
+            
+            // PWA Install prompt
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+            });
+        });
+
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>

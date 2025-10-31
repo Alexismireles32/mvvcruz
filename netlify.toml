@@ -1,0 +1,22 @@
+# Configuración para Netlify
+# Para desplegar: https://app.netlify.com/drop
+
+[build]
+  publish = "."
+  command = "echo 'No build step needed'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers para CORS (necesario para html2canvas)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+

@@ -1,0 +1,19 @@
+{
+  "name": "mvv-natural-cotizaciones",
+  "version": "1.0.0",
+  "description": "Aplicación web de cotizaciones para MV Natural",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "python3 server.py",
+    "serve": "npx http-server . -p 8000 -c-1 --cors"
+  },
+  "keywords": [
+    "cotizaciones",
+    "mv-natural",
+    "whatsapp"
+  ],
+  "author": "MV Natural",
+  "license": "MIT"
+}
+
