@@ -1495,7 +1495,7 @@
                 </div>
 
                 <div class="form-actions" style="margin-top: 25px;">
-                    <button class="btn btn-back" onclick="goToStep(1)" aria-label="Nueva cotización">← Nueva Cotización</button>
+                    <button class="btn btn-back" onclick="resetQuote()" aria-label="Nueva cotización">← Nueva Cotización</button>
                 </div>
             </div>
         </div>
@@ -2036,6 +2036,13 @@
             }).finally(() => {
                 document.body.classList.remove('downloading');
             });
+        }
+
+        function resetQuote() {
+            vibrate(10);
+            cart = [];
+            updateUI();
+            goToStep(1);
         }
 
         // Enviar WhatsApp
