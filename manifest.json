@@ -4,8 +4,8 @@
   "description": "Sistema profesional de cotizaciones para productos MV Natural",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#B8860B",
-  "theme_color": "#B8860B",
+  "background_color": "#2E7D32",
+  "theme_color": "#2E7D32",
   "orientation": "portrait-primary",
   "icons": [
     {

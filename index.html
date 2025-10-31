@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#B8860B">
+    <meta name="theme-color" content="#2E7D32">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MVV Natural">
@@ -40,14 +40,14 @@
         }
 
         :root {
-            --gold: #B8860B;
-            --light-gold: #D4AF37;
-            --dark-gold: #996515;
-            --cream: #FFF8DC;
-            --light-cream: #FFFAED;
-            --border-color: #E5D3A3;
-            --text-dark: #5C4A1F;
-            --text-brown: #8B6914;
+            --green: #2E7D32;
+            --light-green: #66BB6A;
+            --dark-green: #1B5E20;
+            --cream: #F1F8E9;
+            --light-cream: #F9FBE7;
+            --border-color: #C5E1A5;
+            --text-dark: #33691E;
+            --text-brown: #558B2F;
             
             /* Safe areas para notch */
             --sat: env(safe-area-inset-top);
@@ -68,7 +68,7 @@
 
         /* Header optimizado para móvil */
         .header {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--dark-green) 100%);
             padding: max(20px, var(--sat)) 0 20px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
@@ -109,7 +109,7 @@
         /* Info Box móvil optimizado */
         .info-box {
             background: var(--light-cream);
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--green);
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 8px;
@@ -145,7 +145,7 @@
         }
 
         /* ============================================
-           BOTÓN FLOTANTE DEL CARRITO - Minimalista
+           BOTÓN FLOTANTE DEL CARRITO - Simétrico y Estratégico
            ============================================ */
         .floating-cart-btn {
             position: fixed;
@@ -154,20 +154,23 @@
             background: #2C2C2C;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 24px;
-            font-size: 0.9rem;
+            padding: 14px 22px;
+            border-radius: 28px;
+            min-height: 56px;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
             z-index: 9999;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 14px;
             transition: all 0.2s ease;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
             letter-spacing: 0.3px;
+            line-height: 1;
         }
 
         .floating-cart-btn:hover {
@@ -190,34 +193,50 @@
             font-size: 1.2rem;
             display: flex;
             align-items: center;
-            opacity: 0.9;
+            gap: 6px;
+            line-height: 1;
         }
 
         .floating-cart-btn .cart-badge {
             background: white;
             color: #2C2C2C;
             border-radius: 50%;
-            min-width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
             font-weight: 700;
-            margin-left: -4px;
-            padding: 0 6px;
+            line-height: 1;
+        }
+
+        .floating-cart-btn .cart-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .floating-cart-btn .cart-separator {
+            opacity: 0.5;
+            font-size: 0.8rem;
+            line-height: 1;
         }
 
         .floating-cart-btn .cart-total {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             letter-spacing: 0.3px;
+            line-height: 1;
         }
 
         .floating-cart-info {
             display: flex;
             align-items: center;
             gap: 8px;
+            line-height: 1;
         }
 
         /* ============================================
@@ -236,7 +255,7 @@
             text-align: center;
             margin-bottom: 24px;
             padding-bottom: 20px;
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 2px solid var(--green);
         }
 
         .cart-header-logo .cart-logo {
@@ -266,8 +285,8 @@
 
         .btn-secondary {
             background: white;
-            color: var(--gold);
-            border: 2px solid var(--gold) !important;
+            color: var(--green);
+            border: 2px solid var(--green) !important;
         }
 
         .btn-secondary:active {
@@ -276,14 +295,14 @@
         }
 
         .btn-next {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
         }
 
         .btn-next:active {
             transform: scale(0.98);
-            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
+            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
         }
 
         .btn-next:disabled {
@@ -310,12 +329,12 @@
 
         .search-box:focus {
             outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+            border-color: var(--green);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
         }
 
         .section-title {
-            color: var(--gold);
+            color: var(--green);
             font-size: clamp(1.3rem, 5vw, 1.8rem);
             font-weight: 600;
             margin-bottom: 15px;
@@ -353,7 +372,7 @@
         }
 
         .product-name {
-            color: var(--gold);
+            color: var(--green);
             font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 12px;
@@ -387,9 +406,9 @@
             min-width: 40px;
             min-height: 40px;
             flex: 0 0 40px;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--green);
             background: white;
-            color: var(--gold);
+            color: var(--green);
             border-radius: 10px;
             cursor: pointer;
             font-size: 1.3rem;
@@ -402,7 +421,7 @@
         }
 
         .qty-btn:active {
-            background: var(--gold);
+            background: var(--green);
             color: white;
             transform: scale(0.95);
         }
@@ -423,7 +442,7 @@
         /* Botón agregar optimizado */
         .btn-add {
             width: 100%;
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
             border: none;
             padding: 12px 8px;
@@ -432,14 +451,14 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
             min-height: 44px;
             touch-action: manipulation;
         }
 
         .btn-add:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
         /* Cart Section - Mobile First */
@@ -459,11 +478,11 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 2px solid var(--green);
         }
 
         .cart-title {
-            color: var(--gold);
+            color: var(--green);
             font-size: 1.2rem;
             font-weight: 600;
             display: flex;
@@ -547,14 +566,14 @@
         .cart-total {
             font-size: 1.4rem;
             font-weight: 700;
-            color: var(--gold);
+            color: var(--green);
             margin-top: 10px;
         }
 
         /* Botones principales táctiles */
         .btn-next {
             width: 100%;
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
             border: none;
             padding: 18px;
@@ -564,14 +583,14 @@
             font-size: 1.1rem;
             margin-top: 15px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
             min-height: 56px;
             touch-action: manipulation;
         }
 
         .btn-next:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
         .btn-next:disabled {
@@ -617,7 +636,7 @@
 
         .form-group select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23B8860B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%232E7D32' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 12px;
@@ -629,8 +648,8 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
+            border-color: var(--green);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
         }
 
         .form-group textarea {
@@ -668,14 +687,14 @@
         }
 
         .btn-generate {
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
         }
 
         .btn-generate:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
         /* Quote Section */
@@ -716,7 +735,7 @@
         }
 
         .btn-download {
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
             padding: 18px;
             border: none;
@@ -729,14 +748,14 @@
             justify-content: center;
             gap: 10px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
             min-height: 56px;
             touch-action: manipulation;
         }
 
         .btn-download:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
         #quotePrintArea {
@@ -751,7 +770,7 @@
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 3px solid var(--gold);
+            border-bottom: 3px solid var(--green);
         }
 
         .quote-logo {
@@ -760,7 +779,7 @@
         }
 
         .quote-header h2 {
-            color: var(--gold);
+            color: var(--green);
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
@@ -778,7 +797,7 @@
         }
 
         .quote-customer h3 {
-            color: var(--gold);
+            color: var(--green);
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
@@ -798,7 +817,7 @@
         }
 
         .quote-table th {
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
             padding: 12px 8px;
             text-align: left;
@@ -828,10 +847,10 @@
         .quote-total-row {
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--gold);
+            color: var(--green);
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 2px solid var(--gold);
+            border-top: 2px solid var(--green);
         }
 
         .quote-note {
@@ -847,7 +866,7 @@
         /* Shipping Info */
         .shipping-info {
             background: var(--light-cream);
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--green);
             padding: 20px;
             margin: 25px 0;
             border-radius: 8px;
@@ -877,7 +896,7 @@
         }
 
         .catalog-section h3 {
-            color: var(--gold);
+            color: var(--green);
             margin-bottom: 12px;
             font-size: 1.1rem;
         }
@@ -892,7 +911,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
             color: white;
             padding: 15px 25px;
             border: none;
@@ -902,19 +921,19 @@
             font-size: 1rem;
             text-decoration: none;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
             min-height: 48px;
             touch-action: manipulation;
         }
 
         .btn-catalog:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--dark-green) 100%);
             color: white;
             text-align: center;
             padding: 20px max(20px, var(--sal)) max(20px, calc(20px + var(--sab))) max(20px, var(--sar));
@@ -978,23 +997,38 @@
             .floating-cart-btn {
                 bottom: 16px;
                 right: 16px;
-                padding: 10px 16px;
-                font-size: 0.85rem;
-                border-radius: 20px;
+                padding: 12px 18px;
+                min-height: 48px;
+                font-size: 0.8rem;
+                border-radius: 24px;
+                gap: 10px;
             }
 
             .floating-cart-btn .cart-icon {
                 font-size: 1.1rem;
+                gap: 5px;
             }
 
             .floating-cart-btn .cart-badge {
-                min-width: 20px;
-                height: 20px;
+                width: 22px;
+                height: 22px;
                 font-size: 0.7rem;
             }
 
+            .floating-cart-btn .cart-text {
+                font-size: 0.8rem;
+            }
+
+            .floating-cart-btn .cart-separator {
+                font-size: 0.75rem;
+            }
+
             .floating-cart-btn .cart-total {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            .floating-cart-info {
+                gap: 6px;
             }
 
             .cart-full-page {
@@ -1215,7 +1249,7 @@
                 <p><strong>Para mayoreo de 10 piezas, pueden ser productos variados. Para mayoreo de 30 piezas o más, deben ser del mismo producto.</strong></p>
             </div>
 
-            <h2 class="section-title">Productos MVV Natural por Rita Valencia</h2>
+            <h2 class="section-title">Productos MVV Natural por Cruz Valencia</h2>
             <div class="search-container">
                 <input type="search" id="searchInput" class="search-box" placeholder="🔍 Buscar productos..." autocomplete="off" inputmode="search">
             </div>
@@ -1224,7 +1258,7 @@
             <div class="shipping-info">
                 <h3>🚚 Información importante sobre envíos:</h3>
                 <p>Si su pedido incluye productos de mayor tamaño como PROTEIN BODY, MAXI FIBRA, GEL TONIC 250 ML o LIDA SHAKE MALTEADA, el precio del envío puede aumentar.</p>
-                <p>Para zonas extendidas o de difícil acceso, se cobrará un costo adicional de envío. Por favor consulte con Rita Valencia para más detalles.</p>
+                <p>Para zonas extendidas o de difícil acceso, se cobrará un costo adicional de envío. Por favor consulte con Cruz Valencia para más detalles.</p>
             </div>
 
             <div class="catalog-section">
@@ -1238,10 +1272,13 @@
             <!-- Botón flotante para ver carrito -->
             <button id="floatingCartBtn" class="floating-cart-btn hidden" onclick="goToCart()" aria-label="Ver carrito">
                 <div class="cart-icon">
-                    🛒 <span class="cart-badge" id="floatingCartBadge">0</span>
+                    🛒
+                    <span class="cart-badge" id="floatingCartBadge">0</span>
                 </div>
                 <div class="floating-cart-info">
-                    <div class="cart-total" id="floatingCartTotal">$0</div>
+                    <span class="cart-text">Ver carrito</span>
+                    <span class="cart-separator">•</span>
+                    <span class="cart-total" id="floatingCartTotal">$0</span>
                 </div>
             </button>
         </div>
@@ -1296,7 +1333,7 @@
                     <input type="tel" id="customerPhone" placeholder="10 dígitos" required autocomplete="tel" inputmode="tel">
                 </div>
                 
-                <h3 style="color: var(--gold); margin: 25px 0 15px 0; font-size: 1.1rem;">📍 Dirección de Envío</h3>
+                <h3 style="color: var(--green); margin: 25px 0 15px 0; font-size: 1.1rem;">📍 Dirección de Envío</h3>
                 
                 <div class="form-group">
                     <label for="customerStreet">Calle y Número *</label>
@@ -1414,7 +1451,7 @@
                     </div>
 
                     <div class="quote-note">
-                        <strong>Nota:</strong> Esta cotización está sujeta a aprobación por Rita Valencia. El precio final puede variar según disponibilidad de productos. Para confirmar su pedido, por favor envíe esta cotización a Rita Valencia vía WhatsApp al número +526312982043.
+                        <strong>Nota:</strong> Esta cotización está sujeta a aprobación por Cruz Valencia. El precio final puede variar según disponibilidad de productos. Para confirmar su pedido, por favor envíe esta cotización a Cruz Valencia vía WhatsApp al número +526621200412.
                     </div>
                 </div>
 
@@ -1906,14 +1943,14 @@
             const shipping = calculateShipping(totalQuantityFinal);
             const totalAmount = quoteSubtotal + shipping;
 
-            const message = `Hola Rita Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total de ${formatPrice(totalAmount)}. Por favor revisa mi cotización adjunta y confírmame si está disponible. Gracias.`;
+            const message = `Hola Cruz Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total de ${formatPrice(totalAmount)}. Por favor revisa mi cotización adjunta y confírmame si está disponible. Gracias.`;
             
             // Descargar primero
             downloadQuoteImage();
             
             // Abrir WhatsApp
             setTimeout(() => {
-                const whatsappUrl = `https://wa.me/+526312982043?text=${encodeURIComponent(message)}`;
+                const whatsappUrl = `https://wa.me/+526621200412?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
             }, 500);
         }

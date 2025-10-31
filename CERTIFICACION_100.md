@@ -135,13 +135,13 @@ Todos los productos verificados con sus 5 niveles de precios:
 - ✅ Cotización completa con logo y datos
 - ✅ Tabla de productos con precios
 - ✅ Subtotal + Envío + Total
-- ✅ Nota para Rita Valencia
+- ✅ Nota para Cruz Valencia
 
 ### ✅ Colores y Branding
 
-- ✅ Dorado principal: #B8860B
-- ✅ Dorado claro: #D4AF37
-- ✅ Dorado oscuro: #996515
+- ✅ Verde principal: #2E7D32
+- ✅ Verde claro: #66BB6A
+- ✅ Verde oscuro: #1B5E20
 - ✅ Crema: #FFF8DC
 - ✅ Logo de Cloudinary cargando correctamente
 
@@ -180,7 +180,7 @@ Todos los productos verificados con sus 5 niveles de precios:
 - ✅ Descarga automática
 
 ### ✅ WhatsApp
-- ✅ Número correcto: +526312982043
+- ✅ Número correcto: +526621200412
 - ✅ Mensaje pre-escrito con datos
 - ✅ Descarga imagen antes de abrir WhatsApp
 - ✅ Abre en nueva pestaña
@@ -280,14 +280,14 @@ Abre el archivo `test_validation.html` en tu navegador para ver todas las prueba
 - [x] Persistencia localStorage
 
 ### Diseño
-- [x] Colores dorados correctos
+- [x] Colores verdes correctos
 - [x] Logo cargando desde Cloudinary
 - [x] Sistema de 3 pasos
 - [x] Header con logo y título
 - [x] Footer con copyright
 - [x] Diseño responsivo móvil
 - [x] Botones con estilo correcto
-- [x] Info boxes con borde dorado
+- [x] Info boxes con borde verde
 
 ### Técnico
 - [x] Sin errores de linter
@@ -326,9 +326,9 @@ La aplicación **MV Natural - Sistema de Cotizaciones** ha sido verificada exhau
 
 ### Contacto
 
-**Rita Valencia**  
-WhatsApp: +526312982043  
-Empresa: MV Natural (By Rita)
+**Cruz Valencia**  
+WhatsApp: +526621200412  
+Empresa: MV Natural (By Cruz)
 
 ---
 

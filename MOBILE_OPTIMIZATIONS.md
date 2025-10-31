@@ -20,7 +20,7 @@ La aplicación ha sido completamente rediseñada siguiendo las mejores práctica
 #### ✅ Capacidades PWA
 - ✅ Modo standalone (sin barra del navegador)
 - ✅ Orientación portrait optimizada
-- ✅ Theme color #B8860B (dorado)
+- ✅ Theme color #2E7D32 (verde natural)
 - ✅ Shortcuts para acciones rápidas
 - ✅ Cacheo inteligente de recursos
 
@@ -250,7 +250,7 @@ aria-label="Descripción clara de la acción"
 ### Sombras Suaves
 ```css
 box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
 ```
 
 ### Border Radius Generosos
@@ -260,7 +260,7 @@ border-radius: 12px; /* Más moderno que 4px */
 
 ### Gradientes Sutiles
 ```css
-background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
 ```
 
 ### Animaciones Naturales

@@ -115,8 +115,8 @@ vercel
 
 ## 📞 Contacto
 
-**Rita Valencia**  
-WhatsApp: +526312982043
+**Cruz Valencia**  
+WhatsApp: +526621200412
 
 ## 🐛 Solución de Problemas
 
@@ -149,5 +149,5 @@ MIT License
 
 ---
 
-**Desarrollado para MV Natural (By Rita)** 🌿
+**Desarrollado para MV Natural (By Cruz)** 🌿
 
