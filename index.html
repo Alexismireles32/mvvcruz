@@ -764,6 +764,14 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            /* Optimizaciones para mejor captura de imagen */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
 
         .quote-header {
@@ -776,6 +784,11 @@
         .quote-logo {
             height: 60px;
             margin-bottom: 15px;
+            /* Optimización de imagen para captura HD */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .quote-header h2 {
@@ -1161,6 +1174,8 @@
 
             .quote-logo {
                 height: 80px;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
             }
 
             .customer-form {
@@ -1898,28 +1913,46 @@
             goToStep(4);
         }
 
-        // Descargar imagen
+        // Descargar imagen de alta calidad
         function downloadQuoteImage() {
             vibrate(20);
             const btn = event.target;
-            btn.innerHTML = '<span class="loading"></span> Generando...';
+            btn.innerHTML = '<span class="loading"></span> Generando imagen HD...';
             btn.disabled = true;
 
             const quotePrintArea = document.getElementById('quotePrintArea');
 
+            // Configuración optimizada para máxima calidad
             html2canvas(quotePrintArea, {
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                backgroundColor: '#ffffff'
+                scale: 3,                    // 3x resolución (mayor calidad)
+                useCORS: true,              // Permitir imágenes de otros dominios
+                allowTaint: true,           // Permitir contenido cross-origin
+                logging: false,             // Sin logs en consola
+                backgroundColor: '#ffffff', // Fondo blanco puro
+                windowWidth: quotePrintArea.scrollWidth,
+                windowHeight: quotePrintArea.scrollHeight,
+                width: quotePrintArea.scrollWidth,
+                height: quotePrintArea.scrollHeight,
+                imageTimeout: 0,            // Sin timeout para imágenes
+                removeContainer: true,      // Limpiar después
+                foreignObjectRendering: false, // Mejor compatibilidad
+                letterRendering: true       // Mejor renderizado de texto
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                // Usar PNG para calidad sin pérdida (en lugar de JPEG)
+                const imgData = canvas.toDataURL('image/png', 1.0);
                 const link = document.createElement('a');
-                link.download = 'Cotizacion_MVNatural.jpg';
+                link.download = 'Cotizacion_MVVNatural_HD.png';
                 link.href = imgData;
                 link.click();
                 
-                btn.innerHTML = '✅ Imagen Guardada';
+                btn.innerHTML = '✅ Imagen HD Guardada';
+                setTimeout(() => {
+                    btn.innerHTML = '💾 Guardar Imagen';
+                    btn.disabled = false;
+                }, 2000);
+            }).catch(error => {
+                console.error('Error al generar imagen:', error);
+                btn.innerHTML = '❌ Error. Reintentar';
                 setTimeout(() => {
                     btn.innerHTML = '💾 Guardar Imagen';
                     btn.disabled = false;
