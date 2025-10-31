@@ -709,6 +709,21 @@
             margin-bottom: 20px;
         }
 
+        .quote-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .button-instruction {
+            display: block;
+            font-size: 0.75rem;
+            color: #5f6368;
+            text-align: center;
+            line-height: 1.2;
+        }
+
         .btn-whatsapp {
             background: #25D366;
             color: white;
@@ -1424,12 +1439,18 @@
         <div id="step4" class="step">
             <div class="quote-wrapper">
                 <div class="quote-actions-top">
-                    <button class="btn-download" onclick="downloadQuoteImage(event)" aria-label="Guardar imagen">
-                        💾 Guardar Imagen
-                    </button>
-                    <button class="btn-whatsapp" onclick="sendWhatsApp()" aria-label="Enviar por WhatsApp">
-                        📱 Enviar WhatsApp
-                    </button>
+                    <div class="quote-action">
+                        <button class="btn-download" onclick="downloadQuoteImage(event)" aria-label="Guardar imagen">
+                            💾 Guardar Imagen
+                        </button>
+                        <span class="button-instruction">Paso 1: descarga la cotización</span>
+                    </div>
+                    <div class="quote-action">
+                        <button class="btn-whatsapp" onclick="sendWhatsApp()" aria-label="Enviar por WhatsApp">
+                            📱 Enviar WhatsApp
+                        </button>
+                        <span class="button-instruction">Paso 2: envía a Cruz Valencia</span>
+                    </div>
                 </div>
 
                 <div id="quotePrintArea">
