@@ -758,6 +758,15 @@
             box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
         }
 
+        body.downloading .quote-actions-top {
+            visibility: hidden;
+        }
+
+        body.downloading .btn-download,
+        body.downloading .btn-whatsapp {
+            pointer-events: none;
+        }
+
         #quotePrintArea {
             background: white;
             padding: 25px 20px;
@@ -1913,26 +1922,52 @@
                 vibrate(20);
             }
 
-            const btn = triggerEvent?.currentTarget || triggerEvent?.target || null;
+            const btn = !silent ? (triggerEvent?.currentTarget || triggerEvent?.target || null) : null;
+            const originalLabel = btn ? (btn.dataset.originalLabel || btn.innerHTML) : null;
+
             if (btn) {
-                btn.innerHTML = '<span class="loading"></span> Generando...';
+                btn.dataset.originalLabel = originalLabel;
+                btn.innerHTML = '⏳ Preparando…';
                 btn.disabled = true;
             }
+
+            document.body.classList.add('downloading');
 
             const quotePrintArea = document.getElementById('quotePrintArea');
             if (!quotePrintArea) {
                 if (btn) {
                     btn.innerHTML = '❌ Error. Reintentar';
                     setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
+                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
                         btn.disabled = false;
                     }, 2000);
                 }
+                document.body.classList.remove('downloading');
                 return Promise.reject(new Error('No se encontró el área de cotización'));
             }
 
             const pixelRatio = window.devicePixelRatio || 1;
             const captureScale = Math.min(3, Math.max(2, pixelRatio * 1.35));
+
+            const formatForFile = (value, fallback) => {
+                const safeValue = (value || fallback || '').trim() || 'cliente';
+                return safeValue
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-zA-Z0-9\s-]/g, '')
+                    .replace(/[\s_-]+/g, '_')
+                    .replace(/^_+|_+$/g, '')
+                    .toLowerCase();
+            };
+
+            const getFileDate = () => {
+                const quoteDateEl = document.getElementById('quoteDate');
+                const dateLabel = quoteDateEl?.textContent?.replace('Fecha:', '').trim();
+                if (!dateLabel) {
+                    return new Date().toISOString().split('T')[0];
+                }
+                return formatForFile(dateLabel, new Date().toISOString().split('T')[0]);
+            };
 
             return html2canvas(quotePrintArea, {
                 scale: captureScale,
@@ -1944,16 +1979,20 @@
                 windowWidth: quotePrintArea.scrollWidth,
                 windowHeight: quotePrintArea.scrollHeight
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.94);
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const customerName = formatForFile(localStorage.getItem('customerName'), 'cliente');
+                const quoteDate = getFileDate();
+                const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
+
                 const link = document.createElement('a');
-                link.download = 'Cotizacion_MVNatural.jpg';
+                link.download = fileName;
                 link.href = imgData;
                 link.click();
 
                 if (btn) {
                     btn.innerHTML = '✅ Imagen Guardada';
                     setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
+                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
                         btn.disabled = false;
                     }, 2000);
                 }
@@ -1967,12 +2006,14 @@
                 if (btn) {
                     btn.innerHTML = '❌ Error. Reintentar';
                     setTimeout(() => {
-                        btn.innerHTML = '💾 Guardar Imagen';
+                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
                         btn.disabled = false;
                     }, 2000);
                 }
 
                 throw error;
+            }).finally(() => {
+                document.body.classList.remove('downloading');
             });
         }
 
