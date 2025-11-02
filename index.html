@@ -1549,7 +1549,7 @@
             "DUO 60 FUSION XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Duo-60fusion_xhsjhs.png",
             "ALPHA GLOW": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575532/alphaglow_jwu8mg.png",
             "SOS BURN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575596/sosburn_g2ui2b.png",
-            "SOS BURN CLEAN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/SosBurnClear_oj4hvf.png",
+            "SOS BURN CLEAN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575602/sosburnclear_iuyqej.png",
             "SOS BURN SENSITIVE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575600/sosburnsensitive_dfsrs1.png",
             "PRIME ROSE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575597/primerose_jk26zj.png",
             "LIDA BOOSTER PINK": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575576/Lidabooster_xd5mo9.png",
@@ -1563,11 +1563,12 @@
             "FAT BLAZER": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761578536/fatblazer_vw1fks.png",
             "APPLE CIDER VINAGRE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575550/applecyder_xxg1ps.png",
             "30 DAY DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575526/30daydetox_roziws.png",
-            "FUSION 30 XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/30Fusion_avb3e6.png",
+            "FUSION 30 XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png",
             "COLIT 6": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575551/colit6_te7kpi.png",
             "CM PUSH UP MEN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575544/cmpushup_ncxzh6.png",
-            "H - FLEX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/HFlex_vl3kef.png",
-            "E DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Edetox_vnbmiq.png"
+            "H - FLEX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png",
+            "E DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png",
+            "CAFÉ KETO": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575594/slimcoffe_taahyd.png"
         };
 
         // Función para obtener imagen del producto
@@ -2053,10 +2054,12 @@
             }
 
             return html2canvas(quotePrintArea, {
-                scale: 2,
+                scale: 3,
                 useCORS: true,
                 logging: false,
-                backgroundColor: '#ffffff'
+                backgroundColor: '#ffffff',
+                width: quotePrintArea.scrollWidth,
+                height: quotePrintArea.scrollHeight
             }).then(canvas => {
                 const imgData = canvas.toDataURL('image/jpeg', 0.9);
 
