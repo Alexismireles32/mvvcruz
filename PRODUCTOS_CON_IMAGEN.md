@@ -2,145 +2,124 @@
 
 ## Productos con sus URLs de Imágenes
 
-1. **Duo-60 Fusion**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Duo-60fusion_xhsjhs.png
-   - Slug: /duo-60-fusion
+1. **DUO 60 FUSION XTREME**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Duo-60fusion_xhsjhs.png
+   - Nombre en catálogo: "DUO 60 FUSION XTREME"
 
-2. **Alpha Glow**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575532/alphaglow_jwu8mg.png
-   - Slug: /alphaglow
+2. **ALPHA GLOW**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575532/alphaglow_jwu8mg.png
+   - Nombre en catálogo: "ALPHA GLOW"
 
-3. **SOS Burn**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575596/sosburn_g2ui2b.png
-   - Slug: /sosburn
+3. **SOS BURN**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575596/sosburn_g2ui2b.png
+   - Nombre en catálogo: "SOS BURN"
 
-4. **SOS Burn Clear**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575569/SosBurnClear_oj4hvf.png
-   - Slug: /sosburn-clear
+4. **SOS BURN CLEAN**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575602/sosburnclear_iuyqej.png
+   - Nombre en catálogo: "SOS BURN CLEAN"
 
-5. **SOS Burn Sensitive**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575600/sosburnsensitive_dfsrs1.png
-   - Slug: /sosburn-sensitive
+5. **SOS BURN SENSITIVE**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575600/sosburnsensitive_dfsrs1.png
+   - Nombre en catálogo: "SOS BURN SENSITIVE"
 
-6. **Prime Rose**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575597/primerose_jk26zj.png
-   - Slug: /primrose
+6. **PRIME ROSE**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575597/primerose_jk26zj.png
+   - Nombre en catálogo: "PRIME ROSE"
 
-7. **Lida Booster**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575576/Lidabooster_xd5mo9.png
-   - Slug: /lidabooster
+7. **LIDA BOOSTER PINK**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575576/Lidabooster_xd5mo9.png
+   - Nombre en catálogo: "LIDA BOOSTER PINK"
 
-8. **Lipo HD 360**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575584/lipohd_zg9lxy.png
-   - Slug: /lipohd
+8. **LIPO HD 360**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575584/lipohd_zg9lxy.png
+   - Nombre en catálogo: "LIPO HD 360"
 
-9. **Chupa Panza**
-   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575545/chupapanza_m7zfgs.png
-   - Slug: /chupapanza
+9. **CHUPA PANZA CAPS.**
+   - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575545/chupapanza_m7zfgs.png
+   - Nombre en catálogo: "CHUPA PANZA CAPS."
 
-10. **Higa2**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/higa2_bzokur.png
-    - Slug: /higa2
+10. **30 DAY DETOX**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575526/30daydetox_roziws.png
+    - Nombre en catálogo: "30 DAY DETOX"
 
-11. **Serenity**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575589/serenity_mnncq7.png
-    - Slug: /serenity
+11. **CAFÉ KETO**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575594/slimcoffe_taahyd.png
+    - Nombre en catálogo: "CAFÉ KETO"
 
-12. **Floryva**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575563/floryva_nb3b0y.png
-    - Slug: /floryva
+12. **FUSION 30 XTREME**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png
+    - Nombre en catálogo: "FUSION 30 XTREME"
 
-13. **Maca Premium**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575588/macapremium_s6k65z.png
-    - Slug: /macapremium
+13. **COLIT 6**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575551/colit6_te7kpi.png
+    - Nombre en catálogo: "COLIT 6"
 
-14. **Encimax**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/encimax_kuhluy.png
-    - Slug: /encimax
+14. **CM PUSH UP MEN**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575544/cmpushup_ncxzh6.png
+    - Nombre en catálogo: "CM PUSH UP MEN"
 
-15. **Fat Blazer**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761578536/fatblazer_vw1fks.png
-    - Slug: /fatblazer
+15. **E DETOX**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png
+    - Nombre en catálogo: "E DETOX"
 
-16. **Slim Coffee Thermogenic**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575569/SlimCoffee_tfczj8.png
-    - Slug: /slimcoffee
+16. **SERENITY**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575589/serenity_mnncq7.png
+    - Nombre en catálogo: "SERENITY"
 
-17. **Apple Cider Vinagre (Apple Cyder)**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575550/applecyder_xxg1ps.png
-    - Slug: /applecyder
+17. **FLORYVA**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575563/floryva_nb3b0y.png
+    - Nombre en catálogo: "FLORYVA"
 
-18. **Apple Cider Vinegar (Vinagre de Manzana)**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/AppleCider_i9nmdt.png
-    - Slug: /applecidervingar
+18. **MACA PREMIUM HOMBRE**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575588/macapremium_s6k65z.png
+    - Nombre en catálogo: "MACA PREMIUM HOMBRE"
 
-19. **30-Day Detox**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575526/30daydetox_roziws.png
-    - Slug: /30daydetox
+19. **ENCIMAX**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575578/encimax_kuhluy.png
+    - Nombre en catálogo: "ENCIMAX"
 
-20. **30 Fusion Xtreme**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/30Fusion_avb3e6.png
-    - Slug: /30fusion
+20. **FAT BLAZER**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761578536/fatblazer_vw1fks.png
+    - Nombre en catálogo: "FAT BLAZER"
 
-21. **Colit 6**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575551/colit6_te7kpi.png
-    - Slug: /colit6
+21. **APPLE CIDER VINAGRE**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575550/applecyder_xxg1ps.png
+    - Nombre en catálogo: "APPLE CIDER VINAGRE"
 
-22. **CM Push up Men**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png
-    - Slug: /cmpushupmen
-
-23. **CM Push Up (Aumenta Glúteos y Busto)**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png
-    - Slug: /cmpushup
-
-24. **Ashwagandha**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575567/Ashawandha_nmq29y.png
-    - Slug: /ashwagandha
-
-25. **E-Detox Plus**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Edetox_vnbmiq.png
-    - Slug: /edetox
-
-26. **H-Flex**
-    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/HFlex_vl3kef.png
-    - Slug: /hflex
+22. **H - FLEX**
+    - URL: https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png
+    - Nombre en catálogo: "H - FLEX"
 
 ---
 
 ## Formato CSV (para fácil importación)
 
 ```csv
-Product Name,Image URL,Slug
-Duo-60 Fusion,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Duo-60fusion_xhsjhs.png,/duo-60-fusion
-Alpha Glow,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575532/alphaglow_jwu8mg.png,/alphaglow
-SOS Burn,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575596/sosburn_g2ui2b.png,/sosburn
-SOS Burn Clear,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575569/SosBurnClear_oj4hvf.png,/sosburn-clear
-SOS Burn Sensitive,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575600/sosburnsensitive_dfsrs1.png,/sosburn-sensitive
-Prime Rose,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575597/primerose_jk26zj.png,/primrose
-Lida Booster,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575576/Lidabooster_xd5mo9.png,/lidabooster
-Lipo HD 360,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575584/lipohd_zg9lxy.png,/lipohd
-Chupa Panza,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575545/chupapanza_m7zfgs.png,/chupapanza
-Higa2,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/higa2_bzokur.png,/higa2
-Serenity,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575589/serenity_mnncq7.png,/serenity
-Floryva,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575563/floryva_nb3b0y.png,/floryva
-Maca Premium,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575588/macapremium_s6k65z.png,/macapremium
-Encimax,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/encimax_kuhluy.png,/encimax
-Fat Blazer,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761578536/fatblazer_vw1fks.png,/fatblazer
-Slim Coffee Thermogenic,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575569/SlimCoffee_tfczj8.png,/slimcoffee
-Apple Cider Vinagre,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575550/applecyder_xxg1ps.png,/applecyder
-Apple Cider Vinegar,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/AppleCider_i9nmdt.png,/applecidervingar
-30-Day Detox,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575526/30daydetox_roziws.png,/30daydetox
-30 Fusion Xtreme,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/30Fusion_avb3e6.png,/30fusion
-Colit 6,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575551/colit6_te7kpi.png,/colit6
-CM Push up Men,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png,/cmpushupmen
-CM Push Up,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png,/cmpushup
-Ashwagandha,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575567/Ashawandha_nmq29y.png,/ashwagandha
-E-Detox Plus,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Edetox_vnbmiq.png,/edetox
-H-Flex,https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/HFlex_vl3kef.png,/hflex
+Product Name,Image URL
+DUO 60 FUSION XTREME,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Duo-60fusion_xhsjhs.png
+ALPHA GLOW,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575532/alphaglow_jwu8mg.png
+SOS BURN,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575596/sosburn_g2ui2b.png
+SOS BURN CLEAN,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575602/sosburnclear_iuyqej.png
+SOS BURN SENSITIVE,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575600/sosburnsensitive_dfsrs1.png
+PRIME ROSE,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575597/primerose_jk26zj.png
+LIDA BOOSTER PINK,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575576/Lidabooster_xd5mo9.png
+LIPO HD 360,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575584/lipohd_zg9lxy.png
+CHUPA PANZA CAPS.,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575545/chupapanza_m7zfgs.png
+30 DAY DETOX,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575526/30daydetox_roziws.png
+CAFÉ KETO,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575594/slimcoffe_taahyd.png
+FUSION 30 XTREME,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png
+COLIT 6,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575551/colit6_te7kpi.png
+CM PUSH UP MEN,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575544/cmpushup_ncxzh6.png
+E DETOX,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png
+SERENITY,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575589/serenity_mnncq7.png
+FLORYVA,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575563/floryva_nb3b0y.png
+MACA PREMIUM HOMBRE,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575588/macapremium_s6k65z.png
+ENCIMAX,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575578/encimax_kuhluy.png
+FAT BLAZER,https://res.cloudinary.com/dsulhqvza/image/upload/v1761578536/fatblazer_vw1fks.png
+APPLE CIDER VINAGRE,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575550/applecyder_xxg1ps.png
+H - FLEX,https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png
 ```
 
 ---
 
-**Total: 26 productos únicos**
-
+**Total: 22 productos con imágenes**
