@@ -2051,48 +2051,21 @@
                 return Promise.reject(new Error('No se encontró el área de cotización'));
             }
 
-            const pixelRatio = window.devicePixelRatio || 1;
-            const captureScale = Math.min(3, Math.max(2, pixelRatio * 1.35));
-
-            const formatForFile = (value, fallback) => {
-                const safeValue = (value || fallback || '').trim() || 'cliente';
-                return safeValue
-                    .normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .replace(/[^a-zA-Z0-9\s-]/g, '')
-                    .replace(/[\s_-]+/g, '_')
-                    .replace(/^_+|_+$/g, '')
-                    .toLowerCase();
-            };
-
-            const getFileDate = () => {
-                const quoteDateEl = document.getElementById('quoteDate');
-                const dateLabel = quoteDateEl?.textContent?.replace('Fecha:', '').trim();
-                if (!dateLabel) {
-                    return new Date().toISOString().split('T')[0];
-                }
-                return formatForFile(dateLabel, new Date().toISOString().split('T')[0]);
-            };
-
             return html2canvas(quotePrintArea, {
-                scale: captureScale,
+                scale: 2,
                 useCORS: true,
                 logging: false,
-                backgroundColor: '#ffffff',
-                scrollX: -window.scrollX,
-                scrollY: -window.scrollY,
-                windowWidth: quotePrintArea.scrollWidth,
-                windowHeight: quotePrintArea.scrollHeight
+                backgroundColor: '#ffffff'
             }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.95);
-                const customerName = formatForFile(localStorage.getItem('customerName'), 'cliente');
-                const quoteDate = getFileDate();
-                const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
+                const imgData = canvas.toDataURL('image/jpeg', 0.9);
 
                 const link = document.createElement('a');
-                link.download = fileName;
+                link.download = 'Cotizacion_MVNatural.jpg';
                 link.href = imgData;
+                
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
 
                 if (btn) {
                     btn.innerHTML = '✅ Imagen Guardada';
