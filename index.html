@@ -371,6 +371,14 @@
             transform: scale(0.98);
         }
 
+        .product-image {
+            width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
         .product-name {
             color: var(--green);
             font-size: 0.95rem;
@@ -509,12 +517,27 @@
         }
 
         .cart-item {
+            display: flex;
+            gap: 12px;
             padding: 15px 0;
             border-bottom: 1px solid #eee;
         }
 
         .cart-item:last-child {
             border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
         }
 
         .cart-item-name {
@@ -861,6 +884,21 @@
         .quote-table td {
             padding: 12px 8px;
             border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .quote-item-with-image {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quote-product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 6px;
+            flex-shrink: 0;
         }
 
         .quote-summary {
@@ -1506,6 +1544,36 @@
     </div>
 
     <script>
+        // Mapeo de nombres de productos a URLs de imágenes
+        const productImages = {
+            "DUO 60 FUSION XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Duo-60fusion_xhsjhs.png",
+            "ALPHA GLOW": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575532/alphaglow_jwu8mg.png",
+            "SOS BURN": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575596/sosburn_g2ui2b.png",
+            "SOS BURN CLEAN": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575569/SosBurnClear_oj4hvf.png",
+            "SOS BURN SENSITIVE": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575600/sosburnsensitive_dfsrs1.png",
+            "PRIME ROSE": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575597/primerose_jk26zj.png",
+            "LIDA BOOSTER PINK": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575576/Lidabooster_xd5mo9.png",
+            "LIPO HD 360": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575584/lipohd_zg9lxy.png",
+            "CHUPA PANZA CAPS.": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575545/chupapanza_m7zfgs.png",
+            "SERENITY": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575589/serenity_mnncq7.png",
+            "FLORYVA": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575563/floryva_nb3b0y.png",
+            "MACA PREMIUM MUJER": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575588/macapremium_s6k65z.png",
+            "MACA PREMIUM HOMBRE": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575588/macapremium_s6k65z.png",
+            "ENCIMAX": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/encimax_kuhluy.png",
+            "FAT BLAZER": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761578536/fatblazer_vw1fks.png",
+            "APPLE CIDER VINAGRE": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/AppleCider_i9nmdt.png",
+            "30 DAY DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575526/30daydetox_roziws.png",
+            "FUSION 30 XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/30Fusion_avb3e6.png",
+            "COLIT 6": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575551/colit6_te7kpi.png",
+            "CM PUSH UP MEN": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png",
+            "H - FLEX": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/HFlex_vl3kef.png"
+        };
+
+        // Función para obtener imagen del producto
+        function getProductImage(productName) {
+            return productImages[productName] || null;
+        }
+
         // Array de 91 productos
         const products = [
             { id: "1A", name: "LIPO HD 360", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
@@ -1658,8 +1726,11 @@
                 const quantity = cartItem ? cartItem.quantity : 0;
                 const currentPrice = calculatePrice(product, quantity, totalQuantity);
 
+                const productImage = getProductImage(product.name);
+                
                 return `
                     <div class="product-card">
+                        ${productImage ? `<img src="${productImage}" alt="${product.name}" class="product-image" loading="lazy">` : ''}
                         <div class="product-name">${product.name}</div>
                         <div class="product-controls">
                             <div class="product-price">${formatPrice(currentPrice)}</div>
@@ -1742,14 +1813,19 @@
                 const itemTotal = unitPrice * item.quantity;
                 subtotal += itemTotal;
 
+                const productImage = getProductImage(product.name);
+
                 return `
                     <div class="cart-item">
-                        <div class="cart-item-name">${product.name}</div>
-                        <div class="cart-item-details">
-                            <span>${item.quantity} × ${formatPrice(unitPrice)}</span>
-                            <span><strong>${formatPrice(itemTotal)}</strong></span>
+                        ${productImage ? `<img src="${productImage}" alt="${product.name}" class="cart-item-image" loading="lazy">` : ''}
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${product.name}</div>
+                            <div class="cart-item-details">
+                                <span>${item.quantity} × ${formatPrice(unitPrice)}</span>
+                                <span><strong>${formatPrice(itemTotal)}</strong></span>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar ${product.name}">🗑️ Eliminar</button>
                         </div>
-                        <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar ${product.name}">🗑️ Eliminar</button>
                     </div>
                 `;
             }).join('');
@@ -1915,9 +1991,17 @@
                 const itemTotal = unitPrice * item.quantity;
                 quoteSubtotal += itemTotal;
 
+                const productImage = getProductImage(product.name);
+                const productCell = productImage 
+                    ? `<div class="quote-item-with-image">
+                         <img src="${productImage}" alt="${product.name}" class="quote-product-image">
+                         <span>${product.name}</span>
+                       </div>`
+                    : product.name;
+
                 return `
                     <tr>
-                        <td>${product.name}</td>
+                        <td>${productCell}</td>
                         <td>${item.quantity}</td>
                         <td>${formatPrice(unitPrice)}</td>
                         <td><strong>${formatPrice(itemTotal)}</strong></td>
