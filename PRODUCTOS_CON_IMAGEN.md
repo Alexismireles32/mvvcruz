@@ -4,7 +4,7 @@ Este documento lista todos los productos que tienen imagen disponible en el sist
 
 ---
 
-## Productos con Imagen (23 productos)
+## Productos con Imagen (21 productos)
 
 ### 1. DUO 60 FUSION XTREME
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Duo-60fusion_xhsjhs.png
@@ -39,49 +39,43 @@ Este documento lista todos los productos que tienen imagen disponible en el sist
 ### 11. FLORYVA
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575563/floryva_nb3b0y.png
 
-### 12. MACA PREMIUM MUJER
+### 12. MACA PREMIUM HOMBRE
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575588/macapremium_s6k65z.png
 
-### 13. MACA PREMIUM HOMBRE
-**URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575588/macapremium_s6k65z.png
-
-### 14. ENCIMAX
+### 13. ENCIMAX
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575578/encimax_kuhluy.png
 
-### 15. FAT BLAZER
+### 14. FAT BLAZER
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761578536/fatblazer_vw1fks.png
 
-### 16. APPLE CIDER VINAGRE
+### 15. APPLE CIDER VINAGRE
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575550/applecyder_xxg1ps.png
 
-### 17. 30 DAY DETOX
+### 16. 30 DAY DETOX
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575526/30daydetox_roziws.png
 
-### 18. FUSION 30 XTREME
+### 17. FUSION 30 XTREME
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png
 
-### 19. COLIT 6
+### 18. COLIT 6
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575551/colit6_te7kpi.png
 
-### 20. CM PUSH UP MEN
+### 19. CM PUSH UP MEN
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761550169/MvvNatural_3_ff2m2r.png
 
-### 21. H - FLEX
+### 20. H - FLEX
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png
 
-### 22. GOTAS E DETOX PLUS
+### 21. GOTAS E DETOX PLUS
 **URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png
-
-### 23. CAFÉ KETO
-**URL:** https://res.cloudinary.com/dsulhqvza/image/upload/v1761550238/MvvNatural_18_sd6dzf.png
 
 ---
 
 ## Resumen
 
-- **Total de productos con imagen:** 23
+- **Total de productos con imagen:** 21
 - **Total de productos en el catálogo:** 91
-- **Productos sin imagen:** 68
+- **Productos sin imagen:** 70
 
 ---
 
