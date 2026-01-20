@@ -135,7 +135,7 @@ Todos los productos verificados con sus 5 niveles de precios:
 - ✅ Cotización completa con logo y datos
 - ✅ Tabla de productos con precios
 - ✅ Subtotal + Envío + Total
-- ✅ Nota para Cruz Valencia
+- ✅ Nota para Magdy Valencia
 
 ### ✅ Colores y Branding
 
@@ -326,9 +326,9 @@ La aplicación **MV Natural - Sistema de Cotizaciones** ha sido verificada exhau
 
 ### Contacto
 
-**Cruz Valencia**  
+**Magdy Valencia**  
 WhatsApp: +526621200412  
-Empresa: MV Natural (By Cruz)
+Empresa: MV Natural (By Magdy)
 
 ---
 

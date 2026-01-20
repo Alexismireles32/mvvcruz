@@ -115,7 +115,7 @@ vercel
 
 ## 📞 Contacto
 
-**Cruz Valencia**  
+**Magdy Valencia**  
 WhatsApp: +526621200412
 
 ## 🐛 Solución de Problemas
@@ -149,5 +149,5 @@ MIT License
 
 ---
 
-**Desarrollado para MV Natural (By Cruz)** 🌿
+**Desarrollado para MV Natural (By Magdy)** 🌿
 
