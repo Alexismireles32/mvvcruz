@@ -2319,9 +2319,11 @@
 
             const isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent || '');
             const pixelRatio = window.devicePixelRatio || 1;
-            // Cap at 2x on mobile to stay under iOS Safari's ~16M-pixel canvas limit on long quotes.
+            // 1x on mobile keeps the resulting canvas tiny — older iPhones cap canvases around 5M pixels
+            // and a long cart at 2x can blow past that, returning a blank canvas. Quality is fine for
+            // a text-heavy quote.
             const captureScale = isMobile
-                ? Math.min(2, Math.max(1.5, pixelRatio))
+                ? 1
                 : Math.min(3, Math.max(2, pixelRatio * 1.35));
 
             const formatForFile = (value, fallback) => {
@@ -2370,15 +2372,26 @@
                 const customerName = formatForFile(localStorage.getItem('customerName'), 'cliente');
                 const quoteDate = getFileDate();
                 const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
-                const blob = await withTimeout(
-                    canvasToBlob(canvas, 'image/jpeg', 0.95),
-                    8000,
-                    'No se pudo preparar el archivo JPEG. Intenta de nuevo.'
-                );
-                const quoteFile = blob && typeof File === 'function'
-                    ? new File([blob], fileName, { type: 'image/jpeg' })
-                    : null;
-                const imageUrl = blob ? URL.createObjectURL(blob) : canvas.toDataURL('image/jpeg', 0.95);
+
+                // Primary export: synchronous toDataURL. Matches the old (working) flow and
+                // can't time out the way toBlob did on iOS.
+                const imageUrl = canvas.toDataURL('image/jpeg', 0.92);
+
+                // Best-effort: also produce a Blob/File so the iOS share sheet can attach the
+                // JPEG. If toBlob hangs or fails we silently drop to the dataURL-only path.
+                let quoteFile = null;
+                try {
+                    const blob = await withTimeout(
+                        canvasToBlob(canvas, 'image/jpeg', 0.92),
+                        4000,
+                        null
+                    );
+                    if (blob && typeof File === 'function') {
+                        quoteFile = new File([blob], fileName, { type: 'image/jpeg' });
+                    }
+                } catch (e) {
+                    // toBlob fell through; we still have imageUrl from toDataURL
+                }
 
                 if (lastQuoteImageUrl?.startsWith('blob:')) {
                     URL.revokeObjectURL(lastQuoteImageUrl);
@@ -2390,7 +2403,7 @@
                     imageUrl,
                     width: canvas.width,
                     height: canvas.height,
-                    size: blob?.size || 0
+                    size: quoteFile?.size || 0
                 };
 
                 if (isMobile) {
