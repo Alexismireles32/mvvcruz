@@ -1,5 +1,5 @@
 // Service Worker para PWA - MV Natural
-const CACHE_NAME = 'mvnatural-v7';
+const CACHE_NAME = 'mvnatural-v8';
 const urlsToCache = [
   '/',
   '/index.html',

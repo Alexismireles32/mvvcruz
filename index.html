@@ -1852,8 +1852,11 @@
             resultEl.classList.add('active');
             resultEl.innerHTML = `
                 <strong>No se pudo guardar la imagen.</strong>
-                ${escapeHTML(message)}
+                <p style="margin: 6px 0 0; font-size: 0.95rem;">${escapeHTML(message)}</p>
             `;
+            requestAnimationFrame(() => {
+                resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
         }
 
         function setDownloadResult(fileName, imageUrl) {
@@ -2344,7 +2347,7 @@
             try {
                 await withTimeout(
                     waitForQuoteAssets(quotePrintArea),
-                    isMobile ? 12000 : 25000,
+                    25000,
                     'Las imágenes tardaron demasiado en cargar. Intenta de nuevo.'
                 );
 
@@ -2360,7 +2363,7 @@
                         windowWidth: quotePrintArea.scrollWidth,
                         windowHeight: quotePrintArea.scrollHeight
                     }),
-                    isMobile ? 15000 : 20000,
+                    20000,
                     'La imagen tardó demasiado en generarse. Intenta de nuevo.'
                 );
 
@@ -2369,7 +2372,7 @@
                 const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
                 const blob = await withTimeout(
                     canvasToBlob(canvas, 'image/jpeg', 0.95),
-                    isMobile ? 6000 : 8000,
+                    8000,
                     'No se pudo preparar el archivo JPEG. Intenta de nuevo.'
                 );
                 const quoteFile = blob && typeof File === 'function'
