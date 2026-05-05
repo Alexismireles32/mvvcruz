@@ -847,6 +847,19 @@
             text-decoration: none;
         }
 
+        .download-result .dl-action-primary {
+            min-height: 56px;
+            padding: 14px 18px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+        }
+
+        .download-result .dl-action-primary:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.35);
+        }
+
         #quotePrintArea {
             background: white;
             padding: 25px 20px;
@@ -1847,22 +1860,39 @@
             const resultEl = document.getElementById('downloadResult');
             if (!resultEl) return;
 
+            const isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent || '');
             const canShareFile = window.MVV_LAST_QUOTE_FILE
                 && navigator.share
                 && navigator.canShare?.({ files: [window.MVV_LAST_QUOTE_FILE] });
             const shareButton = canShareFile
-                ? '<button type="button" onclick="shareLastQuoteImage()">Compartir / guardar</button>'
+                ? '<button type="button" class="dl-action-primary" onclick="shareLastQuoteImage()">📤 Compartir / Guardar</button>'
                 : '';
 
             resultEl.classList.add('active');
-            resultEl.innerHTML = `
-                <strong>Imagen lista.</strong> Si no se guardó automáticamente, usa uno de estos botones:
-                <div class="download-result-actions">
-                    <a href="${imageUrl}" download="${escapeHTML(fileName)}">Descargar de nuevo</a>
-                    <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen</a>
-                    ${shareButton}
-                </div>
-            `;
+
+            if (isMobile) {
+                resultEl.innerHTML = `
+                    <strong>✅ Tu cotización está lista.</strong>
+                    <p style="margin: 6px 0 12px; font-size: 0.95rem;">${canShareFile ? 'Toca el botón para guardarla en tu teléfono o enviarla.' : 'Mantén presionada la imagen y elige <em>Guardar en Fotos</em>.'}</p>
+                    <div class="download-result-actions" style="flex-direction: column; gap: 10px;">
+                        ${shareButton}
+                        <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen en pantalla completa</a>
+                    </div>
+                    <img src="${imageUrl}" alt="Vista previa de cotización" style="display: block; margin: 14px auto 0; max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">
+                `;
+                requestAnimationFrame(() => {
+                    resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            } else {
+                resultEl.innerHTML = `
+                    <strong>Imagen lista.</strong> Si no se guardó automáticamente, usa uno de estos botones:
+                    <div class="download-result-actions">
+                        <a href="${imageUrl}" download="${escapeHTML(fileName)}">Descargar de nuevo</a>
+                        <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen</a>
+                        ${shareButton}
+                    </div>
+                `;
+            }
         }
 
         function clearDownloadResult() {
@@ -2284,8 +2314,12 @@
                 return Promise.reject(new Error('No se pudo cargar el generador de imagen'));
             }
 
+            const isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent || '');
             const pixelRatio = window.devicePixelRatio || 1;
-            const captureScale = Math.min(3, Math.max(2, pixelRatio * 1.35));
+            // Cap at 2x on mobile to stay under iOS Safari's ~16M-pixel canvas limit on long quotes.
+            const captureScale = isMobile
+                ? Math.min(2, Math.max(1.5, pixelRatio))
+                : Math.min(3, Math.max(2, pixelRatio * 1.35));
 
             const formatForFile = (value, fallback) => {
                 const safeValue = (value || fallback || '').trim() || 'cliente';
@@ -2310,7 +2344,7 @@
             try {
                 await withTimeout(
                     waitForQuoteAssets(quotePrintArea),
-                    25000,
+                    isMobile ? 12000 : 25000,
                     'Las imágenes tardaron demasiado en cargar. Intenta de nuevo.'
                 );
 
@@ -2326,7 +2360,7 @@
                         windowWidth: quotePrintArea.scrollWidth,
                         windowHeight: quotePrintArea.scrollHeight
                     }),
-                    20000,
+                    isMobile ? 15000 : 20000,
                     'La imagen tardó demasiado en generarse. Intenta de nuevo.'
                 );
 
@@ -2335,7 +2369,7 @@
                 const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
                 const blob = await withTimeout(
                     canvasToBlob(canvas, 'image/jpeg', 0.95),
-                    8000,
+                    isMobile ? 6000 : 8000,
                     'No se pudo preparar el archivo JPEG. Intenta de nuevo.'
                 );
                 const quoteFile = blob && typeof File === 'function'
@@ -2356,19 +2390,30 @@
                     size: blob?.size || 0
                 };
 
-                const link = document.createElement('a');
-                link.download = fileName;
-                link.href = imageUrl;
-                link.rel = 'noopener';
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
+                if (isMobile) {
+                    // iOS Safari ignores <a download> for blob: URLs and the user gesture has expired
+                    // after html2canvas runs, so navigator.share() can't be auto-triggered here.
+                    // setDownloadResult shows a prominent share/save CTA whose click is a fresh gesture.
+                    setDownloadResult(fileName, imageUrl);
+                    if (btn) {
+                        btn.innerHTML = '✅ Listo — guarda abajo';
+                        restoreButton(btn, originalLabel || '💾 Guardar Imagen', 4000);
+                    }
+                } else {
+                    const link = document.createElement('a');
+                    link.download = fileName;
+                    link.href = imageUrl;
+                    link.rel = 'noopener';
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
 
-                setDownloadResult(fileName, imageUrl);
+                    setDownloadResult(fileName, imageUrl);
 
-                if (btn) {
-                    btn.innerHTML = '✅ Imagen Lista';
-                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
+                    if (btn) {
+                        btn.innerHTML = '✅ Imagen Lista';
+                        restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
+                    }
                 }
 
                 return canvas;
