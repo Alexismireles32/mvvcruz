@@ -2422,8 +2422,9 @@
         window.MVV_BUILD_WHATSAPP_MESSAGE = buildWhatsAppMessage;
         window.MVV_BUILD_WHATSAPP_URL = buildWhatsAppUrl;
 
-        // Enviar WhatsApp
-        async function sendWhatsApp(triggerEvent = null) {
+        // Enviar WhatsApp — abre wa.me directamente, sin esperar a la imagen.
+        // La imagen se guarda en segundo plano (best-effort) para que el usuario la tenga lista al adjuntar.
+        function sendWhatsApp(triggerEvent = null) {
             vibrate(20);
             normalizeCart();
 
@@ -2435,42 +2436,23 @@
 
             const btn = triggerEvent?.currentTarget || triggerEvent?.target || null;
             const originalLabel = btn ? (btn.dataset.originalLabel || btn.innerHTML) : null;
-            if (btn) {
-                btn.dataset.originalLabel = originalLabel;
-                btn.innerHTML = '⏳ Guardando imagen…';
-                btn.disabled = true;
-            }
 
             const message = buildWhatsAppMessage();
             const whatsappUrl = buildWhatsAppUrl(message);
             window.MVV_LAST_WHATSAPP_URL = whatsappUrl;
 
-            const whatsappWindow = window.open('', '_blank');
-            if (whatsappWindow) {
-                whatsappWindow.document.write('<!doctype html><title>WhatsApp</title><p style="font-family: system-ui; padding: 20px;">Preparando la cotización y abriendo WhatsApp...</p>');
-                whatsappWindow.document.close();
+            const opened = window.open(whatsappUrl, '_blank', 'noopener');
+            if (!opened) {
+                window.location.href = whatsappUrl;
             }
 
-            try {
-                await withTimeout(
-                    downloadQuoteImage(null, { silent: true }),
-                    30000,
-                    'La imagen tardó demasiado en guardarse.'
-                );
-            } catch (error) {
-                alert('⚠️ No se pudo guardar la imagen automáticamente. WhatsApp se abrirá de todos modos; usa Guardar Imagen para intentarlo otra vez.');
-            } finally {
-                if (whatsappWindow && !whatsappWindow.closed) {
-                    whatsappWindow.location.href = whatsappUrl;
-                } else {
-                    window.location.href = whatsappUrl;
-                }
-
-                if (btn) {
-                    btn.innerHTML = '✅ WhatsApp listo';
-                    restoreButton(btn, originalLabel || '📱 Enviar WhatsApp', 2000);
-                }
+            if (btn) {
+                btn.dataset.originalLabel = originalLabel;
+                btn.innerHTML = '✅ WhatsApp abierto';
+                restoreButton(btn, originalLabel || '📱 Enviar WhatsApp', 2000);
             }
+
+            downloadQuoteImage(null, { silent: true }).catch(() => {});
         }
 
         // Búsqueda con debounce
