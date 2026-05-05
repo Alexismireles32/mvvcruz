@@ -18,7 +18,9 @@ const mimeTypes = {
     '.css': 'text/css',
     '.json': 'application/json',
     '.png': 'image/png',
-    '.jpg': 'image/jpg',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.webp': 'image/webp',
     '.gif': 'image/gif',
     '.svg': 'image/svg+xml',
     '.pdf': 'application/pdf',
@@ -34,10 +36,31 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
     console.log(`${req.method} ${req.url}`);
 
-    // Parsear URL
-    let filePath = '.' + req.url;
-    if (filePath === './') {
-        filePath = './index.html';
+    let parsedUrl;
+    try {
+        parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    } catch (error) {
+        res.writeHead(400, { 'Content-Type': 'text/plain' });
+        res.end('Solicitud inválida', 'utf-8');
+        return;
+    }
+
+    let requestPath;
+    try {
+        requestPath = decodeURIComponent(parsedUrl.pathname);
+    } catch (error) {
+        res.writeHead(400, { 'Content-Type': 'text/plain' });
+        res.end('Ruta inválida', 'utf-8');
+        return;
+    }
+
+    // Parsear URL sin querystring para que funcionen rutas cache-busted.
+    const routePath = requestPath === '/' ? '/index.html' : requestPath;
+    const filePath = path.resolve(__dirname, `.${routePath}`);
+    if (!filePath.startsWith(`${__dirname}${path.sep}`)) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        res.end('Acceso denegado', 'utf-8');
+        return;
     }
 
     const extname = String(path.extname(filePath)).toLowerCase();
@@ -60,7 +83,7 @@ const server = http.createServer((req, res) => {
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type'
             });
-            res.end(content, 'utf-8');
+            res.end(req.method === 'HEAD' ? undefined : content, 'utf-8');
         }
     });
 });
@@ -79,4 +102,3 @@ server.on('error', (err) => {
         console.log(`\n❌ Error: ${err.message}\n`);
     }
 });
-

@@ -90,7 +90,7 @@ vercel
 
 ## 🛠️ Características
 
-- ✅ Catálogo de 93 productos
+- ✅ Catálogo de 108 productos basado en `preciosnew.pdf`
 - ✅ Cálculo automático de precios por volumen
 - ✅ Carrito de compras interactivo
 - ✅ Generación de cotización en formato JPEG
@@ -99,19 +99,26 @@ vercel
 - ✅ Persistencia de datos (localStorage)
 - ✅ Búsqueda en tiempo real
 
+## 📋 Fuente oficial de precios
+
+`preciosnew.pdf` es la fuente principal y vigente para productos, precios y reglas. Cualquier lista anterior de precios o catálogo anterior fue retirada para evitar confusión.
+
 ## 📋 Reglas de Precios
 
 - **1-9 piezas:** Precio unitario normal
 - **10-29 piezas:** Precio de mayoreo 10 (productos variados permitidos)
-- **30-49 piezas:** Precio de mayoreo 30 (mismo producto requerido)
-- **50-99 piezas:** Precio de mayoreo 50 (mismo producto requerido)
-- **100+ piezas:** Precio de mayoreo 100 (mismo producto requerido)
+- **30-49 piezas:** Precio de mayoreo 30 (productos variados permitidos)
+- **50-99 piezas:** Precio de mayoreo 50 (productos variados permitidos)
+- **100+ piezas:** Precio de mayoreo 100 (productos variados permitidos)
 
-## 🚚 Costos de Envío
+Reglas adicionales del documento oficial:
+- No vender a menor costo que el establecido.
+- Se puede pedir producto variado para alcanzar precios de mayoreo.
 
-- **1-29 piezas:** $165 MXN
-- **30-49 piezas:** $235 MXN
-- **50+ piezas:** $300 MXN
+## 🚚 Envío
+
+- El envío y el seguro se cotizan por separado.
+- Una vez entregado el pedido a paquetería, cualquier situación se trata directamente con la paquetería.
 
 ## 📞 Contacto
 
@@ -123,6 +130,11 @@ WhatsApp: +526621200412
 ### El logo no aparece
 - Verifica tu conexión a internet (el logo se carga desde Cloudinary)
 - Si estás offline, necesitarás descargar el logo localmente
+
+### Imagen de producto faltante
+- Las imágenes locales agregadas al catálogo están en `assets/products/`.
+- `assets/products/sources.json` conserva la página e imagen oficial usada como referencia.
+- Si no hay una referencia confiable en los sitios oficiales, el producto queda sin imagen para evitar asignaciones incorrectas.
 
 ### html2canvas no funciona
 - Asegúrate de usar un servidor HTTP (no abrir archivo directamente)
@@ -140,8 +152,9 @@ WhatsApp: +526621200412
 
 - La aplicación es 100% cliente (no requiere backend)
 - Usa localStorage para persistir datos del cliente
-- Los CDNs de html2canvas y jsPDF se cargan desde internet
-- El logo se carga desde Cloudinary
+- El CDN de html2canvas se carga desde internet
+- El logo y algunas imágenes existentes se cargan desde Cloudinary
+- Las nuevas imágenes verificadas se guardan localmente en `assets/products/`
 
 ## 📄 Licencia
 
@@ -150,4 +163,3 @@ MIT License
 ---
 
 **Desarrollado para MV Natural (By Magdy)** 🌿
-

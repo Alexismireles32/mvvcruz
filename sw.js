@@ -1,10 +1,11 @@
 // Service Worker para PWA - MV Natural
-const CACHE_NAME = 'mvnatural-v1';
+const CACHE_NAME = 'mvnatural-v5';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js',
+  '/preciosnew.pdf',
+  'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js',
   'https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png'
 ];
 
@@ -16,6 +17,7 @@ self.addEventListener('install', event => {
         console.log('Cache abierto');
         return cache.addAll(urlsToCache);
       })
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -31,7 +33,7 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
@@ -55,4 +57,3 @@ self.addEventListener('fetch', event => {
       })
   );
 });
-

@@ -1,0 +1,600 @@
+{
+  "generatedAt": "2026-04-29T15:01:48.638924+00:00",
+  "sourceDomains": [
+    "mvvnatural.mx",
+    "mvvnatural.com",
+    "mvvnaturales.com"
+  ],
+  "products": {
+    "THYROIDE SUPPORT": {
+      "title": "Thyroide support and weight loss",
+      "link": "https://mvvnatural.com/thyroide-support-and-weight-loss/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/05/THYROIDE_SUPPORT.webp",
+      "asset": "assets/products/006-thyroide-support.webp"
+    },
+    "SLIM U": {
+      "title": "Slim U",
+      "link": "https://mvvnatural.com/slim-u/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2024/01/SLIMU-2.webp",
+      "asset": "assets/products/008-slim-u.webp"
+    },
+    "BIKINI TRIM FAST AMARILLA": {
+      "title": "BIKINI TRIM Fast",
+      "link": "https://mvvnatural.com/bikini-trim-fast/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/01/BIKINI.jpg",
+      "asset": "assets/products/010-bikini-trim-fast-amarilla.webp"
+    },
+    "BIKINI STRONG ROSA": {
+      "title": "Bikini Strong",
+      "link": "https://mvvnatural.com/bikini-strong/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/11/BIKINI-TRIM-STRONG-MVV.webp",
+      "asset": "assets/products/011-bikini-strong-rosa.webp"
+    },
+    "TE ENERGOBOLIZER INFUSION": {
+      "title": "Energybolizer perfect weight",
+      "link": "https://mvvnatural.com/energybolizer-perfect-weight/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/08/ENERGYBOLIZER-TE-e1630367041641.jpg",
+      "asset": "assets/products/013-te-energobolizer-infusion.webp"
+    },
+    "LIDA BOOSTER ROSA": {
+      "title": "Lida Booster Pink",
+      "link": "https://mvvnatural.com/lida-booster-pink/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2025/10/lida_booster_pink-2-min-scaled.jpeg",
+      "asset": "assets/products/015-lida-booster-rosa.webp"
+    },
+    "BALANCE PESO IDEAL": {
+      "title": "Balance Peso Ideal",
+      "link": "https://mvvnatural.mx/product/balance-peso-ideal/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2026/01/BALANCE.png",
+      "asset": "assets/products/016-balance-peso-ideal.webp"
+    },
+    "LIDA DAIDAIHUA PLUS": {
+      "title": "LIDA PLUS ORIGINAL",
+      "link": "https://mvvnatural.mx/product/lida-plus/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2023/08/LIDA_DAIDAHUA_PLUS_-removebg-preview.png",
+      "asset": "assets/products/017-lida-daidaihua-plus.webp"
+    },
+    "LIDA DAIDAIHUA CAJA": {
+      "title": "LIDA DAIDAHUA CAJA ORIGINAL",
+      "link": "https://mvvnatural.mx/product/lida-daidahua-original/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/01/LIDA-DAIDAHUA-CAJA-ORIGINAL.png",
+      "asset": "assets/products/018-lida-daidaihua-caja.webp"
+    },
+    "BODY SHAPE": {
+      "title": "Body Shape",
+      "link": "https://mvvnatural.com/body-sahpe/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/body-shapeoriginal.jpg",
+      "asset": "assets/products/019-body-shape.webp"
+    },
+    "SLIMER XTREME": {
+      "title": "SLIMMER XTREME",
+      "link": "https://mvvnatural.com/slimmer-xtreme/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/slimmer-xtreme-mvv-natural.jpg",
+      "asset": "assets/products/020-slimer-xtreme.webp"
+    },
+    "SLIM 24": {
+      "title": "Slim 24",
+      "link": "https://mvvnatural.com/slim-24/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2023/10/SLIM24.webp",
+      "asset": "assets/products/021-slim-24.webp"
+    },
+    "EXTRACTO CBD": {
+      "title": "CBD",
+      "link": "https://mvvnatural.mx/?attachment_id=1268",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/01/IMG_2927.jpg",
+      "asset": "assets/products/022-extracto-cbd.webp"
+    },
+    "MENS EXOTIC": {
+      "title": "Exotic",
+      "link": "https://mvvnatural.com/exotic/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/EXOTIC-MVV-NATURAL.jpg",
+      "asset": "assets/products/024-mens-exotic.webp"
+    },
+    "15 DAY DETOX TEA": {
+      "title": "15 DAY DETOX TE",
+      "link": "https://mvvnatural.com/15-day-detox-te/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/15_day_detox_te.webp",
+      "asset": "assets/products/031-15-day-detox-tea.webp"
+    },
+    "3 DAY RESET": {
+      "title": "3 Day Reset product jar",
+      "link": "https://mvvnatural.com/3-day-reset/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/01/3_DAY_RESET-1.webp",
+      "asset": "assets/products/032-3-day-reset.webp",
+      "replacementNote": "Replaced catalog flyer with official product jar image.",
+      "style": "product-only"
+    },
+    "COLAGENO & BIOTINA CPS": {
+      "title": "Colageno Biotina Acido Hialuronico",
+      "link": "https://mvvnatural.com/colageno-biotina-acido-hialuronico/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/BIOTINA.png",
+      "asset": "assets/products/033-colageno-biotina-cps.webp"
+    },
+    "MAXI FIBRA": {
+      "title": "Maxi Fibra package crop",
+      "link": "https://www.mvvnaturales.com/maxi-fibra",
+      "url": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761549733/catalogo-mvv-natural-18_bj3iwu.webp",
+      "asset": "assets/products/034-maxi-fibra.webp",
+      "sourceCrop": [
+        0,
+        0,
+        455,
+        850
+      ],
+      "replacementNote": "Official page only had a flyer; cropped the visible product package instead of using the full infographic.",
+      "style": "product-only"
+    },
+    "MACA PREMIUM MUJER": {
+      "title": "Maca Premium woman",
+      "link": "https://mvvnatural.com/maca-premium-woman/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/Maca-premium.webp",
+      "asset": "assets/products/035-maca-premium-mujer.webp"
+    },
+    "MEIZITANG GEL": {
+      "title": "Meizitang Soft Gel",
+      "link": "https://mvvnatural.com/meizitang-soft-gel/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/03/meizitangsoft-gel.jpeg",
+      "asset": "assets/products/037-meizitang-gel.webp"
+    },
+    "ASHWAGANDHA": {
+      "title": "Ashwagandha",
+      "link": "https://mvvnatural.com/ashwagandha/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2025/03/ASHWANANDHA-1.jpg",
+      "asset": "assets/products/039-ashwagandha.webp"
+    },
+    "HIGA2": {
+      "title": "HIGA2 HEPATO PROTECTOR",
+      "link": "https://mvvnatural.com/higa2-hepato-protector/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2023/07/higa2_hepato_protector.webp",
+      "asset": "assets/products/041-higa2.webp"
+    },
+    "MAGIC BOOTY UP": {
+      "title": "MAGIC UP BOOTY UP",
+      "link": "https://mvvnatural.mx/product/magic-booty-up/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/01/MAGIC-UP-BOOTY-UP.jpg",
+      "asset": "assets/products/042-magic-booty-up.webp"
+    },
+    "INOSITOL": {
+      "title": "Inositol",
+      "link": "https://mvvnatural.com/inositol/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2025/03/INOSITOL-1.jpg",
+      "asset": "assets/products/045-inositol.webp"
+    },
+    "ENERGY UP": {
+      "title": "Energy Up package crop",
+      "link": "https://mvvnatural.mx/?attachment_id=488",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2023/06/ENERGY-UPjpg-2.jpg",
+      "asset": "assets/products/046-energy-up.webp",
+      "sourceCrop": [
+        0,
+        0,
+        365,
+        900
+      ],
+      "replacementNote": "Official image was a flyer; cropped the visible product package area.",
+      "style": "product-only"
+    },
+    "SLIM SHAKE MACA": {
+      "title": "Slim Shake product pouch",
+      "link": "https://mvvnatural.com/slim-shake/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/SLIM-SAHKE-MVV-NATURAL.jpg",
+      "asset": "assets/products/047-slim-shake-maca.webp",
+      "replacementNote": "Replaced catalog flyer with official product pouch photo.",
+      "style": "product-only"
+    },
+    "LIDA SHAKE MALTEADA": {
+      "title": "Lida Malteada",
+      "link": "https://mvvnatural.com/lida-malteada/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/01/lida_malteada.webp",
+      "asset": "assets/products/048-lida-shake-malteada.webp"
+    },
+    "TE BODY SHAPE": {
+      "title": "Body Shape Tea product box",
+      "link": "https://mvvnatural.mx/product/bodyshapete/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/02/te-body-shape.jpg",
+      "asset": "assets/products/049-te-body-shape.webp",
+      "replacementNote": "Replaced flyer-style image with official product box and tea bag image.",
+      "style": "product-only"
+    },
+    "BLUEBERRY COLAGENO POLVO": {
+      "title": "Blueberry Colageno package crop",
+      "link": "https://www.mvvnaturales.com/blueberry-colageno",
+      "url": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761549733/catalogo-mvv-natural-31_qsewuj.webp",
+      "asset": "assets/products/050-blueberry-colageno-polvo.webp",
+      "sourceCrop": [
+        0,
+        0,
+        470,
+        850
+      ],
+      "replacementNote": "Official page only had a flyer; cropped the visible product package instead of using the full infographic.",
+      "style": "product-only"
+    },
+    "BIKINI PARCHES": {
+      "title": "Slim Patch Bikini",
+      "link": "https://mvvnatural.com/slim-patch-bikini/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/11/slim-patch-bikini.jpg",
+      "asset": "assets/products/051-bikini-parches.webp"
+    },
+    "LIDA DAIDAIHUA SLIMMING TEA": {
+      "title": "TE LIDA product pouch",
+      "link": "https://mvvnatural.com/te-lida-daidahua/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/03/TELIDA-e1708030098909.webp",
+      "asset": "assets/products/053-lida-daidaihua-slimming-tea.webp",
+      "replacementNote": "Replaced catalog flyer with official product pouch photo.",
+      "style": "product-only"
+    },
+    "VENESSE": {
+      "title": "VENESSE VARICOSE",
+      "link": "https://mvvnatural.mx/product/venesse-varicose/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2026/03/venesse.jpg",
+      "asset": "assets/products/055-venesse.webp"
+    },
+    "JUGO VERDE 250 G": {
+      "title": "Jugo verde",
+      "link": "https://mvvnatural.com/jugo-verde-mvv-natural/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2026/02/1b0193a1-8efa-4e6b-923c-4da780b5ef21.png",
+      "asset": "assets/products/056-jugo-verde-250-g.webp"
+    },
+    "PROTEIN BODY": {
+      "title": "Protein Body package crop",
+      "link": "https://www.mvvnaturales.com/protein-body",
+      "url": "https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761549733/catalogo-mvv-natural-9_x4mbwd.webp",
+      "asset": "assets/products/061-protein-body.webp",
+      "sourceCrop": [
+        0,
+        0,
+        475,
+        850
+      ],
+      "replacementNote": "Official page only had a flyer; cropped the visible product package instead of using the full infographic.",
+      "style": "product-only"
+    },
+    "DAILY WORK": {
+      "title": "DAILY WORK",
+      "link": "https://mvvnatural.com/daily-work/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/03/DAILY_WORK_MVVNATURAL-1.webp",
+      "asset": "assets/products/073-daily-work.webp"
+    },
+    "DAILY 7 LIKE FACTOR": {
+      "title": "7 seven like factor",
+      "link": "https://mvvnatural.com/7-seven-like-factor/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/7-LIKE-FACTOR-1.jpg",
+      "asset": "assets/products/075-daily-7-like-factor.webp"
+    },
+    "DAILY MEN FAT BURNER": {
+      "title": "Fat Burner Man",
+      "link": "https://mvvnatural.com/fat-burner-man/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2024/02/fat_burner_man.webp",
+      "asset": "assets/products/076-daily-men-fat-burner.webp"
+    },
+    "DAILY EQUILIBRUM": {
+      "title": "EQUILIBRIUM DAILY DOUS",
+      "link": "https://mvvnatural.com/equilibrium-daily-dous/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/EQUILIBRIUM_DAILY_DOUS.jpg",
+      "asset": "assets/products/077-daily-equilibrum.webp"
+    },
+    "BEAUTY 911 T": {
+      "title": "Beauty 911",
+      "link": "https://mvvnatural.mx/product/beauty-911/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/11/img_7538.jpeg",
+      "asset": "assets/products/081-beauty-911-t.webp"
+    },
+    "BYPASS SELECT DORADA": {
+      "title": "BYPASS SELECT",
+      "link": "https://mvvnatural.com/bypass-select/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/04/bypass_select_original-2.webp",
+      "asset": "assets/products/083-bypass-select-dorada.webp"
+    },
+    "BYPASS DELUXE BLANCA": {
+      "title": "Bypass Deluxe",
+      "link": "https://mvvnatural.com/bypass-deluxe/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2023/09/DELUXE_BYPASS_ORIGINAL.webp",
+      "asset": "assets/products/084-bypass-deluxe-blanca.webp"
+    },
+    "BYPASS PREMIUM VERDE": {
+      "title": "Bypass Premium",
+      "link": "https://mvvnatural.com/bypass-premium/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2021/09/BYPASS_PREMIUM_ORIGINAL.webp",
+      "asset": "assets/products/085-bypass-premium-verde.webp"
+    },
+    "BYPASS 3 XL DOBLE POTENCIA": {
+      "title": "3XL Doble potencia",
+      "link": "https://mvvnatural.com/3xl-doble-potencia/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/09/3XL-1.webp",
+      "asset": "assets/products/086-bypass-3-xl-doble-potencia.webp"
+    },
+    "SBELTA 24/7": {
+      "title": "Sbelta 24/7",
+      "link": "https://mvvnatural.com/sbelta-24-7/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/02/sbelta24.webp",
+      "asset": "assets/products/088-sbelta-24-7.webp"
+    },
+    "LIDA GLAM ROSA": {
+      "title": "LIDA GLAM",
+      "link": "https://mvvnatural.mx/product/lida-glam/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/01/IMG_2948.jpg",
+      "asset": "assets/products/089-lida-glam-rosa.webp"
+    },
+    "MACA FEM": {
+      "title": "MACA FEM APPLE BENEFIT",
+      "link": "https://mvvnatural.mx/?attachment_id=1971",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/01/MACA-FEM-APPLE-BENEFIT.png",
+      "asset": "assets/products/090-maca-fem.webp"
+    },
+    "MACA FEM PLUS": {
+      "title": "Maca Fem Plus",
+      "link": "https://mvvnatural.com/maca-fem-plus/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2023/02/maca_fem_plus.webp",
+      "asset": "assets/products/091-maca-fem-plus.webp"
+    },
+    "LIPO TALLA HIPERTENSOS": {
+      "title": "Lipo Talla Hip",
+      "link": "https://mvvnatural.com/lipo-talla-hip/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/07/lipo-talla-hipertensos.jpg",
+      "asset": "assets/products/098-lipo-talla-hipertensos.webp"
+    },
+    "LIPO TALLA NIGHT ROSA": {
+      "title": "Lipo talla Night",
+      "link": "https://mvvnatural.com/lipo-talla-night/",
+      "url": "https://mvvnatural.com/wp-content/uploads/2022/07/lipo-talla-night.jpg",
+      "asset": "assets/products/104-lipo-talla-night-rosa.webp"
+    },
+    "LIPO BARBIE": {
+      "title": "BARBIE CAPSULAS",
+      "link": "https://mvvnatural.mx/product/barbie-capsulas/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2023/08/IMG_777553DD34D5-1-removebg-preview.png",
+      "asset": "assets/products/108-lipo-barbie.webp"
+    },
+    "BIKINI TRIM DORADA": {
+      "title": "Bikini Trim Fast Gold - Quemador de grasa",
+      "link": "https://mvvnatural.mx/product/bikini-trim-fast-gold-quemador-de-grasa/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2024/08/photoroom_20240810_102819 p.m.jpeg",
+      "asset": "assets/products/012-bikini-trim-dorada.webp"
+    },
+    "LIPO TALLA BLUE SIZE": {
+      "title": "LIPO TALLA BLUE LOSS SIZE",
+      "link": "https://mvvnatural.mx/product/lipo-talla-blue-loss-size-nueva-version/",
+      "url": "https://mvvnatural.mx/wp-content/uploads/2023/10/Photoroom_20240710_112741 p.m.jpg",
+      "asset": "assets/products/097-lipo-talla-blue-size.webp"
+    },
+    "SLIM COFFELAGENO 100 MG": {
+      "title": "Slim CoffeLageno 100 MG",
+      "link": null,
+      "url": "whatsapp9.jpeg",
+      "asset": "assets/products/043-slim-coffelageno-100-mg.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "MG5 MAGNESIOS": {
+      "title": "MG5 Magnesios",
+      "link": null,
+      "url": "WhatsApp Image 2026-04-29 at 5.32.14 PM.jpeg",
+      "asset": "assets/products/058-mg5-magnesios.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "GEL TONIC": {
+      "title": "Gel Tonic",
+      "link": null,
+      "url": "whastapp13.jpeg",
+      "asset": "assets/products/062-gel-tonic.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "GEL VENNESE": {
+      "title": "Gel Venesse Varicose",
+      "link": null,
+      "url": "whatsapp14.jpeg",
+      "asset": "assets/products/064-gel-vennese.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "DAILY URBAN": {
+      "title": "Daily Urban",
+      "link": null,
+      "url": "whatsapp543.jpeg",
+      "asset": "assets/products/074-daily-urban.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "DAILY BYE BELLY ACELERATOR": {
+      "title": "Daily Bye Belly Accelerator",
+      "link": null,
+      "url": "whastapp645.jpeg",
+      "asset": "assets/products/078-daily-bye-belly-acelerator.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "INTENSE DETOX TUMMY TUCK": {
+      "title": "Intense Detox Tummy Tuck",
+      "link": null,
+      "url": "whatsapp15.jpeg",
+      "asset": "assets/products/082-intense-detox-tummy-tuck.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "BYPASS 3 XL NOCTURNO": {
+      "title": "Bypass 3 XL Nocturno",
+      "link": null,
+      "url": "whatsapp1123.jpeg",
+      "asset": "assets/products/087-bypass-3-xl-nocturno.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "PIÑA INTENSE": {
+      "title": "Piña Intense",
+      "link": null,
+      "url": "whatsapp123.jpeg",
+      "asset": "assets/products/092-pina-intense.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "LIDA THERMO DETOX ROJA": {
+      "title": "Lida Thermo Detox Roja",
+      "link": null,
+      "url": "whatsapp53443.jpeg",
+      "asset": "assets/products/094-lida-thermo-detox-roja.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "TE DESPANZATE": {
+      "title": "Te Despanzate",
+      "link": null,
+      "url": "whatsapp64564.jpeg",
+      "asset": "assets/products/095-te-despanzate.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "BYPASS ZERO": {
+      "title": "Bypass Zero",
+      "link": null,
+      "url": "whatsapp534.jpeg",
+      "asset": "assets/products/096-bypass-zero.webp",
+      "source": "user-provided WhatsApp image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO TALLA LACTANCIA": {
+      "title": "LIPO TALLA LACTANCIA",
+      "link": null,
+      "url": "other433.jpeg",
+      "asset": "assets/products/099-lipo-talla-lactancia.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO CHUPAPANZA": {
+      "title": "LIPO CHUPAPANZA",
+      "link": null,
+      "url": "other543.jpeg",
+      "asset": "assets/products/100-lipo-chupapanza.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO DETOX": {
+      "title": "LIPO DETOX",
+      "link": null,
+      "url": "other342.jpeg",
+      "asset": "assets/products/101-lipo-detox.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO PUSH UP": {
+      "title": "LIPO PUSH UP",
+      "link": null,
+      "url": "other64565.jpeg",
+      "asset": "assets/products/102-lipo-push-up.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO BUENAS NOCHES": {
+      "title": "LIPO BUENAS NOCHES",
+      "link": null,
+      "url": "other765.jpeg",
+      "asset": "assets/products/103-lipo-buenas-noches.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO SIRENA": {
+      "title": "LIPO SIRENA",
+      "link": null,
+      "url": "other32432.jpeg",
+      "asset": "assets/products/105-lipo-sirena.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO TALLA CAFE": {
+      "title": "LIPO TALLA CAFE",
+      "link": null,
+      "url": "other.jpeg",
+      "asset": "assets/products/106-lipo-talla-cafe.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    },
+    "LIPO SHAKE MALTEADA": {
+      "title": "LIPO SHAKE MALTEADA",
+      "link": null,
+      "url": "other34d2.jpeg",
+      "asset": "assets/products/107-lipo-shake-malteada.webp",
+      "source": "user-provided other image",
+      "addedAt": "2026-04-29"
+    }
+  },
+  "matchedCount": 72,
+  "unmatchedProducts": [
+    {
+      "id": 52,
+      "name": "LIDA PARCHES AZUL Y ROSA"
+    },
+    {
+      "id": 54,
+      "name": "BERBERINA"
+    },
+    {
+      "id": 59,
+      "name": "FLORYVA VERDE"
+    },
+    {
+      "id": 60,
+      "name": "FLORYVA ROSA PROBIOTICO"
+    },
+    {
+      "id": 63,
+      "name": "GEL LIDA AZUL Y ROSA"
+    },
+    {
+      "id": 65,
+      "name": "GOTAS E DETOX"
+    },
+    {
+      "id": 66,
+      "name": "KETO CAFE"
+    },
+    {
+      "id": 67,
+      "name": "KETO BURN"
+    },
+    {
+      "id": 68,
+      "name": "KETO BURN GOTAS 60ML"
+    },
+    {
+      "id": 69,
+      "name": "KETO DETOX"
+    },
+    {
+      "id": 71,
+      "name": "APPLE CIDER QUEMADOR"
+    },
+    {
+      "id": 72,
+      "name": "MAXI FIT 250 G"
+    },
+    {
+      "id": 79,
+      "name": "DAILY DETOX & GLOW"
+    },
+    {
+      "id": 80,
+      "name": "DAILY TE"
+    },
+    {
+      "id": 93,
+      "name": "DESPARAZATE"
+    }
+  ],
+  "unmatchedNote": "No official reference image was matched confidently on mvvnatural.mx, mvvnatural.com, or mvvnaturales.com; leave blank instead of assigning a likely-wrong image.",
+  "notes": [
+    {
+      "date": "2026-04-29T16:07:52.074984+00:00",
+      "note": "Replaced/cropped obvious infographic-style product images into product-only assets."
+    },
+    {
+      "date": "2026-04-30T01:45:34.002Z",
+      "note": "Added user-provided WhatsApp product images only for products that did not already have an assigned image."
+    },
+    {
+      "date": "2026-04-30T02:00:22.073Z",
+      "note": "Added user-provided other product images only for products that did not already have an assigned image."
+    }
+  ]
+}

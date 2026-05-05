@@ -13,6 +13,7 @@
     <!-- SEO -->
     <meta name="description" content="Sistema de cotizaciones profesional para productos MVV Natural. Crea cotizaciones al instante con precios de mayoreo.">
     <meta name="keywords" content="MVV Natural, cotizaciones, productos naturales, mayoreo">
+    <link rel="icon" href="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png">
     
     <!-- Social Media -->
     <meta property="og:title" content="MVV Natural - Cotizaciones">
@@ -28,8 +29,8 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://res.cloudinary.com">
     
-    <!-- CDN de html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <!-- CDN de html2canvas (v1.4.1) -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     
     <style>
         * {
@@ -40,6 +41,7 @@
         }
 
         :root {
+            /* Paleta verde MV Natural */
             --green: #2E7D32;
             --light-green: #66BB6A;
             --dark-green: #1B5E20;
@@ -297,12 +299,12 @@
         .btn-next {
             background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
         }
 
         .btn-next:active {
             transform: scale(0.98);
-            box-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
         }
 
         .btn-next:disabled {
@@ -330,7 +332,7 @@
         .search-box:focus {
             outline: none;
             border-color: var(--green);
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
         }
 
         .section-title {
@@ -373,10 +375,11 @@
 
         .product-image {
             width: 100%;
-            max-height: 120px;
+            height: 120px;
             object-fit: contain;
             margin-bottom: 10px;
             border-radius: 8px;
+            background: #f9f9f9;
         }
 
         .product-name {
@@ -450,7 +453,7 @@
         /* Botón agregar optimizado */
         .btn-add {
             width: 100%;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
             border: none;
             padding: 12px 8px;
@@ -459,14 +462,14 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
             min-height: 44px;
             touch-action: manipulation;
         }
 
         .btn-add:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
         }
 
         /* Cart Section - Mobile First */
@@ -517,10 +520,11 @@
         }
 
         .cart-item {
-            display: flex;
-            gap: 12px;
             padding: 15px 0;
             border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
         }
 
         .cart-item:last-child {
@@ -532,12 +536,12 @@
             height: 60px;
             object-fit: contain;
             border-radius: 8px;
+            background: #f9f9f9;
             flex-shrink: 0;
         }
 
         .cart-item-info {
             flex: 1;
-            min-width: 0;
         }
 
         .cart-item-name {
@@ -596,7 +600,7 @@
         /* Botones principales táctiles */
         .btn-next {
             width: 100%;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
             border: none;
             padding: 18px;
@@ -606,14 +610,14 @@
             font-size: 1.1rem;
             margin-top: 15px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
             min-height: 56px;
             touch-action: manipulation;
         }
 
         .btn-next:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
         }
 
         .btn-next:disabled {
@@ -672,7 +676,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--green);
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.2);
         }
 
         .form-group textarea {
@@ -710,19 +714,21 @@
         }
 
         .btn-generate {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
         }
 
         .btn-generate:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
         }
 
         /* Quote Section */
         .quote-wrapper {
             margin: 0 auto;
+            max-width: 920px;
+            width: 100%;
         }
 
         .quote-actions-top {
@@ -773,7 +779,7 @@
         }
 
         .btn-download {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
+            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
             color: white;
             padding: 18px;
             border: none;
@@ -786,23 +792,59 @@
             justify-content: center;
             gap: 10px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
             min-height: 56px;
             touch-action: manipulation;
         }
 
         .btn-download:active {
             transform: translateY(2px);
-            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.3);
-        }
-
-        body.downloading .quote-actions-top {
-            visibility: hidden;
+            box-shadow: 0 2px 6px rgba(184, 134, 11, 0.3);
         }
 
         body.downloading .btn-download,
         body.downloading .btn-whatsapp {
             pointer-events: none;
+        }
+
+        .download-result {
+            display: none;
+            margin: 0 0 20px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--light-cream);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .download-result.active {
+            display: block;
+        }
+
+        .download-result-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .download-result a,
+        .download-result button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 8px;
+            background: var(--green);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 700;
+            font: inherit;
+            text-decoration: none;
         }
 
         #quotePrintArea {
@@ -873,8 +915,8 @@
         }
 
         .quote-table th {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--green) 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--light-green), var(--green));
+            color: #fff;
             padding: 12px 8px;
             text-align: left;
             font-weight: 600;
@@ -887,18 +929,18 @@
             vertical-align: middle;
         }
 
-        .quote-item-with-image {
+        .quote-table td:first-child {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .quote-product-image {
+        .quote-table td:first-child img {
             width: 50px;
             height: 50px;
             object-fit: contain;
-            border-radius: 6px;
-            flex-shrink: 0;
+            border-radius: 4px;
+            background: #f9f9f9;
         }
 
         .quote-summary {
@@ -955,83 +997,6 @@
             line-height: 1.6;
             margin-bottom: 8px;
         }
-
-        /* Catalog Carousel Section */
-        .catalog-carousel-section {
-            margin: 30px 0;
-            background: var(--light-cream);
-            border-radius: 16px;
-            padding: 25px 0;
-            overflow: hidden;
-        }
-
-        .catalog-carousel-section h3 {
-            color: var(--green);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .catalog-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--green) var(--light-cream);
-            -webkit-overflow-scrolling: touch;
-            gap: 15px;
-            padding: 0 20px 20px 20px;
-        }
-
-        .catalog-carousel::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .catalog-carousel::-webkit-scrollbar-track {
-            background: var(--light-cream);
-            border-radius: 4px;
-        }
-
-        .catalog-carousel::-webkit-scrollbar-thumb {
-            background: var(--green);
-            border-radius: 4px;
-        }
-
-        .catalog-carousel::-webkit-scrollbar-thumb:hover {
-            background: var(--dark-green);
-        }
-
-        .catalog-image {
-            flex: 0 0 auto;
-            width: 100%;
-            min-width: 100%;
-            max-width: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            object-fit: contain;
-            background: white;
-        }
-
-        .catalog-carousel-instructions {
-            text-align: center;
-            color: var(--text-brown);
-            font-size: 0.9rem;
-            padding: 10px 20px;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .catalog-carousel-section {
-                margin: 25px -15px 0 -15px;
-                border-radius: 0;
-            }
-
-            .catalog-carousel {
-                padding: 0 15px 15px 15px;
-            }
-        }
-
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--green) 0%, var(--dark-green) 100%);
@@ -1346,8 +1311,8 @@
         <div id="step1" class="step active">
             <div class="info-box">
                 <h3>📋 Información de precios:</h3>
-                <p>Los precios varían según la cantidad de productos (1, 10, 30, 50, 100). Mientras más productos agregue, el precio se actualizará automáticamente para reflejar los descuentos por volumen.</p>
-                <p><strong>Para mayoreo de 10 piezas, pueden ser productos variados. Para mayoreo de 30 piezas o más, deben ser del mismo producto.</strong></p>
+                <p>Lista oficial vigente: <a href="preciosnew.pdf" target="_blank" rel="noopener">Lista MVV Natural</a>. Los precios se calculan por total de piezas en el pedido: 1-9, 10-29, 30-49, 50-99 y 100+.</p>
+                <p><strong>Los productos variados sí cuentan para alcanzar precios de mayoreo. No vender por debajo del costo establecido.</strong></p>
             </div>
 
             <h2 class="section-title">Productos MVV Natural por Magdy Valencia</h2>
@@ -1358,57 +1323,8 @@
 
             <div class="shipping-info">
                 <h3>🚚 Información importante sobre envíos:</h3>
-                <p>Si su pedido incluye productos de mayor tamaño como PROTEIN BODY, MAXI FIBRA, GEL TONIC 250 ML o LIDA SHAKE MALTEADA, el precio del envío puede aumentar.</p>
-                <p>Para zonas extendidas o de difícil acceso, se cobrará un costo adicional de envío. Por favor consulte con Magdy Valencia para más detalles.</p>
-            </div>
-
-            <div class="catalog-carousel-section">
-                <h3>📚 Catálogo de Productos MV Natural</h3>
-                <div class="catalog-carousel">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549460/catalogo-mvv-natural-1_qihzmj.webp" alt="Página 1 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549478/catalogo-mvv-natural-2_c6pjzx.webp" alt="Página 2 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549485/catalogo-mvv-natural-3_fpfmfj.webp" alt="Página 3 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549485/catalogo-mvv-natural-4_hmppua.webp" alt="Página 4 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549505/catalogo-mvv-natural-5_bzvrlg.webp" alt="Página 5 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549504/catalogo-mvv-natural-6_hdrlbr.webp" alt="Página 6 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549482/catalogo-mvv-natural-7_wzfkvr.webp" alt="Página 7 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549507/catalogo-mvv-natural-8_kctrrh.webp" alt="Página 8 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549507/catalogo-mvv-natural-9_da08s1.webp" alt="Página 9 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549517/catalogo-mvv-natural-10_vs3aqv.webp" alt="Página 10 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549520/catalogo-mvv-natural-11_we83am.webp" alt="Página 11 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549528/catalogo-mvv-natural-12_pd7yxq.webp" alt="Página 12 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549515/catalogo-mvv-natural-13_lcfatz.webp" alt="Página 13 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549535/catalogo-mvv-natural-14_obho2e.webp" alt="Página 14 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549522/catalogo-mvv-natural-15_qpsuiu.webp" alt="Página 15 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549535/catalogo-mvv-natural-16_yiewjp.webp" alt="Página 16 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549535/catalogo-mvv-natural-17_lvwwel.webp" alt="Página 17 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549538/catalogo-mvv-natural-18_l4r57w.webp" alt="Página 18 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549552/catalogo-mvv-natural-19_nbmjhq.webp" alt="Página 19 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549548/catalogo-mvv-natural-20_aihpsv.webp" alt="Página 20 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549549/catalogo-mvv-natural-21_rcrlmk.webp" alt="Página 21 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549549/catalogo-mvv-natural-22_bvgzpm.webp" alt="Página 22 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549565/catalogo-mvv-natural-23_jdfcan.webp" alt="Página 23 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549560/catalogo-mvv-natural-24_svcf1o.webp" alt="Página 24 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549796/catalogo-mvv-natural-25_mbl2mh.webp" alt="Página 25 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549558/catalogo-mvv-natural-26_aqrhoz.webp" alt="Página 26 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549572/catalogo-mvv-natural-27_ohefys.webp" alt="Página 27 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549588/catalogo-mvv-natural-28_br04nr.webp" alt="Página 28 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549565/catalogo-mvv-natural-29_fqn4vq.webp" alt="Página 29 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549581/catalogo-mvv-natural-30_xiyils.webp" alt="Página 30 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549586/catalogo-mvv-natural-31_jg76gh.webp" alt="Página 31 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549573/catalogo-mvv-natural-32_r5ipwu.webp" alt="Página 32 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549586/catalogo-mvv-natural-33_tpgqj5.webp" alt="Página 33 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549588/catalogo-mvv-natural-34_ingp1d.webp" alt="Página 34 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549584/catalogo-mvv-natural-35_ao2pay.webp" alt="Página 35 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549664/catalogo-mvv-natural-36_omardo.webp" alt="Página 36 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549659/catalogo-mvv-natural-37_jbem0i.webp" alt="Página 37 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549664/catalogo-mvv-natural-38_ekzkq5.webp" alt="Página 38 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549663/catalogo-mvv-natural-39_s96fds.webp" alt="Página 39 del catálogo" class="catalog-image" loading="lazy">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761549663/catalogo-mvv-natural-40_w0njj9.webp" alt="Página 40 del catálogo" class="catalog-image" loading="lazy">
-                </div>
-                <div class="catalog-carousel-instructions">
-                    👈 Desliza para ver todas las páginas del catálogo
-                </div>
+                <p>El costo del envío varía según el tipo de producto y cantidad requerida. El monto mostrado en la cotización es una estimación y puede ajustarse al confirmar el pedido.</p>
+                <p>Una vez entregado el pedido a paquetería, cualquier situación se trata directamente con la paquetería.</p>
             </div>
 
             <!-- Botón flotante para ver carrito -->
@@ -1442,11 +1358,11 @@
                         <span id="subtotal">$0</span>
                     </div>
                     <div class="cart-summary-row">
-                        <span>Envío (Estafeta):</span>
-                        <span id="shipping">$0</span>
+                        <span>Envío/seguro:</span>
+                        <span id="shipping">Por confirmar</span>
                     </div>
                     <div class="cart-summary-row cart-total">
-                        <span>Total:</span>
+                        <span>Total productos:</span>
                         <span id="total">$0</span>
                     </div>
                 </div>
@@ -1555,16 +1471,17 @@
                         <span class="button-instruction">Paso 1: descarga la cotización</span>
                     </div>
                     <div class="quote-action">
-                        <button class="btn-whatsapp" onclick="sendWhatsApp()" aria-label="Enviar por WhatsApp">
+                        <button class="btn-whatsapp" onclick="sendWhatsApp(event)" aria-label="Enviar por WhatsApp">
                             📱 Enviar WhatsApp
                         </button>
                         <span class="button-instruction">Paso 2: envía a Magdy Valencia</span>
                     </div>
                 </div>
+                <div id="downloadResult" class="download-result" aria-live="polite"></div>
 
                 <div id="quotePrintArea">
                     <div class="quote-header">
-                        <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="quote-logo" loading="eager">
+                        <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="quote-logo" loading="eager" crossorigin="anonymous">
                         <h2>COTIZACIÓN</h2>
                         <div id="quoteDate" class="quote-date"></div>
                     </div>
@@ -1589,17 +1506,17 @@
                             <span id="quoteSubtotal">$0</span>
                         </div>
                         <div class="quote-summary-row">
-                            <span>Envío (Estafeta):</span>
-                            <span id="quoteShipping">$0</span>
+                            <span>Envío/seguro:</span>
+                            <span id="quoteShipping">Por confirmar</span>
                         </div>
                         <div class="quote-summary-row quote-total-row">
-                            <span>Total:</span>
+                            <span>Total productos:</span>
                             <span id="quoteTotal">$0</span>
                         </div>
                     </div>
 
                     <div class="quote-note">
-                        <strong>Nota:</strong> Esta cotización está sujeta a aprobación por Magdy Valencia. El precio final puede variar según disponibilidad de productos. Para confirmar su pedido, por favor envíe esta cotización a Magdy Valencia vía WhatsApp al número +526621200412.
+                        <strong>Nota:</strong> Esta cotización usa la lista oficial vigente Lista MVV Natural. <strong>El costo del envío varía según el tipo de producto y cantidad requerida</strong>, por lo que el monto mostrado es estimado y puede ajustarse al confirmar el pedido. Para confirmar su pedido, por favor envíe esta cotización a Magdy Valencia vía WhatsApp al número +526621200412.
                     </div>
                 </div>
 
@@ -1615,133 +1532,136 @@
     </div>
 
     <script>
-        // Mapeo de nombres de productos a URLs de imágenes
-        const productImages = {
-            "DUO 60 FUSION XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575568/Duo-60fusion_xhsjhs.png",
-            "ALPHA GLOW": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575532/alphaglow_jwu8mg.png",
-            "SOS BURN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575596/sosburn_g2ui2b.png",
-            "SOS BURN CLEAN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575602/sosburnclear_iuyqej.png",
-            "SOS BURN SENSITIVE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575600/sosburnsensitive_dfsrs1.png",
-            "PRIME ROSE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575597/primerose_jk26zj.png",
-            "LIDA BOOSTER PINK": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575576/Lidabooster_xd5mo9.png",
-            "LIPO HD 360": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575584/lipohd_zg9lxy.png",
-            "CHUPA PANZA CAPS.": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575545/chupapanza_m7zfgs.png",
-            "SERENITY": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575589/serenity_mnncq7.png",
-            "FLORYVA": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575563/floryva_nb3b0y.png",
-            "MACA PREMIUM HOMBRE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575588/macapremium_s6k65z.png",
-            "ENCIMAX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575578/encimax_kuhluy.png",
-            "FAT BLAZER": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761578536/fatblazer_vw1fks.png",
-            "APPLE CIDER VINAGRE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575550/applecyder_xxg1ps.png",
-            "30 DAY DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575526/30daydetox_roziws.png",
-            "FUSION 30 XTREME": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png",
-            "COLIT 6": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575551/colit6_te7kpi.png",
-            "CM PUSH UP MEN": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575544/cmpushup_ncxzh6.png",
-            "H - FLEX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png",
-            "E DETOX": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png",
-            "SLIM COFFEE": "https://res.cloudinary.com/dsulhqvza/image/upload/v1761575594/slimcoffe_taahyd.png"
-        };
-
-        // Función para obtener imagen del producto
-        function getProductImage(productName) {
-            return productImages[productName] || null;
-        }
-
-        // Array de 93 productos
-                        const products = [
-            { id: "2B", name: "DUO 60 FUSION XTREME", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 },
-            { id: "3O", name: "ALPHA GLOW", price: 900, price10: 520, price30: 500, price50: 480, price100: 460 },
-            { id: "2K", name: "CHUPA PANZA CAPS.", price: 300, price10: 220, price30: 200, price50: 185, price100: 165 },
-            { id: "3U", name: "PRIME ROSE", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "5H", name: "LIDA BOOSTER PINK", price: 850, price10: 500, price30: 480, price50: 460, price100: 440 },
-            { id: "1A", name: "LIPO HD 360", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8H", name: "SOS BURN", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9I", name: "SOS BURN SENSITIVE", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1J", name: "SOS BURN CLEAN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "3L", name: "30 DAY DETOX", price: 450, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "3C", name: "FUSION 30 XTREME", price: 650, price10: 380, price30: 350, price50: 300, price100: 280 },
-            { id: "5E", name: "CM PUSH UP MEN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "6F", name: "H - FLEX", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
-            { id: "9R", name: "MACA PREMIUM HOMBRE", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "1S", name: "SERENITY", price: 400, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "2T", name: "COLIT 6", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "3W", name: "APPLE CIDER VINAGRE", price: 550, price10: 350, price30: 320, price50: null, price100: 300 },
-            { id: "2E", name: "E DETOX", price: 350, price10: 150, price30: 125, price50: null, price100: 100 },
-            { id: "3F", name: "FAT BLAZER", price: 800, price10: 450, price30: 420, price50: 400, price100: 380 },
-            { id: "6I", name: "ENCIMAX", price: 600, price10: 350, price30: 330, price50: 310, price100: 290 },
-            { id: "7J", name: "FLORYVA", price: 500, price10: 280, price30: 260, price50: 240, price100: 220 },
-            { id: "6Z", name: "SLIM COFFEE", price: 450, price10: 220, price30: 200, price50: null, price100: 185 },
-            { id: "4D", name: "EXTRACTO CBD", price: 450, price10: 185, price30: 165, price50: 150, price100: 130 },
-            { id: "7G", name: "PROTEIN BODY", price: 450, price10: 250, price30: 220, price50: null, price100: 220 },
-            { id: "4M", name: "15 DAY DETOX TEA", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
-            { id: "5N", name: "3 DAY RESET", price: 250, price10: 100, price30: 85, price50: 75, price100: 70 },
-            { id: "6O", name: "COLAGENO & BIOTINA ACIDO HIALURONICO", price: 400, price10: 200, price30: 195, price50: 175, price100: 175 },
-            { id: "7P", name: "MAXI FIBRA", price: 250, price10: 175, price30: 150, price50: 135, price100: 135 },
-            { id: "8Q", name: "MACA PREMIUM MUJER", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "4V", name: "DAILY WORK", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "5W", name: "BIKINI STRONG PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6X", name: "BIKINI STRONG BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Y", name: "BIKINI STRONG YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8Z", name: "BIKINI STRONG PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9A", name: "BIKINI STRONG BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1B", name: "BIKINI STRONG WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2C", name: "LIPO PLUS XTREME", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3D", name: "LIPO PLUS XTREME GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4E", name: "LIPO PLUS XTREME PLATINUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5F", name: "LIPO PLUS XTREME BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6G", name: "LIPO PLUS XTREME PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7H", name: "LIPO PLUS XTREME BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8I", name: "LIPO PLUS XTREME GREEN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9J", name: "LIPO PLUS XTREME RED", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1K", name: "LIPO PLUS XTREME YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2L", name: "LIPO PLUS XTREME PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3M", name: "LIPO PLUS XTREME ORANGE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4N", name: "LIPO PLUS XTREME BROWN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5O", name: "LIPO PLUS XTREME GRAY", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6P", name: "LIPO PLUS XTREME WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Q", name: "LIPO PLUS XTREME SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8R", name: "LIPO PLUS XTREME BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9S", name: "LIPO PLUS XTREME COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1T", name: "LIPO PLUS XTREME TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2U", name: "LIPO PLUS XTREME PLATINUM GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3V", name: "LIPO PLUS XTREME PLATINUM SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4W", name: "LIPO PLUS XTREME PLATINUM BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5X", name: "LIPO PLUS XTREME PLATINUM COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6Y", name: "LIPO PLUS XTREME PLATINUM TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Z", name: "LIPO PLUS XTREME GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8A", name: "LIPO PLUS XTREME GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9B", name: "LIPO PLUS XTREME GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1C", name: "LIPO PLUS XTREME GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2D", name: "LIPO PLUS XTREME SILVER BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3E", name: "LIPO PLUS XTREME SILVER COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4F", name: "LIPO PLUS XTREME SILVER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5G", name: "LIPO PLUS XTREME BRONZE COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6H", name: "LIPO PLUS XTREME BRONZE TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7I", name: "LIPO PLUS XTREME COPPER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8J", name: "LIPO PLUS XTREME PLATINUM GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9K", name: "LIPO PLUS XTREME PLATINUM GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1L", name: "LIPO PLUS XTREME PLATINUM GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2M", name: "LIPO PLUS XTREME PLATINUM GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3N", name: "GEL TONIC", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "4O", name: "LIDA GLOW AZUL", price: 800, price10: 490, price30: 470, price50: 470, price100: null },
-            { id: "5P", name: "LIDA GLOW ROSA", price: 800, price10: 490, price30: 470, price50: 470, price100: null },
-            { id: "6Q", name: "MACA FEM", price: 500, price10: 490, price30: 470, price50: 470, price100: null },
-            { id: "7R", name: "MACA FEM PLUS", price: 700, price10: 450, price30: 430, price50: 430, price100: null },
-            { id: "8S", name: "SBELTA 24/7", price: 700, price10: 420, price30: 400, price50: 400, price100: null },
-            { id: "9T", name: "PIÑA INTENSE BYPASS", price: 350, price10: 230, price30: 210, price50: 210, price100: null },
-            { id: "1U", name: "DESPANZATE BYPASS", price: 400, price10: 260, price30: 240, price50: 240, price100: null },
-            { id: "2V", name: "KETO BURN", price: 850, price10: 450, price30: 430, price50: null, price100: 400 },
-            { id: "4X", name: "KETO DETOX", price: 550, price10: 350, price30: 300, price50: null, price100: 280 },
-            { id: "5Y", name: "KETO GOTAS", price: 450, price10: 185, price30: 165, price50: null, price100: 150 },
-            { id: "7A", name: "TE BODY SHAPE", price: 300, price10: 125, price30: 100, price50: null, price100: 85 },
-            { id: "8B", name: "BYPASS DELUXE BLANCO", price: 700, price10: 450, price30: 450, price50: null, price100: null },
-            { id: "9C", name: "TE ENERGOBOLIZER", price: 400, price10: 235, price30: 200, price50: null, price100: null },
-            { id: "1D", name: "TE MENOS 4K BYPASS", price: 380, price10: 230, price30: 200, price50: null, price100: null },
-            { id: "4G", name: "FAT BURNER MAN", price: 750, price10: 430, price30: 400, price50: 380, price100: 360 },
-            { id: "8K", name: "LIDA GLAM", price: 820, price10: 480, price30: 460, price50: 440, price100: 420 },
-            { id: "9L", name: "XL3 POTENCIA TOTAL", price: 780, price10: 450, price30: 430, price50: 410, price100: 390 },
-            { id: "1M", name: "XL3 NOCTURNO", price: 800, price10: 460, price30: 440, price50: 420, price100: 400 },
-            { id: "2N", name: "LIDA PLUS CHICA", price: 750, price10: 430, price30: 410, price50: 390, price100: 370 }
+        const PRICE_RULE_SOURCE = 'preciosnew.pdf';
+        const MAGDY_WHATSAPP_PHONE = '526621200412';
+        const PRODUCT_ROWS = [
+            ['FAT BLAZER', 850, 490, 460, 430, 390, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761578536/fatblazer_vw1fks.png'],
+            ['DUO 60 FUSION XTREME', 980, 520, 470, 450, 420, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575568/Duo-60fusion_xhsjhs.png'],
+            ['DUO 30 FUSION XTREME', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/v1761575561/duo30fusion_t59hk3.png'],
+            ['SOS BURN', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575596/sosburn_g2ui2b.png'],
+            ['SOS BURN SENSITIVE', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575600/sosburnsensitive_dfsrs1.png'],
+            ['THYROIDE SUPPORT', 700, 400, 370, 340, 300, 'assets/products/006-thyroide-support.webp'],
+            ['LIPO HD 360', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575584/lipohd_zg9lxy.png'],
+            ['SLIM U', 700, 400, 370, 340, 300, 'assets/products/008-slim-u.webp'],
+            ['ALPHA GLOW', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575532/alphaglow_jwu8mg.png'],
+            ['BIKINI TRIM FAST AMARILLA', 700, 400, 370, 340, 300, 'assets/products/010-bikini-trim-fast-amarilla.webp'],
+            ['BIKINI STRONG ROSA', 700, 400, 370, 340, 300, 'assets/products/011-bikini-strong-rosa.webp'],
+            ['BIKINI TRIM DORADA', 700, 400, 370, 340, 300, 'assets/products/012-bikini-trim-dorada.webp'],
+            ['TE ENERGOBOLIZER INFUSION', 400, 235, 235, 235, 235, 'assets/products/013-te-energobolizer-infusion.webp'],
+            ['LIDA DAIDAIHUA BOOSTER', 700, 400, 370, 340, 300, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575576/Lidabooster_xd5mo9.png'],
+            ['LIDA BOOSTER ROSA', 700, 400, 370, 340, 300, 'assets/products/015-lida-booster-rosa.webp'],
+            ['BALANCE PESO IDEAL', 700, 380, 350, 320, 280, 'assets/products/016-balance-peso-ideal.webp'],
+            ['LIDA DAIDAIHUA PLUS', 700, 380, 350, 320, 280, 'assets/products/017-lida-daidaihua-plus.webp'],
+            ['LIDA DAIDAIHUA CAJA', 700, 380, 350, 320, 280, 'assets/products/018-lida-daidaihua-caja.webp'],
+            ['BODY SHAPE', 650, 380, 350, 320, 280, 'assets/products/019-body-shape.webp'],
+            ['SLIMER XTREME', 650, 380, 350, 320, 280, 'assets/products/020-slimer-xtreme.webp'],
+            ['SLIM 24', 650, 380, 350, 320, 280, 'assets/products/021-slim-24.webp'],
+            ['EXTRACTO CBD', 450, 185, 165, 150, 130, 'assets/products/022-extracto-cbd.webp'],
+            ['CM PUSH UP MEN', 500, 250, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575544/cmpushup_ncxzh6.png'],
+            ['MENS EXOTIC', 500, 250, 220, 195, 175, 'assets/products/024-mens-exotic.webp'],
+            ['PRIME ROSE', 500, 250, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575597/primerose_jk26zj.png'],
+            ['H - FLEX', 400, 185, 165, 150, 135, 'https://res.cloudinary.com/dsulhqvza/image/upload/v1761575569/hflex_itxafl.png'],
+            ['E DETOX PLUS', 500, 240, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/v1761575574/edetox_xowiou.png'],
+            ['30 DAY DETOX', 480, 240, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575526/30daydetox_roziws.png'],
+            ['CHUPA PANZA CAPS.', 500, 240, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575545/chupapanza_m7zfgs.png'],
+            ['SOS BURN CLEAN', 480, 240, 220, 195, 175, 'https://res.cloudinary.com/dsulhqvza/image/upload/v1761575602/sosburnclear_iuyqej.png'],
+            ['15 DAY DETOX TEA', 250, 125, 110, 90, 75, 'assets/products/031-15-day-detox-tea.webp'],
+            ['3 DAY RESET', 250, 125, 110, 90, 75, 'assets/products/032-3-day-reset.webp'],
+            ['COLAGENO & BIOTINA CPS', 450, 195, 175, 175, 175, 'assets/products/033-colageno-biotina-cps.webp'],
+            ['MAXI FIBRA', 280, 175, 150, 135, 135, 'assets/products/034-maxi-fibra.webp'],
+            ['MACA PREMIUM MUJER', 400, 150, 130, 120, 110, 'assets/products/035-maca-premium-mujer.webp'],
+            ['MACA PREMIUM HOMBRE', 400, 150, 130, 120, 110, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575588/macapremium_s6k65z.png'],
+            ['MEIZITANG GEL', 550, 350, 300, 280, 280, 'assets/products/037-meizitang-gel.webp'],
+            ['COLIT 6', 400, 175, 150, 135, 125, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575551/colit6_te7kpi.png'],
+            ['ASHWAGANDHA', 450, 175, 150, 135, 125, 'assets/products/039-ashwagandha.webp'],
+            ['SERENITY', 400, 175, 150, 135, 125, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575589/serenity_mnncq7.png'],
+            ['HIGA2', 500, 250, 235, 220, 200, 'assets/products/041-higa2.webp'],
+            ['MAGIC BOOTY UP', 450, 185, 165, 150, 135, 'assets/products/042-magic-booty-up.webp'],
+            ['SLIM COFFELAGENO 100 MG', 450, 195, 195, 175, 150, 'assets/products/043-slim-coffelageno-100-mg.webp'],
+            ['SLIM COFFE 100 MG', 450, 195, 195, 175, 150, 'https://res.cloudinary.com/dsulhqvza/image/upload/v1761575594/slimcoffe_taahyd.png'],
+            ['INOSITOL', 400, 185, 165, 150, 135, 'assets/products/045-inositol.webp'],
+            ['ENERGY UP', 300, 175, 150, 130, 110, 'assets/products/046-energy-up.webp'],
+            ['SLIM SHAKE MACA', 380, 175, 150, 130, 125, 'assets/products/047-slim-shake-maca.webp'],
+            ['LIDA SHAKE MALTEADA', 380, 195, 175, 150, 150, 'assets/products/048-lida-shake-malteada.webp'],
+            ['TE BODY SHAPE', 280, 135, 110, 90, 75, 'assets/products/049-te-body-shape.webp'],
+            ['BLUEBERRY COLAGENO POLVO', 400, 135, 125, 100, 100, 'assets/products/050-blueberry-colageno-polvo.webp'],
+            ['BIKINI PARCHES', 200, 125, 100, 90, 85, 'assets/products/051-bikini-parches.webp'],
+            ['LIDA PARCHES AZUL Y ROSA', 200, 125, 100, 90, 85],
+            ['LIDA DAIDAIHUA SLIMMING TEA', 200, 125, 100, 90, 85, 'assets/products/053-lida-daidaihua-slimming-tea.webp'],
+            ['BERBERINA', 400, 185, 165, 150, 125],
+            ['VENESSE', 400, 185, 165, 150, 135, 'assets/products/055-venesse.webp'],
+            ['JUGO VERDE 250 G', 350, 125, 125, 105, 90, 'assets/products/056-jugo-verde-250-g.webp'],
+            ['ENZIMAX', 350, 175, 175, 150, 140, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575578/encimax_kuhluy.png'],
+            ['MG5 MAGNESIOS', 350, 185, 165, 150, 125, 'assets/products/058-mg5-magnesios.webp'],
+            ['FLORYVA VERDE', 400, 185, 165, 150, 135],
+            ['FLORYVA ROSA PROBIOTICO', 400, 185, 165, 150, 135],
+            ['PROTEIN BODY', 400, 230, 200, 185, 185, 'assets/products/061-protein-body.webp'],
+            ['GEL TONIC', 250, 125, 115, 95, 75, 'assets/products/062-gel-tonic.webp'],
+            ['GEL LIDA AZUL Y ROSA', 200, 100, 100, 85, 85],
+            ['GEL VENNESE', 250, 125, 115, 85, 85, 'assets/products/064-gel-vennese.webp'],
+            ['GOTAS E DETOX', 350, 150, 125, 100, 85],
+            ['KETO CAFE', 400, 200, 185, 150, 150],
+            ['KETO BURN', 1000, 480, 480, 450, 420],
+            ['KETO BURN GOTAS 60ML', 450, 185, 165, 140, 120],
+            ['KETO DETOX', 600, 320, 300, 280, 280],
+            ['APPLE CIDER', 300, 150, 125, 125, 100, 'https://res.cloudinary.com/dsulhqvza/image/upload/f_auto,q_auto,w_1200/v1761575550/applecyder_xxg1ps.png'],
+            ['APPLE CIDER QUEMADOR', 600, 350, 320, 300, 280],
+            ['MAXI FIT 250 G', 250, 125, 100, 90, 85],
+            ['DAILY WORK', 650, 380, 350, 320, 300, 'assets/products/073-daily-work.webp'],
+            ['DAILY URBAN', 650, 380, 350, 320, 300, 'assets/products/074-daily-urban.webp'],
+            ['DAILY 7 LIKE FACTOR', 650, 380, 350, 320, 300, 'assets/products/075-daily-7-like-factor.webp'],
+            ['DAILY MEN FAT BURNER', 650, 380, 350, 320, 300, 'assets/products/076-daily-men-fat-burner.webp'],
+            ['DAILY EQUILIBRUM', 650, 350, 320, 300, 280, 'assets/products/077-daily-equilibrum.webp'],
+            ['DAILY BYE BELLY ACELERATOR', 450, 250, 220, 220, 200, 'assets/products/078-daily-bye-belly-acelerator.webp'],
+            ['DAILY DETOX & GLOW', 450, 250, 220, 220, 200],
+            ['DAILY TE', 300, 220, 220, 220, 200],
+            ['BEAUTY 911 T', 700, 410, 380, 365, 350, 'assets/products/081-beauty-911-t.webp'],
+            ['INTENSE DETOX TUMMY TUCK', 480, 270, 260, 250, 240, 'assets/products/082-intense-detox-tummy-tuck.webp'],
+            ['BYPASS SELECT DORADA', 840, 515, 495, 475, 455, 'assets/products/083-bypass-select-dorada.webp'],
+            ['BYPASS DELUXE BLANCA', 700, 490, 470, 450, 430, 'assets/products/084-bypass-deluxe-blanca.webp'],
+            ['BYPASS PREMIUM VERDE', 690, 440, 420, 399, 399, 'assets/products/085-bypass-premium-verde.webp'],
+            ['BYPASS 3 XL DOBLE POTENCIA', 950, 560, 540, 515, 500, 'assets/products/086-bypass-3-xl-doble-potencia.webp'],
+            ['BYPASS 3 XL NOCTURNO', 530, 350, 330, 320, 310, 'assets/products/087-bypass-3-xl-nocturno.webp'],
+            ['SBELTA 24/7', 740, 430, 410, 395, 380, 'assets/products/088-sbelta-24-7.webp'],
+            ['LIDA GLAM ROSA', 800, 480, 465, 450, 430, 'assets/products/089-lida-glam-rosa.webp'],
+            ['MACA FEM', 530, 315, 300, 285, 430, 'assets/products/090-maca-fem.webp'],
+            ['MACA FEM PLUS', 735, 460, 440, 430, 415, 'assets/products/091-maca-fem-plus.webp'],
+            ['PIÑA INTENSE', 370, 230, 210, 190, 180, 'assets/products/092-pina-intense.webp'],
+            ['DESPARAZATE', 320, 220, 190, 170, 160],
+            ['LIDA THERMO DETOX ROJA', 530, 340, 330, 315, 300, 'assets/products/094-lida-thermo-detox-roja.webp'],
+            ['TE DESPANZATE', 420, 260, 240, 220, 210, 'assets/products/095-te-despanzate.webp'],
+            ['BYPASS ZERO', 530, 320, 300, 280, 265, 'assets/products/096-bypass-zero.webp'],
+            ['LIPO TALLA BLUE SIZE', 850, 530, 500, 450, 420, 'assets/products/097-lipo-talla-blue-size.webp'],
+            ['LIPO TALLA HIPERTENSOS', 850, 530, 500, 450, 420, 'assets/products/098-lipo-talla-hipertensos.webp'],
+            ['LIPO TALLA LACTANCIA', 750, 420, 380, 350, 320, 'assets/products/099-lipo-talla-lactancia.webp'],
+            ['LIPO CHUPAPANZA', 650, 350, 330, 290, 240, 'assets/products/100-lipo-chupapanza.webp'],
+            ['LIPO DETOX', 650, 350, 330, 290, 240, 'assets/products/101-lipo-detox.webp'],
+            ['LIPO PUSH UP', 450, 300, 270, 230, 190, 'assets/products/102-lipo-push-up.webp'],
+            ['LIPO BUENAS NOCHES', 600, 190, 150, 130, 130, 'assets/products/103-lipo-buenas-noches.webp'],
+            ['LIPO TALLA NIGHT ROSA', 650, 350, 320, 280, 250, 'assets/products/104-lipo-talla-night-rosa.webp'],
+            ['LIPO SIRENA', 1000, 650, 625, 580, 550, 'assets/products/105-lipo-sirena.webp'],
+            ['LIPO TALLA CAFE', 500, 250, 250, 250, 200, 'assets/products/106-lipo-talla-cafe.webp'],
+            ['LIPO SHAKE MALTEADA', 500, 330, 310, 280, 250, 'assets/products/107-lipo-shake-malteada.webp'],
+            ['LIPO BARBIE', 850, 650, 550, 500, 450, 'assets/products/108-lipo-barbie.webp'],
         ];
+
+        const products = PRODUCT_ROWS.map(([name, price, price10, price30, price50, price100, image], index) => {
+            const product = {
+                id: `P${String(index + 1).padStart(3, '0')}`,
+                name,
+                price,
+                price10,
+                price30,
+                price50,
+                price100
+            };
+
+            if (image) {
+                product.image = image;
+            }
+
+            return product;
+        });
 
         let cart = [];
         let currentStep = 1;
@@ -1758,29 +1678,228 @@
             return '$' + price.toFixed(0);
         }
 
-        // Calcular precio según cantidad
-        function calculatePrice(product, quantity, totalQuantity) {
-            let unitPrice = product.price;
-
-            if (quantity >= 100 && product.price100 !== null) {
-                unitPrice = product.price100;
-            } else if (quantity >= 50 && product.price50 !== null) {
-                unitPrice = product.price50;
-            } else if (quantity >= 30 && product.price30 !== null) {
-                unitPrice = product.price30;
-            } else if (totalQuantity >= 10) {
-                unitPrice = product.price10;
-            }
-
-            return unitPrice;
+        function escapeHTML(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[char]);
         }
 
-        // Calcular costo de envío
+        function normalizeQuantity(value) {
+            const numericValue = Number(value);
+            if (!Number.isFinite(numericValue)) return 0;
+            return Math.max(0, Math.floor(numericValue));
+        }
+
+        function formatPendingCost(value) {
+            return value === null ? 'Por confirmar' : formatPrice(value);
+        }
+
+        function getCartTotalQuantity() {
+            return cart.reduce((sum, item) => sum + normalizeQuantity(item.quantity), 0);
+        }
+
+        function hasCartItems() {
+            return cart.some(item => normalizeQuantity(item.quantity) > 0 && products.some(product => product.id === item.id));
+        }
+
+        function normalizeCart() {
+            cart = cart
+                .map(item => ({ ...item, quantity: normalizeQuantity(item.quantity) }))
+                .filter(item => item.quantity > 0 && products.some(product => product.id === item.id));
+        }
+
+        function getPriceTier(totalQuantity) {
+            if (totalQuantity >= 100) return 'price100';
+            if (totalQuantity >= 50) return 'price50';
+            if (totalQuantity >= 30) return 'price30';
+            if (totalQuantity >= 10) return 'price10';
+            return 'price';
+        }
+
+        // Calcular precio según el total de piezas del pedido.
+        function calculatePrice(product, quantity, totalQuantity) {
+            return product[getPriceTier(totalQuantity)];
+        }
+
+        // Tarifa de envío/seguro según el total de piezas del pedido.
+        // El costo final puede variar según el tipo de producto y cantidad requerida.
         function calculateShipping(totalQuantity) {
-            if (totalQuantity >= 50) return 300;
-            if (totalQuantity >= 30) return 235;
+            if (totalQuantity <= 0) return 0;
+            if (totalQuantity >= 70) return 350;
+            if (totalQuantity >= 40) return 285;
+            if (totalQuantity >= 30) return 225;
             return 165;
         }
+
+        let lastQuoteImageUrl = null;
+
+        function waitForImageReady(image) {
+            image.loading = 'eager';
+
+            if (image.complete && image.naturalWidth > 0) {
+                return Promise.resolve();
+            }
+
+            return new Promise(resolve => {
+                let timeoutId;
+                const finish = () => {
+                    clearTimeout(timeoutId);
+                    image.removeEventListener('load', finish);
+                    image.removeEventListener('error', finish);
+                    resolve();
+                };
+
+                timeoutId = setTimeout(finish, 8000);
+                image.addEventListener('load', finish, { once: true });
+                image.addEventListener('error', finish, { once: true });
+
+                if (image.decode) {
+                    image.decode().then(finish).catch(() => {
+                        if (image.complete) finish();
+                    });
+                }
+            });
+        }
+
+        function waitForNextPaint(timeoutMs = 300) {
+            return new Promise(resolve => {
+                let timeoutId;
+                let finished = false;
+
+                const finish = () => {
+                    if (finished) return;
+                    finished = true;
+                    clearTimeout(timeoutId);
+                    resolve();
+                };
+
+                timeoutId = setTimeout(finish, timeoutMs);
+                requestAnimationFrame(() => requestAnimationFrame(finish));
+            });
+        }
+
+        async function waitForQuoteAssets(quotePrintArea) {
+            if (document.fonts?.ready) {
+                await withTimeout(
+                    document.fonts.ready.catch(() => {}),
+                    3000,
+                    'Las fuentes tardaron demasiado en cargar.'
+                ).catch(() => {});
+            }
+
+            const images = Array.from(quotePrintArea.querySelectorAll('img'));
+            await Promise.allSettled(images.map(waitForImageReady));
+
+            await waitForNextPaint();
+        }
+
+        function canvasToBlob(canvas, type = 'image/jpeg', quality = 0.95) {
+            return new Promise(resolve => {
+                if (!canvas.toBlob) {
+                    resolve(null);
+                    return;
+                }
+
+                canvas.toBlob(resolve, type, quality);
+            });
+        }
+
+        function withTimeout(promise, timeoutMs, errorMessage) {
+            let timeoutId;
+            const timeout = new Promise((_, reject) => {
+                timeoutId = setTimeout(() => reject(new Error(errorMessage)), timeoutMs);
+            });
+
+            return Promise.race([promise, timeout]).finally(() => clearTimeout(timeoutId));
+        }
+
+        function restoreButton(btn, originalLabel, delay = 0) {
+            if (!btn) return;
+
+            const restore = () => {
+                btn.innerHTML = btn.dataset.originalLabel || originalLabel;
+                btn.disabled = false;
+            };
+
+            if (delay > 0) {
+                setTimeout(restore, delay);
+            } else {
+                restore();
+            }
+        }
+
+        function setDownloadError(message) {
+            const resultEl = document.getElementById('downloadResult');
+            if (!resultEl) return;
+
+            resultEl.classList.add('active');
+            resultEl.innerHTML = `
+                <strong>No se pudo guardar la imagen.</strong>
+                ${escapeHTML(message)}
+            `;
+        }
+
+        function setDownloadResult(fileName, imageUrl) {
+            const resultEl = document.getElementById('downloadResult');
+            if (!resultEl) return;
+
+            const canShareFile = window.MVV_LAST_QUOTE_FILE
+                && navigator.share
+                && navigator.canShare?.({ files: [window.MVV_LAST_QUOTE_FILE] });
+            const shareButton = canShareFile
+                ? '<button type="button" onclick="shareLastQuoteImage()">Compartir / guardar</button>'
+                : '';
+
+            resultEl.classList.add('active');
+            resultEl.innerHTML = `
+                <strong>Imagen lista.</strong> Si no se guardó automáticamente, usa uno de estos botones:
+                <div class="download-result-actions">
+                    <a href="${imageUrl}" download="${escapeHTML(fileName)}">Descargar de nuevo</a>
+                    <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen</a>
+                    ${shareButton}
+                </div>
+            `;
+        }
+
+        function clearDownloadResult() {
+            const resultEl = document.getElementById('downloadResult');
+            if (!resultEl) return;
+
+            resultEl.classList.remove('active');
+            resultEl.innerHTML = '';
+            window.MVV_LAST_QUOTE_FILE = null;
+            window.MVV_LAST_QUOTE_DOWNLOAD = null;
+        }
+
+        async function shareLastQuoteImage() {
+            const file = window.MVV_LAST_QUOTE_FILE;
+            if (!file || !navigator.share || !navigator.canShare?.({ files: [file] })) {
+                alert('⚠️ Tu navegador no permite compartir esta imagen. Usa Descargar de nuevo o Abrir imagen.');
+                return;
+            }
+
+            try {
+                await navigator.share({
+                    files: [file],
+                    title: 'Cotización MVV Natural',
+                    text: 'Cotización MVV Natural'
+                });
+            } catch (error) {
+                if (error?.name !== 'AbortError') {
+                    alert('⚠️ No se pudo abrir el menú para compartir. Usa Descargar de nuevo o Abrir imagen.');
+                }
+            }
+        }
+
+        window.MVV_PRODUCTS = products;
+        window.MVV_PRICE_RULE_SOURCE = PRICE_RULE_SOURCE;
+        window.MVV_WHATSAPP_PHONE = MAGDY_WHATSAPP_PHONE;
+        window.MVV_CALCULATE_PRICE = calculatePrice;
+        window.MVV_CALCULATE_SHIPPING = calculateShipping;
 
         // Renderizar productos
         function renderProducts() {
@@ -1791,19 +1910,18 @@
             );
 
             const grid = document.getElementById('productsGrid');
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalQuantity = getCartTotalQuantity();
 
             grid.innerHTML = filtered.map(product => {
                 const cartItem = cart.find(item => item.id === product.id);
                 const quantity = cartItem ? cartItem.quantity : 0;
                 const currentPrice = calculatePrice(product, quantity, totalQuantity);
+                const productName = escapeHTML(product.name);
 
-                const productImage = getProductImage(product.name);
-                
                 return `
                     <div class="product-card">
-                        ${productImage ? `<img src="${productImage}" alt="${product.name}" class="product-image" loading="lazy">` : ''}
-                        <div class="product-name">${product.name}</div>
+                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="product-image" loading="lazy">` : ''}
+                        <div class="product-name">${productName}</div>
                         <div class="product-controls">
                             <div class="product-price">${formatPrice(currentPrice)}</div>
                             ${quantity > 0 ? `
@@ -1814,7 +1932,7 @@
                                     <button class="qty-btn" onclick="changeQuantity('${product.id}', 1)" aria-label="Aumentar cantidad">+</button>
                                 </div>
                             ` : `
-                                <button class="btn-add" onclick="changeQuantity('${product.id}', 1)" aria-label="Agregar ${product.name}">Agregar al carrito</button>
+                                <button class="btn-add" onclick="changeQuantity('${product.id}', 1)" aria-label="Agregar ${productName}">Agregar al carrito</button>
                             `}
                         </div>
                     </div>
@@ -1826,10 +1944,12 @@
         function changeQuantity(productId, delta) {
             vibrate(10);
             const product = products.find(p => p.id === productId);
+            if (!product) return;
+
             const cartItem = cart.find(item => item.id === productId);
             
             if (cartItem) {
-                cartItem.quantity += delta;
+                cartItem.quantity = normalizeQuantity(cartItem.quantity + delta);
                 if (cartItem.quantity <= 0) {
                     cart = cart.filter(item => item.id !== productId);
                 }
@@ -1842,7 +1962,10 @@
 
         // Establecer cantidad
         function setQuantity(productId, value) {
-            const quantity = parseInt(value) || 0;
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const quantity = normalizeQuantity(value);
             
             if (quantity <= 0) {
                 cart = cart.filter(item => item.id !== productId);
@@ -1866,47 +1989,51 @@
 
         // Renderizar carrito
         function renderCart() {
+            normalizeCart();
+
             const cartItemsEl = document.getElementById('cartItems');
             const cartSummaryEl = document.getElementById('cartSummary');
 
-            if (cart.length === 0) {
+            if (!hasCartItems()) {
                 cartItemsEl.innerHTML = '<div class="cart-empty">🛒 El carrito está vacío.<br>Agregue productos para continuar.</div>';
                 cartSummaryEl.style.display = 'none';
                 updateFloatingCartButton(0, 0);
                 return;
             }
 
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalQuantity = getCartTotalQuantity();
             let subtotal = 0;
 
             cartItemsEl.innerHTML = cart.map(item => {
                 const product = products.find(p => p.id === item.id);
+                if (!product) return '';
+
+                item.quantity = normalizeQuantity(item.quantity);
                 const unitPrice = calculatePrice(product, item.quantity, totalQuantity);
                 const itemTotal = unitPrice * item.quantity;
                 subtotal += itemTotal;
-
-                const productImage = getProductImage(product.name);
+                const productName = escapeHTML(product.name);
 
                 return `
                     <div class="cart-item">
-                        ${productImage ? `<img src="${productImage}" alt="${product.name}" class="cart-item-image" loading="lazy">` : ''}
+                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="cart-item-image" loading="lazy">` : '<div class="cart-item-image" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8rem;">Sin imagen</div>'}
                         <div class="cart-item-info">
-                            <div class="cart-item-name">${product.name}</div>
+                            <div class="cart-item-name">${productName}</div>
                             <div class="cart-item-details">
                                 <span>${item.quantity} × ${formatPrice(unitPrice)}</span>
                                 <span><strong>${formatPrice(itemTotal)}</strong></span>
                             </div>
-                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar ${product.name}">🗑️ Eliminar</button>
+                            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" aria-label="Eliminar ${productName}">🗑️ Eliminar</button>
                         </div>
                     </div>
                 `;
             }).join('');
 
             const shipping = calculateShipping(totalQuantity);
-            const total = subtotal + shipping;
+            const total = subtotal + (shipping || 0);
 
             document.getElementById('subtotal').textContent = formatPrice(subtotal);
-            document.getElementById('shipping').textContent = formatPrice(shipping);
+            document.getElementById('shipping').textContent = formatPendingCost(shipping);
             document.getElementById('total').textContent = formatPrice(total);
 
             cartSummaryEl.style.display = 'block';
@@ -1941,6 +2068,13 @@
         // Cambiar de paso
         function goToStep(step) {
             vibrate(10);
+            normalizeCart();
+
+            if (step > 1 && !hasCartItems()) {
+                alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
+                step = 1;
+            }
+
             document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
             document.getElementById(`step${step}`).classList.add('active');
             currentStep = step;
@@ -1951,21 +2085,22 @@
             }
 
             // Actualizar visibilidad del botón flotante
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalQuantity = getCartTotalQuantity();
             if (totalQuantity > 0) {
                 const subtotal = cart.reduce((sum, item) => {
                     const product = products.find(p => p.id === item.id);
+                    if (!product) return sum;
                     return sum + (calculatePrice(product, item.quantity, totalQuantity) * item.quantity);
                 }, 0);
                 const shipping = calculateShipping(totalQuantity);
-                const total = subtotal + shipping;
+                const total = subtotal + (shipping || 0);
                 updateFloatingCartButton(totalQuantity, total);
             }
         }
 
         // Ir al carrito (función especial para el botón flotante)
         function goToCart() {
-            if (cart.length === 0) {
+            if (!hasCartItems()) {
                 alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
                 return;
             }
@@ -1998,6 +2133,14 @@
         // Generar cotización
         function generateQuote() {
             vibrate(10);
+            normalizeCart();
+
+            if (!hasCartItems()) {
+                alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
+                goToStep(1);
+                return;
+            }
+
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
             const street = document.getElementById('customerStreet').value.trim();
@@ -2039,41 +2182,49 @@
             document.getElementById('quoteDate').textContent = `Fecha: ${dateStr}`;
 
             // Datos del cliente
+            const safeName = escapeHTML(name);
+            const safePhone = escapeHTML(phone);
+            const safeStreet = escapeHTML(street);
+            const safeColonia = escapeHTML(colonia);
+            const safeCp = escapeHTML(cp);
+            const safeCity = escapeHTML(city);
+            const safeState = escapeHTML(state);
+            const safeReferences = escapeHTML(references);
+
             let customerInfo = `
                 <h3>👤 Datos del Cliente</h3>
-                <p><strong>Nombre:</strong> ${name}</p>
-                <p><strong>Teléfono:</strong> ${phone}</p>
+                <p><strong>Nombre:</strong> ${safeName}</p>
+                <p><strong>Teléfono:</strong> ${safePhone}</p>
                 <p style="margin-top: 15px;"><strong>📍 Dirección de Envío:</strong></p>
-                <p style="margin-left: 10px;">${street}</p>
-                <p style="margin-left: 10px;">Col. ${colonia}</p>
-                <p style="margin-left: 10px;">C.P. ${cp}, ${city}, ${state}</p>
+                <p style="margin-left: 10px;">${safeStreet}</p>
+                <p style="margin-left: 10px;">Col. ${safeColonia}</p>
+                <p style="margin-left: 10px;">C.P. ${safeCp}, ${safeCity}, ${safeState}</p>
             `;
             if (references) {
-                customerInfo += `<p style="margin-left: 10px;"><em>Ref: ${references}</em></p>`;
+                customerInfo += `<p style="margin-left: 10px;"><em>Ref: ${safeReferences}</em></p>`;
             }
             document.getElementById('quoteCustomer').innerHTML = customerInfo;
 
             // Tabla de productos
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalQuantity = getCartTotalQuantity();
             let quoteSubtotal = 0;
 
             const quoteItemsHTML = cart.map(item => {
                 const product = products.find(p => p.id === item.id);
+                if (!product) return '';
+
+                item.quantity = normalizeQuantity(item.quantity);
                 const unitPrice = calculatePrice(product, item.quantity, totalQuantity);
                 const itemTotal = unitPrice * item.quantity;
                 quoteSubtotal += itemTotal;
-
-                const productImage = getProductImage(product.name);
-                const productCell = productImage 
-                    ? `<div class="quote-item-with-image">
-                         <img src="${productImage}" alt="${product.name}" class="quote-product-image">
-                         <span>${product.name}</span>
-                       </div>`
-                    : product.name;
+                const productName = escapeHTML(product.name);
 
                 return `
                     <tr>
-                        <td>${productCell}</td>
+                        <td>
+                            ${product.image ? `<img src="${product.image}" alt="${productName}" loading="eager" crossorigin="anonymous">` : ''}
+                            <span>${productName}</span>
+                        </td>
                         <td>${item.quantity}</td>
                         <td>${formatPrice(unitPrice)}</td>
                         <td><strong>${formatPrice(itemTotal)}</strong></td>
@@ -2084,23 +2235,27 @@
             document.getElementById('quoteItems').innerHTML = quoteItemsHTML;
 
             const shipping = calculateShipping(totalQuantity);
-            const total = quoteSubtotal + shipping;
+            const total = quoteSubtotal + (shipping || 0);
 
             document.getElementById('quoteSubtotal').textContent = formatPrice(quoteSubtotal);
-            document.getElementById('quoteShipping').textContent = formatPrice(shipping);
+            document.getElementById('quoteShipping').textContent = formatPendingCost(shipping);
             document.getElementById('quoteTotal').textContent = formatPrice(total);
 
             goToStep(4);
         }
 
         // Descargar imagen con alta definición
-        function downloadQuoteImage(triggerEvent = null, { silent = false } = {}) {
+        async function downloadQuoteImage(triggerEvent = null, { silent = false } = {}) {
             if (!silent) {
                 vibrate(20);
             }
 
             const btn = !silent ? (triggerEvent?.currentTarget || triggerEvent?.target || null) : null;
             const originalLabel = btn ? (btn.dataset.originalLabel || btn.innerHTML) : null;
+
+            if (!silent) {
+                clearDownloadResult();
+            }
 
             if (btn) {
                 btn.dataset.originalLabel = originalLabel;
@@ -2114,97 +2269,208 @@
             if (!quotePrintArea) {
                 if (btn) {
                     btn.innerHTML = '❌ Error. Reintentar';
-                    setTimeout(() => {
-                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
+                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
                 }
                 document.body.classList.remove('downloading');
                 return Promise.reject(new Error('No se encontró el área de cotización'));
             }
 
-            return html2canvas(quotePrintArea, {
-                scale: 3,
-                useCORS: true,
-                logging: false,
-                backgroundColor: '#ffffff',
-                width: quotePrintArea.scrollWidth,
-                height: quotePrintArea.scrollHeight
-            }).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+            if (typeof html2canvas !== 'function') {
+                if (btn) {
+                    btn.innerHTML = '❌ Error. Reintentar';
+                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
+                }
+                document.body.classList.remove('downloading');
+                return Promise.reject(new Error('No se pudo cargar el generador de imagen'));
+            }
+
+            const pixelRatio = window.devicePixelRatio || 1;
+            const captureScale = Math.min(3, Math.max(2, pixelRatio * 1.35));
+
+            const formatForFile = (value, fallback) => {
+                const safeValue = (value || fallback || '').trim() || 'cliente';
+                return safeValue
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-zA-Z0-9\s-]/g, '')
+                    .replace(/[\s_-]+/g, '_')
+                    .replace(/^_+|_+$/g, '')
+                    .toLowerCase();
+            };
+
+            const getFileDate = () => {
+                const quoteDateEl = document.getElementById('quoteDate');
+                const dateLabel = quoteDateEl?.textContent?.replace('Fecha:', '').trim();
+                if (!dateLabel) {
+                    return new Date().toISOString().split('T')[0];
+                }
+                return formatForFile(dateLabel, new Date().toISOString().split('T')[0]);
+            };
+
+            try {
+                await withTimeout(
+                    waitForQuoteAssets(quotePrintArea),
+                    25000,
+                    'Las imágenes tardaron demasiado en cargar. Intenta de nuevo.'
+                );
+
+                const canvas = await withTimeout(
+                    html2canvas(quotePrintArea, {
+                        scale: captureScale,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        backgroundColor: '#ffffff',
+                        scrollX: -window.scrollX,
+                        scrollY: -window.scrollY,
+                        windowWidth: quotePrintArea.scrollWidth,
+                        windowHeight: quotePrintArea.scrollHeight
+                    }),
+                    20000,
+                    'La imagen tardó demasiado en generarse. Intenta de nuevo.'
+                );
+
+                const customerName = formatForFile(localStorage.getItem('customerName'), 'cliente');
+                const quoteDate = getFileDate();
+                const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
+                const blob = await withTimeout(
+                    canvasToBlob(canvas, 'image/jpeg', 0.95),
+                    8000,
+                    'No se pudo preparar el archivo JPEG. Intenta de nuevo.'
+                );
+                const quoteFile = blob && typeof File === 'function'
+                    ? new File([blob], fileName, { type: 'image/jpeg' })
+                    : null;
+                const imageUrl = blob ? URL.createObjectURL(blob) : canvas.toDataURL('image/jpeg', 0.95);
+
+                if (lastQuoteImageUrl?.startsWith('blob:')) {
+                    URL.revokeObjectURL(lastQuoteImageUrl);
+                }
+                lastQuoteImageUrl = imageUrl;
+                window.MVV_LAST_QUOTE_FILE = quoteFile;
+                window.MVV_LAST_QUOTE_DOWNLOAD = {
+                    fileName,
+                    imageUrl,
+                    width: canvas.width,
+                    height: canvas.height,
+                    size: blob?.size || 0
+                };
 
                 const link = document.createElement('a');
-                link.download = 'Cotizacion_MVNatural.jpg';
-                link.href = imgData;
-                
+                link.download = fileName;
+                link.href = imageUrl;
+                link.rel = 'noopener';
                 document.body.appendChild(link);
                 link.click();
-                document.body.removeChild(link);
+                link.remove();
+
+                setDownloadResult(fileName, imageUrl);
 
                 if (btn) {
-                    btn.innerHTML = '✅ Imagen Guardada';
-                    setTimeout(() => {
-                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
+                    btn.innerHTML = '✅ Imagen Lista';
+                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
                 }
 
                 return canvas;
-            }).catch(error => {
+            } catch (error) {
                 if (!silent) {
                     console.error('Error al generar imagen:', error);
+                    setDownloadError(error?.message || 'Intenta generar la imagen nuevamente.');
                 }
 
                 if (btn) {
                     btn.innerHTML = '❌ Error. Reintentar';
-                    setTimeout(() => {
-                        btn.innerHTML = btn.dataset.originalLabel || originalLabel || '💾 Guardar Imagen';
-                        btn.disabled = false;
-                    }, 2000);
+                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
                 }
 
                 throw error;
-            }).finally(() => {
+            } finally {
                 document.body.classList.remove('downloading');
-            });
+            }
         }
 
         function resetQuote() {
             vibrate(10);
             cart = [];
+            clearDownloadResult();
             updateUI();
             goToStep(1);
         }
 
-        // Enviar WhatsApp
-        function sendWhatsApp() {
-            vibrate(20);
+        function buildWhatsAppMessage() {
             const name = localStorage.getItem('customerName') || 'Cliente';
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            const totalQuantityFinal = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalQuantity = getCartTotalQuantity();
             let quoteSubtotal = 0;
+
             cart.forEach(item => {
                 const product = products.find(p => p.id === item.id);
-                const unitPrice = calculatePrice(product, item.quantity, totalQuantityFinal);
+                if (!product) return;
+                const unitPrice = calculatePrice(product, item.quantity, totalQuantity);
                 quoteSubtotal += unitPrice * item.quantity;
             });
-            const shipping = calculateShipping(totalQuantityFinal);
-            const totalAmount = quoteSubtotal + shipping;
 
-            const message = `Hola Magdy Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total de ${formatPrice(totalAmount)}. Por favor revisa mi cotización adjunta y confírmame si está disponible. Gracias.`;
-            
-            // Descargar primero
-            downloadQuoteImage(null, { silent: true })
-                .catch(() => {
-                    alert('⚠️ No se pudo generar la imagen de la cotización. Por favor intenta guardarla manualmente antes de enviar por WhatsApp.');
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        const whatsappUrl = `https://wa.me/+526621200412?text=${encodeURIComponent(message)}`;
-                        window.open(whatsappUrl, '_blank');
-                    }, 500);
-                });
+            const shipping = calculateShipping(totalQuantity) || 0;
+            const total = quoteSubtotal + shipping;
+
+            return `Hola Magdy Valencia, soy ${name}. Estoy interesado/a en realizar un pedido de ${totalQuantity} productos por un total estimado de ${formatPrice(total)} (incluye envío de ${formatPrice(shipping)}). Por favor revisa mi cotización adjunta y confírmame disponibilidad y monto final de envío. Gracias.`;
+        }
+
+        function buildWhatsAppUrl(message) {
+            return `https://wa.me/${MAGDY_WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+        }
+
+        window.MVV_BUILD_WHATSAPP_MESSAGE = buildWhatsAppMessage;
+        window.MVV_BUILD_WHATSAPP_URL = buildWhatsAppUrl;
+
+        // Enviar WhatsApp
+        async function sendWhatsApp(triggerEvent = null) {
+            vibrate(20);
+            normalizeCart();
+
+            if (!hasCartItems()) {
+                alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
+                goToStep(1);
+                return;
+            }
+
+            const btn = triggerEvent?.currentTarget || triggerEvent?.target || null;
+            const originalLabel = btn ? (btn.dataset.originalLabel || btn.innerHTML) : null;
+            if (btn) {
+                btn.dataset.originalLabel = originalLabel;
+                btn.innerHTML = '⏳ Guardando imagen…';
+                btn.disabled = true;
+            }
+
+            const message = buildWhatsAppMessage();
+            const whatsappUrl = buildWhatsAppUrl(message);
+            window.MVV_LAST_WHATSAPP_URL = whatsappUrl;
+
+            const whatsappWindow = window.open('', '_blank');
+            if (whatsappWindow) {
+                whatsappWindow.document.write('<!doctype html><title>WhatsApp</title><p style="font-family: system-ui; padding: 20px;">Preparando la cotización y abriendo WhatsApp...</p>');
+                whatsappWindow.document.close();
+            }
+
+            try {
+                await withTimeout(
+                    downloadQuoteImage(null, { silent: true }),
+                    30000,
+                    'La imagen tardó demasiado en guardarse.'
+                );
+            } catch (error) {
+                alert('⚠️ No se pudo guardar la imagen automáticamente. WhatsApp se abrirá de todos modos; usa Guardar Imagen para intentarlo otra vez.');
+            } finally {
+                if (whatsappWindow && !whatsappWindow.closed) {
+                    whatsappWindow.location.href = whatsappUrl;
+                } else {
+                    window.location.href = whatsappUrl;
+                }
+
+                if (btn) {
+                    btn.innerHTML = '✅ WhatsApp listo';
+                    restoreButton(btn, originalLabel || '📱 Enviar WhatsApp', 2000);
+                }
+            }
         }
 
         // Búsqueda con debounce

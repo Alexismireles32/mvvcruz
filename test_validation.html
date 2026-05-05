@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de Reglas - MV Natural</title>
+    <link rel="icon" href="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png">
+    <title>Validación de Reglas - MVV Natural</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
             background: #f5f5f5;
+            color: #2f2f2f;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -18,8 +21,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+
         h1 { color: #B8860B; }
         h2 { color: #006400; margin-top: 30px; }
+
         .test-case {
             background: #f0f8f0;
             padding: 15px;
@@ -27,25 +32,27 @@
             border-left: 4px solid #B8860B;
             border-radius: 4px;
         }
+
         .pass { color: green; font-weight: bold; }
         .fail { color: red; font-weight: bold; }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
+
         th, td {
             padding: 10px;
             text-align: left;
             border: 1px solid #ddd;
         }
+
         th {
             background: #B8860B;
             color: white;
         }
-        tr:hover {
-            background: #f9f9f9;
-        }
+
         .summary {
             background: #d4edda;
             border: 1px solid #c3e6cb;
@@ -53,6 +60,7 @@
             margin: 20px 0;
             border-radius: 4px;
         }
+
         .error-summary {
             background: #f8d7da;
             border: 1px solid #f5c6cb;
@@ -60,312 +68,358 @@
             margin: 20px 0;
             border-radius: 4px;
         }
+
+        iframe {
+            position: fixed;
+            left: -10000px;
+            top: 0;
+            width: 390px;
+            height: 844px;
+            border: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🧪 Validación Completa - Sistema de Cotizaciones MV Natural</h1>
+        <h1>Validación Completa - Sistema de Cotizaciones MVV Natural</h1>
         <p><strong>Fecha de validación:</strong> <span id="testDate"></span></p>
-
-        <div id="results"></div>
+        <p><strong>Fuente oficial:</strong> <span id="sourceName">Cargando...</span></p>
+        <div id="results">Cargando aplicación...</div>
     </div>
 
+    <iframe id="appFrame" title="MVV Natural"></iframe>
+
     <script>
-        // Array de 91 productos (debe coincidir con index.html)
-        const products = [
-            { id: "1A", name: "LIPO HD 360", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2B", name: "DUO 60 FUSION XTREME", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 },
-            { id: "3C", name: "FUSION 30 XTREME", price: 650, price10: 380, price30: 350, price50: 300, price100: 280 },
-            { id: "4D", name: "EXTRACTO CBD", price: 450, price10: 185, price30: 165, price50: 150, price100: 130 },
-            { id: "5E", name: "CM PUSH UP MEN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "6F", name: "H - FLEX", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
-            { id: "7G", name: "PROTEIN BODY", price: 450, price10: 250, price30: 220, price50: null, price100: 220 },
-            { id: "8H", name: "SOS BURN", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9I", name: "SOS BURN SENSITIVE", price: 650, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1J", name: "SOS BURN CLEAN", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "2K", name: "CHUPA PANZA CAPS.", price: 300, price10: 220, price30: 200, price50: 185, price100: 165 },
-            { id: "3L", name: "30 DAY DETOX", price: 450, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "4M", name: "15 DAY DETOX TEA", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
-            { id: "5N", name: "3 DAY RESET", price: 250, price10: 100, price30: 85, price50: 75, price100: 70 },
-            { id: "6O", name: "COLAGENO & BIOTINA ACIDO HIALURONICO", price: 400, price10: 200, price30: 195, price50: 175, price100: 175 },
-            { id: "7P", name: "MAXI FIBRA", price: 250, price10: 175, price30: 150, price50: 135, price100: 135 },
-            { id: "8Q", name: "MACA PREMIUM MUJER", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "9R", name: "MACA PREMIUM HOMBRE", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "1S", name: "SERENITY", price: 400, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "2T", name: "COLIT 6", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "3U", name: "PRIME ROSE", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "4V", name: "DAILY WORK", price: 400, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "5W", name: "BIKINI STRONG PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6X", name: "BIKINI STRONG BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Y", name: "BIKINI STRONG YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8Z", name: "BIKINI STRONG PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9A", name: "BIKINI STRONG BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1B", name: "BIKINI STRONG WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2C", name: "LIPO PLUS XTREME", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3D", name: "LIPO PLUS XTREME GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4E", name: "LIPO PLUS XTREME PLATINUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5F", name: "LIPO PLUS XTREME BLACK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6G", name: "LIPO PLUS XTREME PINK", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7H", name: "LIPO PLUS XTREME BLUE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8I", name: "LIPO PLUS XTREME GREEN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9J", name: "LIPO PLUS XTREME RED", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1K", name: "LIPO PLUS XTREME YELLOW", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2L", name: "LIPO PLUS XTREME PURPLE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3M", name: "LIPO PLUS XTREME ORANGE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4N", name: "LIPO PLUS XTREME BROWN", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5O", name: "LIPO PLUS XTREME GRAY", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6P", name: "LIPO PLUS XTREME WHITE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Q", name: "LIPO PLUS XTREME SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8R", name: "LIPO PLUS XTREME BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9S", name: "LIPO PLUS XTREME COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1T", name: "LIPO PLUS XTREME TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2U", name: "LIPO PLUS XTREME PLATINUM GOLD", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3V", name: "LIPO PLUS XTREME PLATINUM SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4W", name: "LIPO PLUS XTREME PLATINUM BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5X", name: "LIPO PLUS XTREME PLATINUM COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6Y", name: "LIPO PLUS XTREME PLATINUM TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7Z", name: "LIPO PLUS XTREME GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8A", name: "LIPO PLUS XTREME GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9B", name: "LIPO PLUS XTREME GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1C", name: "LIPO PLUS XTREME GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2D", name: "LIPO PLUS XTREME SILVER BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3E", name: "LIPO PLUS XTREME SILVER COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4F", name: "LIPO PLUS XTREME SILVER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5G", name: "LIPO PLUS XTREME BRONZE COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6H", name: "LIPO PLUS XTREME BRONZE TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "7I", name: "LIPO PLUS XTREME COPPER TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8J", name: "LIPO PLUS XTREME PLATINUM GOLD SILVER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9K", name: "LIPO PLUS XTREME PLATINUM GOLD BRONZE", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1L", name: "LIPO PLUS XTREME PLATINUM GOLD COPPER", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2M", name: "LIPO PLUS XTREME PLATINUM GOLD TITANIUM", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3N", name: "GEL TONIC", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "4O", name: "LIDA GLOW AZUL", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5P", name: "LIDA GLOW ROSA", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6Q", name: "MACA FEM", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "7R", name: "MACA FEM PLUS", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "8S", name: "SBELTA 24/7", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9T", name: "PIÑA INTENSE BYPASS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "1U", name: "DESPANZATE BYPASS", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
-            { id: "2V", name: "KETO BURN", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3W", name: "APPLE CIDER VINAGRE", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
-            { id: "4X", name: "KETO DETOX", price: 550, price10: 250, price30: 220, price50: 195, price100: 175 },
-            { id: "5Y", name: "KETO GOTAS", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "6Z", name: "CAFÉ KETO", price: 450, price10: 230, price30: 200, price50: 195, price100: 175 },
-            { id: "7A", name: "TE BODY SHAPE", price: 300, price10: 125, price30: 125, price50: 95, price100: 90 },
-            { id: "8B", name: "BYPASS DELUXE BLANCO", price: 700, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9C", name: "TE ENERGOBOLIZER", price: 400, price10: 175, price30: 150, price50: 135, price100: 120 },
-            { id: "1D", name: "TE MENOS 4K BYPASS", price: 380, price10: 175, price30: 150, price50: 135, price100: 120 },
-            { id: "2E", name: "GOTAS E DETOX PLUS", price: 350, price10: 150, price30: 135, price50: 125, price100: 120 },
-            { id: "3F", name: "FAT BLAZER", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "4G", name: "FAT BURNER MAN", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "5H", name: "LIDA BOOSTER PINK", price: 850, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "6I", name: "ENCIMAX", price: 600, price10: 250, price30: 220, price50: 195, price100: 175 },
-            { id: "7J", name: "FLORYVA", price: 500, price10: 220, price30: 195, price50: 175, price100: 150 },
-            { id: "8K", name: "LIDA GLAM", price: 820, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "9L", name: "XL3 POTENCIA TOTAL", price: 780, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "1M", name: "XL3 NOCTURNO", price: 800, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "2N", name: "LIDA PLUS CHICA", price: 750, price10: 380, price30: 350, price50: 320, price100: 300 },
-            { id: "3O", name: "ALPHA GLOW", price: 900, price10: 480, price30: 450, price50: 420, price100: 400 }
-        ];
+        const resultsEl = document.getElementById('results');
+        document.getElementById('testDate').textContent = new Date().toLocaleString('es-MX');
 
-        // Función de cálculo (debe coincidir con index.html)
-        function calculatePrice(product, quantity, totalQuantity) {
-            let unitPrice = product.price;
-
-            if (quantity >= 100 && product.price100 !== null) {
-                unitPrice = product.price100;
-            } else if (quantity >= 50 && product.price50 !== null) {
-                unitPrice = product.price50;
-            } else if (quantity >= 30 && product.price30 !== null) {
-                unitPrice = product.price30;
-            } else if (totalQuantity >= 10) {
-                unitPrice = product.price10;
-            }
-
-            return unitPrice;
+        function resultLine(passed, message) {
+            return `<div class="test-case"><span class="${passed ? 'pass' : 'fail'}">${passed ? 'PASS' : 'FAIL'}</span> - ${message}</div>`;
         }
 
-        function calculateShipping(totalQuantity) {
-            if (totalQuantity >= 50) return 300;
-            if (totalQuantity >= 30) return 235;
-            return 165;
+        function runAssertion(state, passed, message) {
+            state.total += 1;
+            if (passed) state.passed += 1;
+            state.html += resultLine(passed, message);
         }
 
-        // Tests
-        function runTests() {
-            let html = '';
-            let totalTests = 0;
-            let passedTests = 0;
+        async function runTests(appWindow) {
+            const products = appWindow.MVV_PRODUCTS;
+            const calculatePrice = appWindow.MVV_CALCULATE_PRICE;
+            const calculateShipping = appWindow.MVV_CALCULATE_SHIPPING;
+            const source = appWindow.MVV_PRICE_RULE_SOURCE;
+            const state = { total: 0, passed: 0, html: '' };
 
-            document.getElementById('testDate').textContent = new Date().toLocaleString('es-MX');
+            document.getElementById('sourceName').textContent = source || 'No expuesta';
 
-            // Test 1: Verificar cantidad de productos
-            html += '<h2>✅ Test 1: Verificación de Catálogo</h2>';
-            totalTests++;
-            if (products.length === 91) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - Total de productos: 91</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Total de productos: ' + products.length + ' (esperado: 91)</div>';
-            }
+            state.html += '<h2>Catálogo</h2>';
+            runAssertion(state, Array.isArray(products), 'La app expone el catálogo de productos');
+            runAssertion(state, products.length === 108, `Total de productos: ${products.length} (esperado: 108)`);
+            runAssertion(state, products[0]?.name === 'FAT BLAZER', `Primer producto: ${products[0]?.name}`);
+            runAssertion(state, products[107]?.name === 'LIPO BARBIE', `Último producto: ${products[107]?.name}`);
+            runAssertion(state, new Set(products.map(product => product.id)).size === products.length, 'Todos los IDs son únicos');
+            runAssertion(state, products.every(product => ['price', 'price10', 'price30', 'price50', 'price100'].every(key => Number.isFinite(product[key]))), 'Todos los productos tienen precios numéricos en los 5 niveles');
+            runAssertion(state, products.every(product => !/[a-z]/.test(product.name)), 'Todos los nombres visibles están normalizados en mayúsculas');
+            runAssertion(state, products.every(product => !/(THy|ALPA|SAHPE|ZISE|NIGT)/.test(product.name)), 'No quedan typos conocidos en nombres de productos');
 
-            // Test 2: Verificar IDs únicos
-            html += '<h2>✅ Test 2: IDs Únicos</h2>';
-            totalTests++;
-            const ids = products.map(p => p.id);
-            const uniqueIds = [...new Set(ids)];
-            if (ids.length === uniqueIds.length) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - Todos los IDs son únicos</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Hay IDs duplicados</div>';
-            }
-
-            // Test 3: Regla de precios 1-9 piezas
-            html += '<h2>✅ Test 3: Precios 1-9 Piezas (Precio Normal)</h2>';
-            totalTests++;
-            const product1A = products.find(p => p.id === '1A');
-            const price1 = calculatePrice(product1A, 5, 5);
-            if (price1 === 700) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 5 piezas de LIPO HD 360 = $700 (precio normal)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price1 + ' (esperado: $700)</div>';
-            }
-
-            // Test 4: Regla de 10+ piezas variadas
-            html += '<h2>✅ Test 4: Regla de 10+ Piezas Variadas</h2>';
-            totalTests++;
-            const price10a = calculatePrice(product1A, 6, 10); // 6 de producto A, total carrito 10
-            if (price10a === 380) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 6 piezas de LIPO HD 360 en carrito de 10 total = $380 (price10)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price10a + ' (esperado: $380)</div>';
-            }
-
-            // Test 5: Regla de 30+ piezas mismo producto
-            html += '<h2>✅ Test 5: Regla de 30+ Piezas Mismo Producto</h2>';
-            totalTests++;
-            const price30 = calculatePrice(product1A, 30, 30);
-            if (price30 === 350) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 30 piezas de LIPO HD 360 = $350 (price30)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price30 + ' (esperado: $350)</div>';
-            }
-
-            // Test 6: Regla de 50+ piezas mismo producto
-            html += '<h2>✅ Test 6: Regla de 50+ Piezas Mismo Producto</h2>';
-            totalTests++;
-            const price50 = calculatePrice(product1A, 50, 50);
-            if (price50 === 320) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 50 piezas de LIPO HD 360 = $320 (price50)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price50 + ' (esperado: $320)</div>';
-            }
-
-            // Test 7: Regla de 100+ piezas mismo producto
-            html += '<h2>✅ Test 7: Regla de 100+ Piezas Mismo Producto</h2>';
-            totalTests++;
-            const price100 = calculatePrice(product1A, 100, 100);
-            if (price100 === 300) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 100 piezas de LIPO HD 360 = $300 (price100)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price100 + ' (esperado: $300)</div>';
-            }
-
-            // Test 8: Producto con price50 = null (PROTEIN BODY)
-            html += '<h2>✅ Test 8: Producto con price50 = null</h2>';
-            totalTests++;
-            const product7G = products.find(p => p.id === '7G');
-            const price7G_50 = calculatePrice(product7G, 50, 50);
-            if (price7G_50 === 220) { // Debe usar price100 ya que price50 es null
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 50 piezas de PROTEIN BODY = $220 (salta price50=null, usa price100)</div>';
-                passedTests++;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Precio incorrecto: $' + price7G_50 + ' (esperado: $220)</div>';
-            }
-
-            // Test 9: Costos de envío
-            html += '<h2>✅ Test 9: Costos de Envío</h2>';
-            totalTests += 3;
-            const ship1 = calculateShipping(25);
-            const ship2 = calculateShipping(35);
-            const ship3 = calculateShipping(60);
-            
-            if (ship1 === 165 && ship2 === 235 && ship3 === 300) {
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 25 piezas = $165</div>';
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 35 piezas = $235</div>';
-                html += '<div class="test-case"><span class="pass">✓ PASS</span> - 60 piezas = $300</div>';
-                passedTests += 3;
-            } else {
-                html += '<div class="test-case"><span class="fail">✗ FAIL</span> - Costos de envío incorrectos</div>';
-            }
-
-            // Test 10: Verificar productos específicos
-            html += '<h2>✅ Test 10: Verificación de Productos Específicos</h2>';
-            const testProducts = [
-                { id: "1A", name: "LIPO HD 360", price: 700 },
-                { id: "3O", name: "ALPHA GLOW", price: 900 },
-                { id: "7G", name: "PROTEIN BODY", price: 450 },
-                { id: "2V", name: "KETO BURN", price: 850 }
+            const officialPriceRows = [
+                ['FAT BLAZER', 850, 490, 460, 430, 390],
+                ['DUO 60 FUSION XTREME', 980, 520, 470, 450, 420],
+                ['DUO 30 FUSION XTREME', 700, 400, 370, 340, 300],
+                ['SOS BURN', 700, 400, 370, 340, 300],
+                ['SOS BURN SENSITIVE', 700, 400, 370, 340, 300],
+                ['THYROIDE SUPPORT', 700, 400, 370, 340, 300],
+                ['LIPO HD 360', 700, 400, 370, 340, 300],
+                ['SLIM U', 700, 400, 370, 340, 300],
+                ['ALPHA GLOW', 700, 400, 370, 340, 300],
+                ['BIKINI TRIM FAST AMARILLA', 700, 400, 370, 340, 300],
+                ['BIKINI STRONG ROSA', 700, 400, 370, 340, 300],
+                ['BIKINI TRIM DORADA', 700, 400, 370, 340, 300],
+                ['TE ENERGOBOLIZER INFUSION', 400, 235, 235, 235, 235],
+                ['LIDA DAIDAIHUA BOOSTER', 700, 400, 370, 340, 300],
+                ['LIDA BOOSTER ROSA', 700, 400, 370, 340, 300],
+                ['BALANCE PESO IDEAL', 700, 380, 350, 320, 280],
+                ['LIDA DAIDAIHUA PLUS', 700, 380, 350, 320, 280],
+                ['LIDA DAIDAIHUA CAJA', 700, 380, 350, 320, 280],
+                ['BODY SHAPE', 650, 380, 350, 320, 280],
+                ['SLIMER XTREME', 650, 380, 350, 320, 280],
+                ['SLIM 24', 650, 380, 350, 320, 280],
+                ['EXTRACTO CBD', 450, 185, 165, 150, 130],
+                ['CM PUSH UP MEN', 500, 250, 220, 195, 175],
+                ['MENS EXOTIC', 500, 250, 220, 195, 175],
+                ['PRIME ROSE', 500, 250, 220, 195, 175],
+                ['H - FLEX', 400, 185, 165, 150, 135],
+                ['E DETOX PLUS', 500, 240, 220, 195, 175],
+                ['30 DAY DETOX', 480, 240, 220, 195, 175],
+                ['CHUPA PANZA CAPS.', 500, 240, 220, 195, 175],
+                ['SOS BURN CLEAN', 480, 240, 220, 195, 175],
+                ['15 DAY DETOX TEA', 250, 125, 110, 90, 75],
+                ['3 DAY RESET', 250, 125, 110, 90, 75],
+                ['COLAGENO & BIOTINA CPS', 450, 195, 175, 175, 175],
+                ['MAXI FIBRA', 280, 175, 150, 135, 135],
+                ['MACA PREMIUM MUJER', 400, 150, 130, 120, 110],
+                ['MACA PREMIUM HOMBRE', 400, 150, 130, 120, 110],
+                ['MEIZITANG GEL', 550, 350, 300, 280, 280],
+                ['COLIT 6', 400, 175, 150, 135, 125],
+                ['ASHWAGANDHA', 450, 175, 150, 135, 125],
+                ['SERENITY', 400, 175, 150, 135, 125],
+                ['HIGA2', 500, 250, 235, 220, 200],
+                ['MAGIC BOOTY UP', 450, 185, 165, 150, 135],
+                ['SLIM COFFELAGENO 100 MG', 450, 195, 195, 175, 150],
+                ['SLIM COFFE 100 MG', 450, 195, 195, 175, 150],
+                ['INOSITOL', 400, 185, 165, 150, 135],
+                ['ENERGY UP', 300, 175, 150, 130, 110],
+                ['SLIM SHAKE MACA', 380, 175, 150, 130, 125],
+                ['LIDA SHAKE MALTEADA', 380, 195, 175, 150, 150],
+                ['TE BODY SHAPE', 280, 135, 110, 90, 75],
+                ['BLUEBERRY COLAGENO POLVO', 400, 135, 125, 100, 100],
+                ['BIKINI PARCHES', 200, 125, 100, 90, 85],
+                ['LIDA PARCHES AZUL Y ROSA', 200, 125, 100, 90, 85],
+                ['LIDA DAIDAIHUA SLIMMING TEA', 200, 125, 100, 90, 85],
+                ['BERBERINA', 400, 185, 165, 150, 125],
+                ['VENESSE', 400, 185, 165, 150, 135],
+                ['JUGO VERDE 250 G', 350, 125, 125, 105, 90],
+                ['ENZIMAX', 350, 175, 175, 150, 140],
+                ['MG5 MAGNESIOS', 350, 185, 165, 150, 125],
+                ['FLORYVA VERDE', 400, 185, 165, 150, 135],
+                ['FLORYVA ROSA PROBIOTICO', 400, 185, 165, 150, 135],
+                ['PROTEIN BODY', 400, 230, 200, 185, 185],
+                ['GEL TONIC', 250, 125, 115, 95, 75],
+                ['GEL LIDA AZUL Y ROSA', 200, 100, 100, 85, 85],
+                ['GEL VENNESE', 250, 125, 115, 85, 85],
+                ['GOTAS E DETOX', 350, 150, 125, 100, 85],
+                ['KETO CAFE', 400, 200, 185, 150, 150],
+                ['KETO BURN', 1000, 480, 480, 450, 420],
+                ['KETO BURN GOTAS 60ML', 450, 185, 165, 140, 120],
+                ['KETO DETOX', 600, 320, 300, 280, 280],
+                ['APPLE CIDER', 300, 150, 125, 125, 100],
+                ['APPLE CIDER QUEMADOR', 600, 350, 320, 300, 280],
+                ['MAXI FIT 250 G', 250, 125, 100, 90, 85],
+                ['DAILY WORK', 650, 380, 350, 320, 300],
+                ['DAILY URBAN', 650, 380, 350, 320, 300],
+                ['DAILY 7 LIKE FACTOR', 650, 380, 350, 320, 300],
+                ['DAILY MEN FAT BURNER', 650, 380, 350, 320, 300],
+                ['DAILY EQUILIBRUM', 650, 350, 320, 300, 280],
+                ['DAILY BYE BELLY ACELERATOR', 450, 250, 220, 220, 200],
+                ['DAILY DETOX & GLOW', 450, 250, 220, 220, 200],
+                ['DAILY TE', 300, 220, 220, 220, 200],
+                ['BEAUTY 911 T', 700, 410, 380, 365, 350],
+                ['INTENSE DETOX TUMMY TUCK', 480, 270, 260, 250, 240],
+                ['BYPASS SELECT DORADA', 840, 515, 495, 475, 455],
+                ['BYPASS DELUXE BLANCA', 700, 490, 470, 450, 430],
+                ['BYPASS PREMIUM VERDE', 690, 440, 420, 399, 399],
+                ['BYPASS 3 XL DOBLE POTENCIA', 950, 560, 540, 515, 500],
+                ['BYPASS 3 XL NOCTURNO', 530, 350, 330, 320, 310],
+                ['SBELTA 24/7', 740, 430, 410, 395, 380],
+                ['LIDA GLAM ROSA', 800, 480, 465, 450, 430],
+                ['MACA FEM', 530, 315, 300, 285, 430],
+                ['MACA FEM PLUS', 735, 460, 440, 430, 415],
+                ['PIÑA INTENSE', 370, 230, 210, 190, 180],
+                ['DESPARAZATE', 320, 220, 190, 170, 160],
+                ['LIDA THERMO DETOX ROJA', 530, 340, 330, 315, 300],
+                ['TE DESPANZATE', 420, 260, 240, 220, 210],
+                ['BYPASS ZERO', 530, 320, 300, 280, 265],
+                ['LIPO TALLA BLUE SIZE', 850, 530, 500, 450, 420],
+                ['LIPO TALLA HIPERTENSOS', 850, 530, 500, 450, 420],
+                ['LIPO TALLA LACTANCIA', 750, 420, 380, 350, 320],
+                ['LIPO CHUPAPANZA', 650, 350, 330, 290, 240],
+                ['LIPO DETOX', 650, 350, 330, 290, 240],
+                ['LIPO PUSH UP', 450, 300, 270, 230, 190],
+                ['LIPO BUENAS NOCHES', 600, 190, 150, 130, 130],
+                ['LIPO TALLA NIGHT ROSA', 650, 350, 320, 280, 250],
+                ['LIPO SIRENA', 1000, 650, 625, 580, 550],
+                ['LIPO TALLA CAFE', 500, 250, 250, 250, 200],
+                ['LIPO SHAKE MALTEADA', 500, 330, 310, 280, 250],
+                ['LIPO BARBIE', 850, 650, 550, 500, 450]
             ];
-
-            testProducts.forEach(tp => {
-                totalTests++;
-                const p = products.find(prod => prod.id === tp.id);
-                if (p && p.name === tp.name && p.price === tp.price) {
-                    html += '<div class="test-case"><span class="pass">✓ PASS</span> - ' + tp.id + ' - ' + tp.name + ' = $' + tp.price + '</div>';
-                    passedTests++;
-                } else {
-                    html += '<div class="test-case"><span class="fail">✗ FAIL</span> - ' + tp.id + ' no coincide</div>';
-                }
+            const priceMismatches = officialPriceRows.flatMap(([name, price, price10, price30, price50, price100]) => {
+                const product = products.find(item => item.name === name);
+                if (!product) return [`${name}: no existe en el catálogo`];
+                const expected = { price, price10, price30, price50, price100 };
+                return Object.entries(expected)
+                    .filter(([key, value]) => product[key] !== value)
+                    .map(([key, value]) => `${name} ${key}: ${product[key]} != ${value}`);
             });
+            runAssertion(state, priceMismatches.length === 0, `Los 108 productos coinciden con los precios oficiales por cantidad${priceMismatches.length ? ': ' + priceMismatches.slice(0, 5).join('; ') : ''}`);
 
-            // Resumen final
-            if (passedTests === totalTests) {
-                html += '<div class="summary">';
-                html += '<h2>✅ VALIDACIÓN COMPLETA: 100% EXITOSA</h2>';
-                html += '<p><strong>' + passedTests + ' de ' + totalTests + ' pruebas pasaron correctamente.</strong></p>';
-                html += '<p>✅ Todos los productos están correctos (91 productos)</p>';
-                html += '<p>✅ Todas las reglas de precios funcionan correctamente</p>';
-                html += '<p>✅ Los costos de envío son correctos</p>';
-                html += '<p>✅ La aplicación está lista para producción comercial</p>';
-                html += '</div>';
-            } else {
-                html += '<div class="error-summary">';
-                html += '<h2>❌ VALIDACIÓN FALLIDA</h2>';
-                html += '<p><strong>' + passedTests + ' de ' + totalTests + ' pruebas pasaron.</strong></p>';
-                html += '<p>' + (totalTests - passedTests) + ' pruebas fallaron.</p>';
-                html += '</div>';
+            runAssertion(state, products.find(product => product.name === 'LIDA DAIDAIHUA BOOSTER')?.image?.includes('Lidabooster'), 'La imagen Lida Booster está asignada a LIDA DAIDAIHUA BOOSTER');
+            runAssertion(state, products.find(product => product.name === 'LIDA BOOSTER ROSA')?.image?.includes('lida-booster-rosa'), 'LIDA BOOSTER ROSA usa la imagen rosa correcta');
+            runAssertion(state, !products.find(product => product.name === 'FLORYVA VERDE')?.image && !products.find(product => product.name === 'FLORYVA ROSA PROBIOTICO')?.image, 'Las variantes FLORYVA no usan la imagen Candiclear');
+            runAssertion(state, products.find(product => product.name === 'APPLE CIDER')?.image?.includes('applecyder') && !products.find(product => product.name === 'APPLE CIDER QUEMADOR')?.image, 'La imagen Apple Cider Vinagre está asignada a APPLE CIDER, no a QUEMADOR');
+
+            state.html += '<h2>Reglas de Mayoreo Variado</h2>';
+            const fatBlazer = products.find(product => product.name === 'FAT BLAZER');
+            const duo60 = products.find(product => product.name === 'DUO 60 FUSION XTREME');
+            const macaFem = products.find(product => product.name === 'MACA FEM');
+
+            runAssertion(state, calculatePrice(fatBlazer, 5, 5) === 850, 'FAT BLAZER con 5 piezas totales usa precio normal: $850');
+            runAssertion(state, calculatePrice(fatBlazer, 1, 10) === 490, 'FAT BLAZER con 10 piezas variadas usa precio10: $490');
+            runAssertion(state, calculatePrice(fatBlazer, 1, 30) === 460, 'FAT BLAZER con 30 piezas variadas usa price30: $460');
+            runAssertion(state, calculatePrice(fatBlazer, 1, 50) === 430, 'FAT BLAZER con 50 piezas variadas usa price50: $430');
+            runAssertion(state, calculatePrice(fatBlazer, 1, 100) === 390, 'FAT BLAZER con 100 piezas variadas usa price100: $390');
+            runAssertion(state, calculatePrice(duo60, 1, 30) === 470, 'DUO 60 FUSION XTREME con 30 piezas variadas usa price30: $470');
+            runAssertion(state, calculatePrice(macaFem, 1, 100) === 430, 'MACA FEM conserva el precio100 del PDF: $430');
+
+            state.html += '<h2>Envío</h2>';
+            runAssertion(state, calculateShipping(1) === null && calculateShipping(100) === null, 'El envío/seguro queda por confirmar y no se suma al total de productos');
+
+            state.html += '<h2>Flujo de Cotización</h2>';
+            const appDocument = appWindow.document;
+            const alerts = [];
+            const originalAlert = appWindow.alert;
+            const originalClick = appWindow.HTMLAnchorElement.prototype.click;
+            const originalOpen = appWindow.open;
+            let downloadMeta = null;
+            const openedWindows = [];
+
+            appWindow.alert = message => alerts.push(message);
+            appWindow.HTMLAnchorElement.prototype.click = function() {
+                downloadMeta = {
+                    download: this.download,
+                    hrefStart: this.href.slice(0, 23),
+                    hrefLength: this.href.length,
+                    inDom: appDocument.body.contains(this)
+                };
+            };
+            appWindow.open = function(url, target) {
+                const openedWindow = { initialUrl: url, target, href: '' };
+                openedWindows.push(openedWindow);
+
+                const popup = {
+                    closed: false,
+                    document: {
+                        write() {},
+                        close() {}
+                    },
+                    location: {}
+                };
+
+                Object.defineProperty(popup.location, 'href', {
+                    get() {
+                        return openedWindow.href;
+                    },
+                    set(value) {
+                        openedWindow.href = value;
+                    }
+                });
+
+                return popup;
+            };
+
+            try {
+                appWindow.localStorage.clear();
+                appWindow.resetQuote();
+                appWindow.goToStep(3);
+                runAssertion(state, appDocument.getElementById('step1').classList.contains('active') && alerts.some(message => message.includes('carrito está vacío')), 'No permite generar datos de cliente con el carrito vacío');
+
+                const quoteProducts = [
+                    ['FAT BLAZER', 4],
+                    ['DUO 60 FUSION XTREME', 3],
+                    ['MAXI FIBRA', 2],
+                    ['3 DAY RESET', 1],
+                    ['THYROIDE SUPPORT', 1]
+                ].map(([name, quantity]) => ({ product: products.find(item => item.name === name), quantity }));
+
+                quoteProducts.forEach(({ product, quantity }) => appWindow.setQuantity(product.id, quantity));
+                appWindow.goToCart();
+
+                const expectedSubtotal = quoteProducts.reduce((sum, { product, quantity }) => sum + product.price10 * quantity, 0);
+                runAssertion(state, appDocument.getElementById('subtotal').textContent === `$${expectedSubtotal}`, `El carrito calcula mayoreo mixto de 11 piezas: $${expectedSubtotal}`);
+
+                appWindow.goToStep(3);
+                appDocument.getElementById('customerName').value = 'Cliente Prueba <b>& Co';
+                appDocument.getElementById('customerPhone').value = '6312982043';
+                appDocument.getElementById('customerStreet').value = 'Calle 123 <script>bad()<\/script>';
+                appDocument.getElementById('customerColonia').value = 'Centro & Norte';
+                appDocument.getElementById('customerCP').value = '84000';
+                appDocument.getElementById('customerCity').value = 'Nogales';
+                appDocument.getElementById('customerState').value = 'Sonora';
+                appDocument.getElementById('customerReferences').value = 'Portón blanco & esquina';
+                appWindow.generateQuote();
+
+                const quoteCustomer = appDocument.getElementById('quoteCustomer');
+                const quoteRows = appDocument.querySelectorAll('#quoteItems tr');
+                const customerHTML = quoteCustomer.innerHTML;
+
+                runAssertion(state, appDocument.getElementById('step4').classList.contains('active'), 'La app llega al paso final de cotización');
+                runAssertion(state, appDocument.getElementById('quoteSubtotal').textContent === `$${expectedSubtotal}` && appDocument.getElementById('quoteTotal').textContent === `$${expectedSubtotal}`, 'La cotización final conserva subtotal y total correctos');
+                runAssertion(state, quoteRows.length === quoteProducts.length, `La cotización final muestra ${quoteProducts.length} productos`);
+                runAssertion(state, !quoteCustomer.querySelector('script') && customerHTML.includes('&lt;script&gt;bad()&lt;/script&gt;'), 'Los datos del cliente se insertan como texto seguro, no como HTML activo');
+
+                const canvas = await appWindow.downloadQuoteImage(null, { silent: true });
+                const quoteImages = Array.from(appDocument.querySelectorAll('#quotePrintArea img'));
+                const downloadResult = appDocument.getElementById('downloadResult');
+                const quoteActions = appDocument.querySelector('.quote-actions-top');
+                appDocument.body.classList.add('downloading');
+                const actionsStayVisible = appWindow.getComputedStyle(quoteActions).visibility !== 'hidden';
+                appDocument.body.classList.remove('downloading');
+
+                runAssertion(state, quoteImages.every(image => image.complete && image.naturalWidth > 0), 'Todas las imágenes de la cotización cargan antes de exportar');
+                runAssertion(state, canvas.width >= 600 && canvas.height >= 1000, `La imagen final se genera con tamaño válido: ${canvas.width}x${canvas.height}`);
+                runAssertion(state, downloadMeta?.download?.startsWith('cotizacion_cliente_prueba') && /^blob:|^data:image\/jpeg;base64,/.test(downloadMeta.hrefStart) && downloadMeta.inDom && appWindow.MVV_LAST_QUOTE_DOWNLOAD?.size > 100000, 'La descarga final genera un JPEG con nombre válido');
+                runAssertion(state, downloadResult?.classList.contains('active') && downloadResult.querySelectorAll('a').length === 2, 'La app deja enlaces visibles para descargar o abrir la imagen generada');
+                runAssertion(state, actionsStayVisible, 'Los botones de descarga y WhatsApp permanecen visibles mientras se genera la imagen');
+
+                await appWindow.sendWhatsApp({ currentTarget: appDocument.querySelector('.btn-whatsapp') });
+                const whatsappUrl = appWindow.MVV_LAST_WHATSAPP_URL || '';
+                runAssertion(state, whatsappUrl.startsWith('https://wa.me/526312982043?text='), 'WhatsApp usa el número mexicano correcto sin signo + en wa.me');
+                runAssertion(state, openedWindows.some(item => item.href === whatsappUrl), 'El botón de WhatsApp abre una conversación con texto precargado');
+            } catch (error) {
+                runAssertion(state, false, `El flujo de cotización falló: ${error.message}`);
+            } finally {
+                appWindow.alert = originalAlert;
+                appWindow.HTMLAnchorElement.prototype.click = originalClick;
+                appWindow.open = originalOpen;
             }
 
-            // Tabla de todos los productos
-            html += '<h2>📋 Catálogo Completo de Productos (91)</h2>';
-            html += '<table>';
-            html += '<thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>P10</th><th>P30</th><th>P50</th><th>P100</th></tr></thead>';
-            html += '<tbody>';
-            products.forEach(p => {
-                html += '<tr>';
-                html += '<td>' + p.id + '</td>';
-                html += '<td>' + p.name + '</td>';
-                html += '<td>$' + p.price + '</td>';
-                html += '<td>$' + p.price10 + '</td>';
-                html += '<td>$' + p.price30 + '</td>';
-                html += '<td>' + (p.price50 !== null ? '$' + p.price50 : 'null') + '</td>';
-                html += '<td>$' + p.price100 + '</td>';
-                html += '</tr>';
-            });
-            html += '</tbody></table>';
+            if (state.passed === state.total) {
+                state.html += '<div class="summary">';
+                state.html += '<h2>VALIDACIÓN COMPLETA: 100% EXITOSA</h2>';
+                state.html += `<p><strong>${state.passed} de ${state.total} pruebas pasaron correctamente.</strong></p>`;
+                state.html += '<p>La aplicación usa preciosnew.pdf como fuente oficial.</p>';
+                state.html += '</div>';
+            } else {
+                state.html += '<div class="error-summary">';
+                state.html += '<h2>VALIDACIÓN FALLIDA</h2>';
+                state.html += `<p><strong>${state.passed} de ${state.total} pruebas pasaron.</strong></p>`;
+                state.html += '</div>';
+            }
 
-            document.getElementById('results').innerHTML = html;
+            state.html += '<h2>Catálogo Completo de Productos (108)</h2>';
+            state.html += '<table>';
+            state.html += '<thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>P10</th><th>P30</th><th>P50</th><th>P100</th></tr></thead>';
+            state.html += '<tbody>';
+            products.forEach(product => {
+                state.html += '<tr>';
+                state.html += `<td>${product.id}</td>`;
+                state.html += `<td>${product.name}</td>`;
+                state.html += `<td>$${product.price}</td>`;
+                state.html += `<td>$${product.price10}</td>`;
+                state.html += `<td>$${product.price30}</td>`;
+                state.html += `<td>$${product.price50}</td>`;
+                state.html += `<td>$${product.price100}</td>`;
+                state.html += '</tr>';
+            });
+            state.html += '</tbody></table>';
+
+            resultsEl.innerHTML = state.html;
         }
 
-        runTests();
+        const appFrame = document.getElementById('appFrame');
+
+        appFrame.addEventListener('load', event => {
+            try {
+                runTests(event.currentTarget.contentWindow).catch(error => {
+                    resultsEl.innerHTML = `<div class="error-summary"><h2>Error de validación</h2><p>${error.message}</p></div>`;
+                });
+            } catch (error) {
+                resultsEl.innerHTML = `<div class="error-summary"><h2>Error de validación</h2><p>${error.message}</p></div>`;
+            }
+        });
+
+        appFrame.src = `index.html?validation=${Date.now()}`;
     </script>
 </body>
 </html>
-
