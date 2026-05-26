@@ -847,17 +847,183 @@
             text-decoration: none;
         }
 
-        .download-result .dl-action-primary {
-            min-height: 56px;
+        .download-result .download-action-primary {
+            flex: 1 1 100%;
+            min-height: 52px;
             padding: 14px 18px;
-            font-size: 1.1rem;
-            background: linear-gradient(135deg, var(--green) 0%, var(--light-green) 100%);
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+            font-size: 1.05rem;
+            background: var(--green);
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
         }
 
-        .download-result .dl-action-primary:active {
+        .download-result .download-action-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+        }
+
+        .wa-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .wa-modal.active {
+            display: flex;
+        }
+
+        .wa-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .wa-modal-content {
+            position: relative;
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px 22px 22px;
+            max-width: 480px;
+            width: 100%;
+            max-height: calc(100vh - 32px);
+            overflow-y: auto;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+            animation: wa-modal-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+        }
+
+        @keyframes wa-modal-pop {
+            from { transform: translateY(12px) scale(0.96); opacity: 0; }
+            to   { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .wa-modal-close-x {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            line-height: 1;
+        }
+
+        .wa-modal-close-x:hover {
+            background: var(--light-cream);
+        }
+
+        .wa-modal-title {
+            margin: 0 0 6px;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 800;
+            padding-right: 28px;
+        }
+
+        .wa-modal-intro {
+            margin: 0 0 18px;
+            color: var(--text-dark);
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .wa-modal-intro strong {
+            color: var(--green);
+        }
+
+        .wa-modal-steps {
+            list-style: none;
+            counter-reset: wa-step;
+            padding: 0;
+            margin: 0 0 16px;
+        }
+
+        .wa-modal-steps > li {
+            counter-increment: wa-step;
+            position: relative;
+            padding: 14px 14px 14px 54px;
+            margin-bottom: 12px;
+            background: var(--light-cream);
+            border-radius: 12px;
+            color: var(--text-dark);
+            line-height: 1.45;
+            font-size: 0.97rem;
+        }
+
+        .wa-modal-steps > li::before {
+            content: counter(wa-step);
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 30px;
+            height: 30px;
+            background: var(--green);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .wa-modal-steps > li strong {
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .wa-modal-step-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: var(--green);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 50px;
+            touch-action: manipulation;
+            font: inherit;
+            font-weight: 700;
+        }
+
+        .wa-modal-step-btn.wa-modal-step-whatsapp {
+            background: #25D366;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            font-size: 1.05rem;
+        }
+
+        .wa-modal-step-btn:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.35);
+        }
+
+        .wa-modal-tip {
+            margin: 0;
+            padding: 12px 14px;
+            background: #E8F5E9;
+            border-left: 3px solid var(--green);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            line-height: 1.45;
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
         #quotePrintArea {
@@ -1314,7 +1480,7 @@
     <!-- Header -->
     <div class="header">
         <div class="header-content">
-            <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="logo" loading="eager">
+            <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="MVV Natural Logo" class="logo" loading="eager" crossorigin="anonymous">
             <div class="header-title">Sistema de Cotizaciones</div>
         </div>
     </div>
@@ -1360,7 +1526,7 @@
             
             <div class="cart-full-page">
                 <div class="cart-header-logo">
-                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="Logo" class="cart-logo" loading="lazy">
+                    <img src="https://res.cloudinary.com/dsulhqvza/image/upload/v1761550208/mvvnatural_pbzwrl.png" alt="Logo" class="cart-logo" loading="lazy" crossorigin="anonymous">
                 </div>
                 
                 <div id="cartItems" class="cart-items"></div>
@@ -1477,17 +1643,11 @@
         <div id="step4" class="step">
             <div class="quote-wrapper">
                 <div class="quote-actions-top">
-                    <div class="quote-action">
-                        <button class="btn-download" onclick="downloadQuoteImage(event)" aria-label="Guardar imagen">
-                            💾 Guardar Imagen
+                    <div class="quote-action quote-action-single">
+                        <button class="btn-download" onclick="enviarCotizacionCompleta(event)" aria-label="Enviar cotización a Magdy Valencia por WhatsApp">
+                            📤 Enviar Cotización a Magdy
                         </button>
-                        <span class="button-instruction">Paso 1: descarga la cotización</span>
-                    </div>
-                    <div class="quote-action">
-                        <button class="btn-whatsapp" onclick="sendWhatsApp(event)" aria-label="Enviar por WhatsApp">
-                            📱 Enviar WhatsApp
-                        </button>
-                        <span class="button-instruction">Paso 2: envía a Magdy Valencia</span>
+                        <span class="button-instruction">Te guiamos paso a paso para enviarla por WhatsApp</span>
                     </div>
                 </div>
                 <div id="downloadResult" class="download-result" aria-live="polite"></div>
@@ -1542,6 +1702,23 @@
 
     <div class="footer">
         © 2025 MVV Natural - Todos los derechos reservados
+    </div>
+
+    <div id="whatsappModal" class="wa-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="whatsappModalTitle">
+        <div class="wa-modal-backdrop" onclick="closeWhatsAppModal()"></div>
+        <div class="wa-modal-content" role="document">
+            <button type="button" class="wa-modal-close-x" onclick="closeWhatsAppModal()" aria-label="Cerrar">✕</button>
+            <h2 id="whatsappModalTitle" class="wa-modal-title">✅ ¡Cotización lista!</h2>
+            <p class="wa-modal-intro">
+                Sigue estos pasos para enviarla a <strong>Magdy Valencia</strong>:
+            </p>
+            <ol class="wa-modal-steps" id="whatsappModalSteps">
+                <!-- Steps are injected based on device capability (mobile vs desktop) -->
+            </ol>
+            <p class="wa-modal-tip">
+                💡 <strong>Importante:</strong> WhatsApp no permite adjuntar imágenes automáticamente desde un enlace. Por eso necesitas adjuntar la cotización manualmente con el clip 📎.
+            </p>
+        </div>
     </div>
 
     <script>
@@ -1852,47 +2029,39 @@
             resultEl.classList.add('active');
             resultEl.innerHTML = `
                 <strong>No se pudo guardar la imagen.</strong>
-                <p style="margin: 6px 0 0; font-size: 0.95rem;">${escapeHTML(message)}</p>
+                ${escapeHTML(message)}
             `;
-            requestAnimationFrame(() => {
-                resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
         }
 
         function setDownloadResult(fileName, imageUrl) {
             const resultEl = document.getElementById('downloadResult');
             if (!resultEl) return;
 
-            const isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent || '');
             const canShareFile = window.MVV_LAST_QUOTE_FILE
                 && navigator.share
                 && navigator.canShare?.({ files: [window.MVV_LAST_QUOTE_FILE] });
-            const shareButton = canShareFile
-                ? '<button type="button" class="dl-action-primary" onclick="shareLastQuoteImage()">📤 Compartir / Guardar</button>'
-                : '';
 
             resultEl.classList.add('active');
 
-            if (isMobile) {
+            if (canShareFile) {
+                // Share-first flow: navigator.share is the only API that can
+                // route the file to Photos/Gallery. The system share sheet
+                // shows "Guardar imagen" / "Save Image" → saves to Photos.
                 resultEl.innerHTML = `
-                    <strong>✅ Tu cotización está lista.</strong>
-                    <p style="margin: 6px 0 12px; font-size: 0.95rem;">${canShareFile ? 'Toca el botón para guardarla en tu teléfono o enviarla.' : 'Mantén presionada la imagen y elige <em>Guardar en Fotos</em>.'}</p>
-                    <div class="download-result-actions" style="flex-direction: column; gap: 10px;">
-                        ${shareButton}
-                        <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen en pantalla completa</a>
-                    </div>
-                    <img src="${imageUrl}" alt="Vista previa de cotización" style="display: block; margin: 14px auto 0; max-width: 100%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);">
-                `;
-                requestAnimationFrame(() => {
-                    resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                });
-            } else {
-                resultEl.innerHTML = `
-                    <strong>Imagen lista.</strong> Si no se guardó automáticamente, usa uno de estos botones:
+                    <strong>✅ Imagen lista.</strong> Toca el botón para guardarla en tu galería de fotos:
                     <div class="download-result-actions">
-                        <a href="${imageUrl}" download="${escapeHTML(fileName)}">Descargar de nuevo</a>
-                        <a href="${imageUrl}" target="_blank" rel="noopener">Abrir imagen</a>
-                        ${shareButton}
+                        <button type="button" class="download-action-share download-action-primary" onclick="shareLastQuoteImage()">📷 Guardar en Galería</button>
+                        <a href="${imageUrl}" target="_blank" rel="noopener" class="download-action-secondary">🖼️ Abrir imagen</a>
+                    </div>
+                `;
+            } else {
+                // Desktop / non-share-capable browsers: keep the manual download
+                // links as the recovery path for the auto-download.
+                resultEl.innerHTML = `
+                    <strong>✅ Imagen lista.</strong> Si la descarga automática no funcionó en tu dispositivo, usa una de estas opciones:
+                    <div class="download-result-actions">
+                        <a href="${imageUrl}" download="${escapeHTML(fileName)}">💾 Descargar de nuevo</a>
+                        <a href="${imageUrl}" target="_blank" rel="noopener">🖼️ Abrir imagen</a>
                     </div>
                 `;
             }
@@ -1953,7 +2122,7 @@
 
                 return `
                     <div class="product-card">
-                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="product-image" loading="lazy">` : ''}
+                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="product-image" loading="lazy" crossorigin="anonymous">` : ''}
                         <div class="product-name">${productName}</div>
                         <div class="product-controls">
                             <div class="product-price">${formatPrice(currentPrice)}</div>
@@ -2049,7 +2218,7 @@
 
                 return `
                     <div class="cart-item">
-                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="cart-item-image" loading="lazy">` : '<div class="cart-item-image" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8rem;">Sin imagen</div>'}
+                        ${product.image ? `<img src="${product.image}" alt="${productName}" class="cart-item-image" loading="lazy" crossorigin="anonymous">` : '<div class="cart-item-image" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8rem;">Sin imagen</div>'}
                         <div class="cart-item-info">
                             <div class="cart-item-name">${productName}</div>
                             <div class="cart-item-details">
@@ -2278,7 +2447,7 @@
         }
 
         // Descargar imagen con alta definición
-        async function downloadQuoteImage(triggerEvent = null, { silent = false } = {}) {
+        async function downloadQuoteImage(triggerEvent = null, { silent = false, inlineResult = true } = {}) {
             if (!silent) {
                 vibrate(20);
             }
@@ -2317,14 +2486,8 @@
                 return Promise.reject(new Error('No se pudo cargar el generador de imagen'));
             }
 
-            const isMobile = /iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent || '');
             const pixelRatio = window.devicePixelRatio || 1;
-            // 1x on mobile keeps the resulting canvas tiny — older iPhones cap canvases around 5M pixels
-            // and a long cart at 2x can blow past that, returning a blank canvas. Quality is fine for
-            // a text-heavy quote.
-            const captureScale = isMobile
-                ? 1
-                : Math.min(3, Math.max(2, pixelRatio * 1.35));
+            const captureScale = Math.min(3, Math.max(2, pixelRatio * 1.35));
 
             const formatForFile = (value, fallback) => {
                 const safeValue = (value || fallback || '').trim() || 'cliente';
@@ -2372,26 +2535,15 @@
                 const customerName = formatForFile(localStorage.getItem('customerName'), 'cliente');
                 const quoteDate = getFileDate();
                 const fileName = `cotizacion_${customerName}_${quoteDate}.jpeg`;
-
-                // Primary export: synchronous toDataURL. Matches the old (working) flow and
-                // can't time out the way toBlob did on iOS.
-                const imageUrl = canvas.toDataURL('image/jpeg', 0.92);
-
-                // Best-effort: also produce a Blob/File so the iOS share sheet can attach the
-                // JPEG. If toBlob hangs or fails we silently drop to the dataURL-only path.
-                let quoteFile = null;
-                try {
-                    const blob = await withTimeout(
-                        canvasToBlob(canvas, 'image/jpeg', 0.92),
-                        4000,
-                        null
-                    );
-                    if (blob && typeof File === 'function') {
-                        quoteFile = new File([blob], fileName, { type: 'image/jpeg' });
-                    }
-                } catch (e) {
-                    // toBlob fell through; we still have imageUrl from toDataURL
-                }
+                const blob = await withTimeout(
+                    canvasToBlob(canvas, 'image/jpeg', 0.95),
+                    8000,
+                    'No se pudo preparar el archivo JPEG. Intenta de nuevo.'
+                );
+                const quoteFile = blob && typeof File === 'function'
+                    ? new File([blob], fileName, { type: 'image/jpeg' })
+                    : null;
+                const imageUrl = blob ? URL.createObjectURL(blob) : canvas.toDataURL('image/jpeg', 0.95);
 
                 if (lastQuoteImageUrl?.startsWith('blob:')) {
                     URL.revokeObjectURL(lastQuoteImageUrl);
@@ -2403,19 +2555,21 @@
                     imageUrl,
                     width: canvas.width,
                     height: canvas.height,
-                    size: quoteFile?.size || 0
+                    size: blob?.size || 0
                 };
 
-                if (isMobile) {
-                    // iOS Safari ignores <a download> for blob: URLs and the user gesture has expired
-                    // after html2canvas runs, so navigator.share() can't be auto-triggered here.
-                    // setDownloadResult shows a prominent share/save CTA whose click is a fresh gesture.
-                    setDownloadResult(fileName, imageUrl);
-                    if (btn) {
-                        btn.innerHTML = '✅ Listo — guarda abajo';
-                        restoreButton(btn, originalLabel || '💾 Guardar Imagen', 4000);
-                    }
-                } else {
+                // On mobile devices that support file-sharing, the <a download>
+                // click saves to Files (not Photos) and the user has to fish the
+                // image out. Skip it there — the share button below is the only
+                // path to Photos/Gallery anyway, so we make it the primary CTA
+                // instead of a fallback. Desktop / non-share browsers still get
+                // the auto-download.
+                const willOfferShare = quoteFile
+                    && typeof navigator !== 'undefined'
+                    && typeof navigator.share === 'function'
+                    && navigator.canShare?.({ files: [quoteFile] });
+
+                if (!willOfferShare) {
                     const link = document.createElement('a');
                     link.download = fileName;
                     link.href = imageUrl;
@@ -2423,13 +2577,24 @@
                     document.body.appendChild(link);
                     link.click();
                     link.remove();
+                }
 
+                if (inlineResult) {
                     setDownloadResult(fileName, imageUrl);
 
-                    if (btn) {
-                        btn.innerHTML = '✅ Imagen Lista';
-                        restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
+                    // Scroll the result UI into view so the user always sees
+                    // the save options without having to scroll for them (the
+                    // share button on mobile, or the manual download links on
+                    // desktop).
+                    if (!silent) {
+                        const resultEl = document.getElementById('downloadResult');
+                        resultEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
+                }
+
+                if (btn) {
+                    btn.innerHTML = '✅ Imagen Lista';
+                    restoreButton(btn, originalLabel || '💾 Guardar Imagen', 2000);
                 }
 
                 return canvas;
@@ -2483,9 +2648,134 @@
         window.MVV_BUILD_WHATSAPP_MESSAGE = buildWhatsAppMessage;
         window.MVV_BUILD_WHATSAPP_URL = buildWhatsAppUrl;
 
-        // Enviar WhatsApp — abre wa.me directamente, sin esperar a la imagen.
-        // La imagen se guarda en segundo plano (best-effort) para que el usuario la tenga lista al adjuntar.
-        function sendWhatsApp(triggerEvent = null) {
+        // Unified "Enviar Cotización" flow: generate the image, then open the
+        // step-by-step modal that walks the user through saving and sending
+        // via WhatsApp. Replaces the previous two-button "Paso 1 / Paso 2"
+        // UI so users get a clear guided path instead of having to know the
+        // order themselves.
+        async function enviarCotizacionCompleta(triggerEvent = null) {
+            vibrate(20);
+            normalizeCart();
+
+            if (!hasCartItems()) {
+                alert('⚠️ Tu carrito está vacío. Agrega productos primero.');
+                goToStep(1);
+                return;
+            }
+
+            const btn = triggerEvent?.currentTarget || triggerEvent?.target || null;
+            const originalLabel = btn ? (btn.dataset.originalLabel || btn.innerHTML) : null;
+            if (btn) {
+                btn.dataset.originalLabel = originalLabel;
+                btn.innerHTML = '⏳ Preparando cotización…';
+                btn.disabled = true;
+            }
+
+            try {
+                // Generate the JPEG and stash it in MVV_LAST_QUOTE_FILE. We
+                // suppress the inline result card (inlineResult: false) because
+                // the modal below replaces it with a clearer guided flow.
+                // On desktop this also auto-fires <a download>; on mobile the
+                // file is just held in memory until the modal's Save button
+                // triggers navigator.share within a fresh user gesture.
+                await downloadQuoteImage(null, { silent: true, inlineResult: false });
+
+                if (btn) {
+                    btn.innerHTML = '✅ Lista';
+                    restoreButton(btn, originalLabel || '📤 Enviar Cotización a Magdy', 1500);
+                }
+
+                openWhatsAppModal();
+            } catch (error) {
+                console.error('Error al preparar cotización:', error);
+                if (btn) {
+                    btn.innerHTML = '❌ Error. Reintentar';
+                    restoreButton(btn, originalLabel || '📤 Enviar Cotización a Magdy', 2000);
+                }
+                setDownloadError(error?.message || 'Intenta generar la cotización nuevamente.');
+            }
+        }
+
+        function openWhatsAppModal() {
+            const modal = document.getElementById('whatsappModal');
+            const stepsEl = document.getElementById('whatsappModalSteps');
+            if (!modal || !stepsEl) return;
+
+            const quoteFile = window.MVV_LAST_QUOTE_FILE;
+            const canShareFile = quoteFile
+                && typeof navigator !== 'undefined'
+                && typeof navigator.share === 'function'
+                && navigator.canShare?.({ files: [quoteFile] });
+
+            // Build step list based on device. Mobile gets a "Save to Gallery"
+            // step because the file isn't auto-downloaded there (browsers can't
+            // write to Photos without going through navigator.share). Desktop
+            // already has the file in Downloads, so it skips that step.
+            if (canShareFile) {
+                stepsEl.innerHTML = `
+                    <li>
+                        <strong>Guarda la imagen</strong> en tu galería de fotos.
+                        <button type="button" class="wa-modal-step-btn" onclick="shareLastQuoteImage()">📷 Guardar en Galería</button>
+                    </li>
+                    <li>
+                        <strong>Abre WhatsApp</strong> con Magdy. El mensaje ya estará escrito.
+                        <button type="button" class="wa-modal-step-btn wa-modal-step-whatsapp" onclick="openWhatsAppForMagdy()">📱 Abrir WhatsApp</button>
+                    </li>
+                    <li>
+                        <strong>Envía el mensaje</strong> tocando el botón verde de enviar en WhatsApp.
+                    </li>
+                    <li>
+                        <strong>Adjunta la cotización:</strong> toca el clip 📎 dentro del chat, elige "Galería" o "Fotos" y selecciona la imagen que acabas de guardar.
+                    </li>
+                `;
+            } else {
+                stepsEl.innerHTML = `
+                    <li>
+                        <strong>La cotización ya se descargó</strong> a tu carpeta de Descargas como un archivo <code>.jpeg</code>.
+                    </li>
+                    <li>
+                        <strong>Abre WhatsApp Web</strong> con Magdy. El mensaje ya estará escrito.
+                        <button type="button" class="wa-modal-step-btn wa-modal-step-whatsapp" onclick="openWhatsAppForMagdy()">📱 Abrir WhatsApp</button>
+                    </li>
+                    <li>
+                        <strong>Envía el mensaje</strong> a Magdy en el chat que se abrió.
+                    </li>
+                    <li>
+                        <strong>Adjunta la cotización:</strong> arrastra el archivo descargado al chat, o usa el clip 📎 → "Fotos y videos" → elige <code>cotizacion_*.jpeg</code> desde Descargas.
+                    </li>
+                `;
+            }
+
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeWhatsAppModal() {
+            const modal = document.getElementById('whatsappModal');
+            if (!modal) return;
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        function openWhatsAppForMagdy() {
+            vibrate(20);
+            const message = buildWhatsAppMessage();
+            const whatsappUrl = buildWhatsAppUrl(message);
+            window.MVV_LAST_WHATSAPP_URL = whatsappUrl;
+            const opened = window.open(whatsappUrl, '_blank');
+            if (!opened) {
+                window.location.href = whatsappUrl;
+                return;
+            }
+            // Leave the modal open so the user can re-tap if WhatsApp gets
+            // dismissed, and so the "attach the cotización" instruction stays
+            // visible while they're in WhatsApp.
+        }
+
+        // Enviar WhatsApp
+        async function sendWhatsApp(triggerEvent = null) {
             vibrate(20);
             normalizeCart();
 
@@ -2502,18 +2792,45 @@
             const whatsappUrl = buildWhatsAppUrl(message);
             window.MVV_LAST_WHATSAPP_URL = whatsappUrl;
 
-            const opened = window.open(whatsappUrl, '_blank', 'noopener');
+            // Open WhatsApp directly with the destination URL during the user gesture.
+            // The previous "open empty popup → redirect later" pattern was unreliable:
+            // some browsers block cross-origin redirects of about:blank popups, and
+            // users saw the placeholder text for 5–30s while the silent capture ran.
+            // (Note: avoid the 'noopener' feature here — it makes window.open return
+            // null even on success, defeating our popup-blocked detection below.)
+            const opened = window.open(whatsappUrl, '_blank');
             if (!opened) {
                 window.location.href = whatsappUrl;
+                return;
             }
 
+            // After WhatsApp is open, save the image in the background so the user
+            // has it ready to attach. If it was already saved (Step 1), the existing
+            // file remains; this just refreshes it with the latest cart state.
             if (btn) {
                 btn.dataset.originalLabel = originalLabel;
-                btn.innerHTML = '✅ WhatsApp abierto';
-                restoreButton(btn, originalLabel || '📱 Enviar WhatsApp', 2000);
+                btn.innerHTML = '⏳ Guardando imagen…';
+                btn.disabled = true;
             }
-
-            downloadQuoteImage(null, { silent: true }).catch(() => {});
+            try {
+                await withTimeout(
+                    downloadQuoteImage(null, { silent: true }),
+                    30000,
+                    'La imagen tardó demasiado en guardarse.'
+                );
+                if (btn) {
+                    btn.innerHTML = '✅ Imagen lista';
+                }
+            } catch (error) {
+                console.error('No se guardó la imagen automáticamente:', error);
+                setDownloadError('No se pudo guardar la imagen. Usa "Guardar Imagen" e intenta de nuevo.');
+                if (btn) {
+                    btn.innerHTML = '⚠️ Guarda la imagen manualmente';
+                }
+            }
+            if (btn) {
+                restoreButton(btn, originalLabel || '📱 Enviar WhatsApp', 2500);
+            }
         }
 
         // Búsqueda con debounce
